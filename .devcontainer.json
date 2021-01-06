@@ -1,0 +1,27 @@
+// VSCode developent container https://code.visualstudio.com/docs/remote/containers
+{
+	"name": "Cloud Development Container",
+
+	// Use the cloud build container to develop 
+	"dockerFile": "./bootstrap/cloudbuild_builder/Dockerfile",
+
+	"settings": { 
+		"terminal.integrated.shell.linux": "/bin/bash",
+		"editor.tabSize": 2,
+		"terraform.languageServer": {
+			"enabled": true,
+			"args": []
+		},
+		"terraform.indexing": {
+			"enabled": false,
+			"liveIndexing": false,
+		},
+	},
+	"extensions": [
+		"eamodio.gitlens",
+		"hashicorp.terraform",
+		"davidanson.vscode-markdownlint",
+		"tomashubelbauer.vscode-markdown-table-format",
+		"ms-azuretools.vscode-docker"
+	],
+}

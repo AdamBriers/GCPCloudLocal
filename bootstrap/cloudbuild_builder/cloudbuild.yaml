@@ -1,0 +1,15 @@
+# In this directory, run the following command to build this builder.
+# $ gcloud builds submit . --config=cloudbuild.yaml
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: [
+    'build',
+    '--tag=eu.gcr.io/${PROJECT_ID}/cloud-terraform',
+    '--build-arg=TERRAFORM_DOCS_VERSION=${_TERRAFORM_DOCS_VERSION}',
+    '.'
+    ]
+- name: 'eu.gcr.io/${PROJECT_ID}/cloud-terraform'
+  args: ['--version']
+substitutions:
+  _TERRAFORM_DOCS_VERSION: '0.9.1' # default value
+images: ['eu.gcr.io/${PROJECT_ID}/cloud-terraform']
