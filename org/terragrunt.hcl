@@ -65,11 +65,4 @@ inputs = {
 
   billing_account = "012FC6-C62F56-07056F",
   org_id          = "205038295325"
-  #allowed_domain_ids = [
-    # Appsbroker Cloud Identity Customer ID
-  #  "C02l4xnhr",
-    # Client Cloud Identity Customer ID
-  #  "C0391mc0z"
-  #]
-  #merge(# local.environment_vars.locals,)
 }
