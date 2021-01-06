@@ -41,4 +41,4 @@ steps:
 artifacts:
   objects:
     location: 'gs://${_ARTIFACT_BUCKET_NAME}/terraform/cloudbuild/apply/$BUILD_ID'
-    paths: ['cloudbuild-tg-full.yaml','cloudbuild-tg-plan.yaml']
+    paths: ['cloudbuild-tg-plan-apply.yaml','cloudbuild-tg-plan.yaml']
