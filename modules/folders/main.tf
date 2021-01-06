@@ -7,4 +7,3 @@ resource "google_folder" "gcpfolder" {
   display_name = var.folder_name
   parent       = local.parent
 }
-

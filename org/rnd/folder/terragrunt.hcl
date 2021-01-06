@@ -4,7 +4,7 @@
 #}
 
 terraform {
-  source = "../..//modules/folders/"
+  source = "../../..//modules/folders/"
 }
 
 # Include all settings from the root terragrunt.hcl file
@@ -15,6 +15,6 @@ include {
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
 
-  folder_names     = "SecOps"
+  folder_names     = "Research and Development"
   org_id           = "205038295325" ## Places fof People org id
 }

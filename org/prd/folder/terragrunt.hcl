@@ -4,7 +4,7 @@
 #}
 
 terraform {
-  source = "../..//modules/folders/"
+  source = "../../..//modules/folders/"
 }
 
 # Include all settings from the root terragrunt.hcl file
