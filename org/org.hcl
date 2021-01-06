@@ -10,8 +10,8 @@ remote_state {
 
   # Same state bucket for for all envs
   config = {
-    project = "deployment-pipeline-7972"
-    bucket  = "deployment-pipeline-7972-terraform-state"
+    project = "gc-a-prj-cloudbld-0001-7087"
+    bucket  = "gc-a-prj-cloudbld-0001-7087-terraform-state"
     prefix  = "${path_relative_to_include()}/terraform.tfstate"
   }
 }
@@ -32,7 +32,7 @@ provider "google" {
 
 data "google_service_account_access_token" "default" {
   provider               = google.impersonate
-  target_service_account = "sa-terraform-deployment@deployment-pipeline-7972.iam.gserviceaccount.com" #As indicated in terraform.tfvars inside bootstrap value terraform_sa_name
+  target_service_account = "gc-a-sa-tforg-0001@gc-a-prj-cloudbld-0001-7087.iam.gserviceaccount.com" #As indicated in terraform.tfvars inside bootstrap value terraform_sa_name
   scopes                 = ["userinfo-email", "cloud-platform"]
   lifetime               = "600s"
 }
@@ -63,8 +63,8 @@ locals {
 # where terraform_remote_state data sources are placed directly into the modules.
 inputs = {
 
-  billing_account = "0119B9-36A410-C6B39B",
-  org_id          = "650414305409"
+  billing_account = "012FC6-C62F56-07056F",
+  org_id          = "205038295325"
   #allowed_domain_ids = [
     # Appsbroker Cloud Identity Customer ID
   #  "C02l4xnhr",
