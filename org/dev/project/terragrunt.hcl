@@ -18,13 +18,13 @@ inputs = {
   project_name    = "gc-d-prj-test-0001"
   folder_id       = "Development" ## Dev folder created in infrastructure
   labels          = {
-    application      = data_dev_test
-    businessunit     = homes
-    costcentre       = 90imp
-    createdby        = appsbroker
-    department       = it
-    disasterrecovery = no
-    environment      = dev
-    contact          = john_foster
+    "application"      = "data_dev_test"
+    "businessunit"     = "homes"
+    "costcentre"       = "90imp"
+    "createdby"        = "appsbroker"
+    "department"       = "it"
+    "disasterrecovery" = "no"
+    "environment"      = "dev"
+    "contact"          = "john_foster"
   }
 }
