@@ -4,7 +4,7 @@
 #}
 
 terraform {
-  source = "../../..//modules/project/"
+  source = "../../modules//folders/"
 }
 
 # Include all settings from the root terragrunt.hcl file
@@ -15,16 +15,6 @@ include {
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
 
-  project_name    = "gc-d-prj-test-0001"
-  folder_id       = "Development" ## Dev folder created in infrastructure
-  labels          = {
-    "application"      = "data_dev_test"
-    "businessunit"     = "homes"
-    "costcentre"       = "90imp"
-    "createdby"        = "appsbroker"
-    "department"       = "it"
-    "disasterrecovery" = "no"
-    "environment"      = "dev"
-    "contact"          = "john_foster"
-  }
+  folder_name     = "Test and Development"
+  org_id           = "205038295325" ## Places fof People org id
 }
