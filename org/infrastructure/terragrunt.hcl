@@ -18,7 +18,7 @@ inputs = {
 
   skip_default_network = true
   require_oslogin      = true
-  resource_locations   = ["in:europe-locations]
+  resource_locations   = ["in:europe-locations"]
   uniform_bucket       = true
   vm_external_ip       = true
 }
