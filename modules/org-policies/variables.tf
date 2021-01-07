@@ -38,11 +38,11 @@ variable "org_id" {
   type        = string
 }
 
-variable "allowed_domain_ids" {
-  description = "(Only for list constraints) List of cloud identity domain ids allowed access. Default contains client.co.uk"
-  type        = list(string)
-  default     = ["C0391mc0z"]
-}
+#variable "allowed_domain_ids" {
+#  description = "(Only for list constraints) List of cloud identity domain ids allowed access. Default contains client.co.uk"
+#  type        = list(string)
+#  default     = ["C0391mc0z"]
+#}
 
 variable "resource_locations" {
   description = "(Only for list constraints) List of locations to allow resource creation"
