@@ -19,8 +19,6 @@ inputs = {
   skip_default_network = true
   require_oslogin      = true
   resource_locations   = ["europe-west1", "europe-west2"]
-  svc_acc_key_creation = true
   uniform_bucket       = true
-  svc_acc_grants       = true
   vm_external_ip       = false
 }
