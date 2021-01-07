@@ -1,14 +1,12 @@
 locals {
   allow_list_domain_length = length(regexall(".*all.*", join(",", var.allowed_domain_ids))) > 0 ? 0 : length(var.allowed_domain_ids)
   enforcement_domain       = local.allow_list_domain_length > 0 ? null : false
-  #organization_id          = var.parent_folder != "" ? null : var.org_id
 }
 
 module "default_network_policy_folder" {
   source          = "terraform-google-modules/org-policy/google"
-  version         = "~> 3.0"
-  organization_id = var.organization_id
-  #folder_id       = google_folder.gcpfolder.id
+  version         = "~> 3.0.2"
+  organization_id = var.org_id
   policy_for      = "organization"
   policy_type     = "boolean"
   enforce         = var.skip_default_network
@@ -17,9 +15,8 @@ module "default_network_policy_folder" {
 
 module "oslogin_policy_folder" {
   source          = "terraform-google-modules/org-policy/google"
-  version         = "~> 3.0"
-  organization_id = var.organization_id
-  #folder_id       = google_folder.gcpfolder.id
+  version         = "~> 3.0.2"
+  organization_id = var.org_id
   policy_for      = "organization"
   policy_type     = "boolean"
   enforce         = var.require_oslogin
@@ -28,9 +25,8 @@ module "oslogin_policy_folder" {
 
 module "svc_acc_key_policy_folder" {
   source          = "terraform-google-modules/org-policy/google"
-  version         = "~> 3.0"
-  organization_id = var.organization_id
-  #folder_id       = google_folder.gcpfolder.id
+  version         = "~> 3.0.2"
+  organization_id = var.org_id
   policy_for      = "organization"
   policy_type     = "boolean"
   enforce         = var.svc_acc_key_creation
@@ -39,9 +35,8 @@ module "svc_acc_key_policy_folder" {
 
 module "svc_acc_grants_policy_folder" {
   source          = "terraform-google-modules/org-policy/google"
-  version         = "~> 3.0"
-  organization_id = var.organization_id
-  #folder_id       = google_folder.gcpfolder.id
+  version         = "~> 3.0.2"
+  organization_id = var.org_id
   policy_for      = "organization"
   policy_type     = "boolean"
   enforce         = var.svc_acc_grants
@@ -50,9 +45,8 @@ module "svc_acc_grants_policy_folder" {
 
 module "uniform_bucket_policy_folder" {
   source          = "terraform-google-modules/org-policy/google"
-  version         = "~> 3.0"
-  organization_id = var.organization_id
-  #folder_id       = google_folder.gcpfolder.id
+  version         = "~> 3.0.2"
+  organization_id = var.org_id
   policy_for      = "organization"
   policy_type     = "boolean"
   enforce         = var.uniform_bucket
@@ -61,9 +55,8 @@ module "uniform_bucket_policy_folder" {
 
 module "resource_locations_policy_folder" {
   source            = "terraform-google-modules/org-policy/google"
-  version           = "~> 3.0"
-  organization_id   = var.organization_id
-  #folder_id         = google_folder.gcpfolder.id
+  version           = "~> 3.0.2"
+  organization_id   = var.org_id
   policy_for        = "organization"
   policy_type       = "list"
   allow             = var.resource_locations
@@ -73,9 +66,8 @@ module "resource_locations_policy_folder" {
 
 module "resource_external_ip_policy_folder" {
   source          = "terraform-google-modules/org-policy/google"
-  version         = "~> 3.0"
-  organization_id = var.organization_id
-  #folder_id       = google_folder.gcpfolder.id
+  version         = "~> 3.0.2"
+  organization_id = var.org_id
   policy_for      = "organization"
   policy_type     = "list"
   enforce         = var.vm_external_ip
@@ -84,9 +76,8 @@ module "resource_external_ip_policy_folder" {
 
 module "cloud_identity_domain_policy_folder" {
   source            = "terraform-google-modules/org-policy/google"
-  version           = "~> 3.0"
-  organization_id   = var.organization_id
-  #folder_id         = google_folder.gcpfolder.id
+  version           = "~> 3.0.2"
+  organization_id   = var.org_id
   policy_for        = "organization"
   policy_type       = "list"
   allow             = var.allowed_domain_ids
