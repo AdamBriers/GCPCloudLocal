@@ -10,20 +10,8 @@ variable "require_oslogin" {
   default     = true
 }
 
-variable "svc_acc_key_creation" {
-  description = "Disables the ability to create and download service account keys"
-  type        = bool
-  default     = true
-}
-
 variable "uniform_bucket" {
   description = "Sets uniform level access to buckets if true"
-  type        = bool
-  default     = true
-}
-
-variable "svc_acc_grants" {
-  description = "Does not grant project owner rights to default service account if true"
   type        = bool
   default     = true
 }

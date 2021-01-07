@@ -23,26 +23,6 @@ module "oslogin_policy_folder" {
   constraint      = "constraints/compute.requireOsLogin"
 }
 
-module "svc_acc_key_policy_folder" {
-  source          = "terraform-google-modules/org-policy/google"
-  version         = "~> 3.0.2"
-  organization_id = var.org_id
-  policy_for      = "organization"
-  policy_type     = "boolean"
-  enforce         = var.svc_acc_key_creation
-  constraint      = "constraints/iam.disableServiceAccountKeyCreation"
-}
-
-module "svc_acc_grants_policy_folder" {
-  source          = "terraform-google-modules/org-policy/google"
-  version         = "~> 3.0.2"
-  organization_id = var.org_id
-  policy_for      = "organization"
-  policy_type     = "boolean"
-  enforce         = var.svc_acc_grants
-  constraint      = "iam.automaticIamGrantsForDefaultServiceAccounts"
-}
-
 module "uniform_bucket_policy_folder" {
   source          = "terraform-google-modules/org-policy/google"
   version         = "~> 3.0.2"
