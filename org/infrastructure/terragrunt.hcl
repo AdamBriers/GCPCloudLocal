@@ -20,5 +20,5 @@ inputs = {
   require_oslogin      = true
   resource_locations   = ["europe-west1", "europe-west2"]
   uniform_bucket       = true
-  vm_external_ip       = false
+  vm_external_ip       = true
 }
