@@ -2,4 +2,6 @@
 # an emtpy terragrunt.hcl file is needed though, to allow the terragrunt command to 
 # run in this directory
 
-locals {}
+locals {
+  
+}
