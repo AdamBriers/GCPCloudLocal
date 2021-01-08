@@ -10,7 +10,7 @@ steps:
     tfenv install
     tgenv install
     cd 'org/${_ENVIRONMENT}'
-    terragrunt validate || exit 1
+    terragrunt validate-all || exit 1
 # terragrunt plan
 - name: eu.gcr.io/$PROJECT_ID/cloud-terraform
   entrypoint: /bin/bash
