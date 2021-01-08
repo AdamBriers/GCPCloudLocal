@@ -54,30 +54,13 @@ EOF
 # `terragrunt.hcl` config via the include block.
 # ---------------------------------------------------------------------------------------------------------------------
 
-locals {
-  # Automatically load environment-level variables
-  #environment_vars = read_terragrunt_config(find_in_parent_folders("env.hcl"))
-}
-
-# Configure root level variables that all resources can inherit. This is especially helpful with multi-account configs
-# where terraform_remote_state data sources are placed directly into the modules.
-inputs = {
-
-  billing_account = "012FC6-C62F56-07056F",
-  org_id          = "205038295325"
-}
-
 terraform {
   extra_arguments "var_files" {
     commands = "${get_terraform_commands_that_need_vars()}"
 
     optional_var_files = [
-      "${find_in_parent_folders("root.tfvars", "ignore_root")}",
-      "${find_in_parent_folders("prd.tfvars", "ignore_prd")}",
-      "${find_in_parent_folders("dev.tfvars", "ignore_dev")}",
-      "${find_in_parent_folders("rnd.tfvars", "ignore_rnd")}",
+      "${find_in_parent_folders("org.tfvars", "ignore_org")}",
       "${find_in_parent_folders("environment.tfvars", "ignore_environment")}",
-
     ]
   }
 }
