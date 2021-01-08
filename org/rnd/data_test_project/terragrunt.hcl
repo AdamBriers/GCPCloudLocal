@@ -32,5 +32,6 @@ inputs = {
     disasterrecovery  = "no"
     environment       = "rnd"
     contact           = "appsbroker"
+    org_id            = null
     }
 }
