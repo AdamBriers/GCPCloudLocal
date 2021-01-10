@@ -17,7 +17,6 @@ inputs = {
 
   project_name        = "gc-r-prj-datatestproject-0001"
   folder_id           = "706244237673" ## Research and Development folder id
-  org_id              = ""
 
   labels  = {
     application       = "data_test"
