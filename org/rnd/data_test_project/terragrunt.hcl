@@ -19,7 +19,7 @@ dependency "folder" {
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
 
-  project_name        = "gc-r-prj-datatestproject-0001"
+  project_name        = "gc-r-prj-datatest-0001"
   folder_id           = dependency.folder.outputs.folder_created ## Research and Development folder id
 
   labels  = {
