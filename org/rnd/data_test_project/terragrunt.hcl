@@ -7,22 +7,21 @@ terraform {
   source = "../../../modules//project/"
 }
 
-## MJO - Probably not needed at the highest/higher levels, if running TG from a lower level?
-# Include all settings from the root terragrunt.hcl file
-##include {
-##  path = find_in_parent_folders()
-##}
-
 # Include all settings from the root terragrunt.hcl file
 include {
   path = find_in_parent_folders("org.hcl")
+}
+
+dependency "folder" {
+  config_path = "../"
 }
 
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
 
   project_name        = "gc-r-prj-datatestproject-0001"
-  folder_id           = "706244237673" ## Places for People folder id
+  folder_id           = dependency.folder.outputs.folder_created ## Research and Development folder id
+
   labels  = {
     application       = "data_test"
     businessunit      = "homes"
@@ -32,6 +31,5 @@ inputs = {
     disasterrecovery  = "no"
     environment       = "rnd"
     contact           = "appsbroker"
-    org_id            = null
     }
 }

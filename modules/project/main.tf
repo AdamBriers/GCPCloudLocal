@@ -1,5 +1,8 @@
 locals {
-  org_id     = var.org_id != "" ? var.org_id : null
+  # Ensure the org_id is not set if the folder_id is set as this will fail if both are set. 
+  #   - If a folder_id is set the project is required to be created under a folder and
+  #   not directly under the organisation
+  org_id     = var.folder_id != "" ? null : var.org_id != "" ? var.org_id : null 
   folder_id  = var.folder_id != "" ? var.folder_id : null
 }
 
