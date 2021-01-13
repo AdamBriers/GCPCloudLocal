@@ -35,3 +35,9 @@ resource "google_project_service" "service" {
   disable_on_destroy         = var.disable_on_destroy
   disable_dependent_services = var.disable_dependent_services
 }
+
+# A host project provides network resources to associated service projects.
+resource "google_compute_shared_vpc_host_project" "host" {
+  count = var.is_host_project ? 1 : 0
+  project = google_project.project.project_id
+}

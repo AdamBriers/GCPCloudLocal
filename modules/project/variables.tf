@@ -43,7 +43,6 @@ variable "services" {
     "container.googleapis.com",
     "storage-api.googleapis.com",
     "bigquery.googleapis.com",
-    "cloudbuild.googleapis.com",
     "logging.googleapis.com",
     "monitoring.googleapis.com"
   ]
@@ -64,4 +63,10 @@ variable "disable_dependent_services" {
 variable "labels" {
   description = "Map of labels (i.e. tags) to add to resource"
   type        = map(string)
+}
+
+variable "is_host_project" {
+  description = "Determines whether this project is set up as a host project"
+  default     = false
+  type        = bool
 }
