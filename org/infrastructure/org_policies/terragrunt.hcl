@@ -21,4 +21,5 @@ inputs = {
   resource_locations   = ["in:europe-locations"]
   uniform_bucket       = true
   vm_external_ip       = true
+  allowed_domain_ids   = ["C04d5nvbw", "C02l4xnhr"] ## C04d5nvbw placesforpeople.co.uk C02l4xnhr appsbroker.com
 }

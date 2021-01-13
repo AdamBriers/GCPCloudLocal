@@ -1,6 +1,6 @@
 locals {
-  #allow_list_domain_length = length(regexall(".*all.*", join(",", var.allowed_domain_ids))) > 0 ? 0 : length(var.allowed_domain_ids)
-  #enforcement_domain       = local.allow_list_domain_length > 0 ? null : false
+  allow_list_domain_length = length(regexall(".*all.*", join(",", var.allowed_domain_ids))) > 0 ? 0 : length(var.allowed_domain_ids)
+  enforcement_domain       = local.allow_list_domain_length > 0 ? null : false
 }
 
 module "default_network_policy_folder" {
@@ -54,14 +54,14 @@ module "resource_external_ip_policy_folder" {
   constraint      = "constraints/compute.vmExternalIpAccess"
 }
 
-#module "cloud_identity_domain_policy_folder" {
-#  source            = "terraform-google-modules/org-policy/google"
-#  version           = "~> 3.0.2"
-#  organization_id   = var.org_id
-#  policy_for        = "organization"
-#  policy_type       = "list"
-#  allow             = var.allowed_domain_ids
-#  enforce           = local.enforcement_domain
-#  allow_list_length = local.allow_list_domain_length
-#  constraint        = "constraints/iam.allowedPolicyMemberDomains"
-#}
+module "cloud_identity_domain_policy_folder" {
+  source            = "terraform-google-modules/org-policy/google"
+  version           = "~> 3.0.2"
+  organization_id   = var.org_id
+  policy_for        = "organization"
+  policy_type       = "list"
+  allow             = var.allowed_domain_ids
+  enforce           = local.enforcement_domain
+  allow_list_length = local.allow_list_domain_length
+  constraint        = "constraints/iam.allowedPolicyMemberDomains"
+}
