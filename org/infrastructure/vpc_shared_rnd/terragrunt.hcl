@@ -27,6 +27,7 @@ dependency "vpc_host_project" {
 inputs = {
 
   project_id   = dependency.vpc_host_project.outputs.project_id
-  network_name = "gc-r-vpc-001"
+  network_name = "gc-r-vpc-0001"
   description  = "Shared VPC Network for the R&D environment"
+  routing_mode    = "GLOBAL" # If REGIONAL Cloud Router will only dynamically advertises subnets and propagates learned routes in the region where the router is configured
 }
