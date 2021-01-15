@@ -65,8 +65,22 @@ variable "labels" {
   type        = map(string)
 }
 
+# Note that a project can't be both a Host project and a Service project
 variable "is_host_project" {
   description = "Determines whether this project is set up as a host project"
+  default     = false
+  type        = bool
+}
+
+# Note that a project can't be both a Host project and a Service project
+variable "is_service_project" {
+  description = "Determines whether this project is set up as a Service project"
+  default     = false
+  type        = bool
+}
+
+variable "host_project_id"  {
+  description = "The Host project id to be associated with this Service project"
   default     = false
   type        = bool
 }
