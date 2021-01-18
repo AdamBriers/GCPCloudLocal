@@ -6,5 +6,6 @@ resource "google_compute_subnetwork" "sub_network" {
   region                    = var.region 
   network                   = var.vpc_network_name 
   private_ip_google_access  = var.private_ip_google_access
+  project                   = var.project_id
 }
 

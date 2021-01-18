@@ -29,3 +29,6 @@ variable "private_ip_google_access" {
   default     = false
 }
 
+variable "project_id" {
+  description = "The ID of the Shared VPC Host project in which this subnetwork belongs"
+}
