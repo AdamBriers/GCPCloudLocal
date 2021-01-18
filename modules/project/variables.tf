@@ -81,6 +81,5 @@ variable "is_service_project" {
 
 variable "host_project_id"  {
   description = "The Host project id to be associated with this Service project"
-  default     = false
-  type        = bool
+  type        = string
 }
