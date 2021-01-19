@@ -57,7 +57,7 @@ resource "google_compute_ha_vpn_gateway" "ha_gateway" {
 resource "google_compute_router" "router" {
   provider = google-beta
   count    = var.router_name == "" ? 1 : 0
-  name     = "vpn-router"
+  name     = "gc-a-rtr-0001"
   project  = var.project_id
   region   = var.region
   network  = var.network
