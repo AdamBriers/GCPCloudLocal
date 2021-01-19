@@ -38,7 +38,7 @@ inputs = {
     createdby         = "appsbroker"
     department        = "it"
     disasterrecovery  = "no"
-    environment       = "rnd"
+    environment       = "test_and_development"
     contact           = "appsbroker"
     }
 }
