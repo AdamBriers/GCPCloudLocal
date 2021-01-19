@@ -34,7 +34,7 @@ inputs = {
   #    }]
   #}
   router_advertise_config = {
-    groups    = [""]
+    groups    = []
     mode      = "CUSTOM"
     ip_ranges = {
       "172.26.64.0/18" = "gc-t-snet-0001"
