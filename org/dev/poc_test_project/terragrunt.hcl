@@ -23,24 +23,13 @@ dependency "folder" {
   }
 }
 
-dependency "vpc_host_project" {
-  config_path = "../../infrastructure/vpc_host_project"
-  
-  # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
-  # module hasn't been applied yet.
-  mock_outputs_allowed_terraform_commands = ["plan", "validate"]
-  mock_outputs = {
-    host_project_id = "project-not-created-yet"
-  }
-}
-
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
 
   project_name        = "gc-t-prj-poc-0001"
   folder_id           = dependency.folder.outputs.folder_created ## Test and Development folder id
   is_service_project  = true
-  host_project_id     = dependency.vpc_host_project.outputs.project_id ## Shared VPC Host project ID
+  # host_project_id - Taken from the hard coded value in the 'org/org.tfvars' file
 
   labels  = {
     application       = "poc_test"
