@@ -25,6 +25,7 @@ inputs = {
 
   project_id      = dependency.project.outputs.project_id
   gateway_name    = "gc-a-vpnazure-0001"
+  secret_id       = "gc-a-sct-azure-0001"
   ip_name         = "gc-a-ipvpnazure-0001"
   network         = dependency.prd_vpc.outputs.network_name
   region          = "europe-west2"

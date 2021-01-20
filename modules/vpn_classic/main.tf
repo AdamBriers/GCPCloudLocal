@@ -21,7 +21,7 @@ resource "google_compute_address" "static_ip" {
 #  region        = var.region
 #  project       = var.project_id
 #  peer_ip       = var.peer_ips[count.index]
-#  shared_secret = google_secret_manager_secret.this.id
+#  shared_secret = data.google_secret_manager_secret_version.this.secret_data
 
 #  target_vpn_gateway      = google_compute_vpn_gateway.gateway.self_link
 #  local_traffic_selector  = var.local_traffic_selector
@@ -85,9 +85,15 @@ resource "google_project_service" "project" {
   disable_dependent_services = true
 }
 
+#data "google_secret_manager_secret_version" "this" {
+#  provider = google-beta
+#  secret   = google_secret_manager_secret.this.id
+#  version  = "1"
+#}
+
 resource "google_secret_manager_secret" "this" {
   project                   = var.project_id
-  secret_id = "vpn_shared_secret"
+  secret_id = var.secret_id
 
   replication {
     user_managed {
