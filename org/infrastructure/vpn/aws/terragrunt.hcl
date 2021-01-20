@@ -45,15 +45,6 @@ inputs = {
   #    ip_address = "8.8.8.8" # on-prem router ip address
   #    }]
   #}
-  router_advertise_config = {
-    groups    = [""]
-    mode      = "CUSTOM"
-    ip_ranges = {
-      "172.26.64.0/18" = "gc-t-snet-0001"
-      "172.26.0.0/18"  = "gc-p-snet-0001"
-    }
-  }
-  router_asn = 64514
   #tunnels = {
   #  remote-0 = {
   #    bgp_peer = {

@@ -34,11 +34,12 @@ inputs = {
   #    }]
   #}
   router_advertise_config = {
-    groups    = [""]
+    groups    = []
     mode      = "CUSTOM"
     ip_ranges = {
-      "172.26.64.0/18" = "gc-t-snet-0001"
-      "172.26.0.0/18"  = "gc-p-snet-0001"
+      "172.26.64.0/18"  = "gc-t-snet-0001"
+      "172.26.0.0/18"   = "gc-p-snet-0001"
+      "199.36.153.4/30" = "google restricted api range"
     }
   }
   router_asn = 64514
