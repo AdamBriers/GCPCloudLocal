@@ -31,6 +31,6 @@ inputs = {
   #tunnel_count       = 2
   #peer_ips           = []
   route_priority = 1000
-  #remote_subnet  = []
+  #local_traffic_selector  = ["172.26.64.0/18", "172.26.0.0/18", "199.36.153.4/30" ]
 
 }
