@@ -25,7 +25,7 @@ dependency "project" {
 
  inputs = {
    project_id             = dependency.project.outputs.project_id
-   project_iam_permissions = ["roles/owner","roles/bigquery.admin"]
+   project_iam_permissions = ["roles/bigquery.admin"]
    member_type             = "user"
    member_name             = "shahed.munir@appsbroker.com"
  }
