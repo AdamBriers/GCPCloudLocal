@@ -80,6 +80,11 @@ variable "router_name" {
   default     = ""
 }
 
+variable "secret_id" {
+  description = "Unique ID for the secret in GCP secret manger."
+  type        = string
+}
+
 #variable "tunnels" {
 #  description = "VPN tunnel configurations, bgp_peer_options is usually null."
 #  type = map(object({

@@ -25,6 +25,7 @@ inputs = {
 
   project_id             = dependency.project.outputs.project_id
   name                   = "gc-a-vpn-onprem-0001"
+  secret_id              = "gc-a-sct-onprem-0001"
   network                = dependency.prd_vpc.outputs.network_name
   #peer_external_gateway = {
   #  redundancy_type = "SINGLE_IP_INTERNALLY_REDUNDANT"

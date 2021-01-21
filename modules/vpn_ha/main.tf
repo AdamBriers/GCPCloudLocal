@@ -157,10 +157,37 @@ resource "google_compute_router" "router" {
 #  peer_gcp_gateway                = var.peer_gcp_gateway
 #  vpn_gateway_interface           = each.value.vpn_gateway_interface
 #  ike_version                     = each.value.ike_version
-#  shared_secret                   = each.value.shared_secret == "" ? local.secret : each.value.shared_secret
+#  shared_secret                   = each.value.shared_secret == "" ? data.google_secret_manager_secret_version.this.secret_data : each.value.shared_secret
 #  vpn_gateway                     = google_compute_ha_vpn_gateway.ha_gateway.self_link
 #}
 
 #resource "random_id" "secret" {
 #  byte_length = 8
 #}
+
+resource "google_project_service" "project" {
+  project = var.project_id
+  service = "secretmanager.googleapis.com"
+
+  disable_dependent_services = true
+}
+
+#data "google_secret_manager_secret_version" "this" {
+#  provider = google-beta
+#  secret   = google_secret_manager_secret.this.id
+#  version  = "1"
+#}
+
+resource "google_secret_manager_secret" "this" {
+  project   = var.project_id
+  secret_id = var.secret_id
+
+  replication {
+    user_managed {
+      replicas {
+        location = "europe-west2"
+      }
+    }
+  }
+  depends_on = [google_project_service.project]
+}

@@ -25,6 +25,11 @@ variable "ip_name" {
   default     = "azure-vpn-ip"
 }
 
+variable "secret_id" {
+  description = "Unique ID for the secret in GCP secret manger."
+  type        = string
+}
+
 #variable "tunnel_count" {
 #  type        = number
 #  description = "The number of tunnels from each VPN gw (default is 1)"
