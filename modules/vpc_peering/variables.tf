@@ -1,15 +1,19 @@
 variable "name" {
-  description = "Name for the network peerings"
+  description = "Name for the first network"
   type        = string
 }
 
+variable "name_second" {
+  description = "Name for the second network"
+  type        = string
+}
 variable "network" {
-  description = "Resource link of the network to add a peering to."
+  description = "Resource link of the first network."
   type        = string
 }
 
 variable "peer_network" {
-  description = "he peer network in the peering. The peer network may belong to a different project."
+  description = "Resource link of the second network"
   type        = string
 }
 

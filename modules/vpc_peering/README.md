@@ -7,60 +7,29 @@ The resources created/managed by this module are:
 - one part of the network peering from `local network` to `peer network`
 - one network peering from `peer network` to `local network`
 
-## Usage
-
-Basic usage of this module is as follows:
-
-```hcl
-module "peering" {
-  source = "terraform-google-modules/network/google//modules/network-peering"
-
-  prefix        = "name-prefix"
-  local_network = "<FIRST NETWORK SELF LINK>"
-  peer_network  = "<SECOND NETWORK SELF LINK>"
-}
-```
-
-If you need to create more than one peering for the same VPC Network `(A -> B, A -> C)` you have to use output from the first module as a dependency for the second one to keep order of peering creation (It is not currently possible to create more than one peering connection for a VPC Network at the same time).
-
-```hcl
-module "peering-a-b" {
-  source = "terraform-google-modules/network/google//modules/network-peering"
-
-  prefix        = "name-prefix"
-  local_network = "<A NETWORK SELF LINK>"
-  peer_network  = "<B NETWORK SELF LINK>"
-}
-
-module "peering-a-c" {
-  source = "terraform-google-modules/network/google//modules/network-peering"
-
-  prefix        = "name-prefix"
-  local_network = "<A NETWORK SELF LINK>"
-  peer_network  = "<C NETWORK SELF LINK>"
-
-  module_depends_on = [module.peering-a-b.complete]
-}
-```
-
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| export\_local\_custom\_routes | Export custom routes to peer network from local network. | `bool` | `false` | no |
-| export\_peer\_custom\_routes | Export custom routes to local network from peer network. | `bool` | `false` | no |
-| local\_network | Resource link of the network to add a peering to. | `string` | n/a | yes |
-| module\_depends\_on | List of modules or resources this module depends on. | `list(any)` | `[]` | no |
-| peer\_network | Resource link of the peer network. | `string` | n/a | yes |
-| prefix | Name prefix for the network peerings | `string` | `"network-peering"` | no |
+| export\_custom\_routes | Export custom routes to / from peer network. | `bool` | `false` | no |
+| export\_custom\_routes | Export custom routes to / from peer network. | `bool` | `false` | no |
+| name | Name for the first network to add a peering to. | `string` | n/a | yes |
+| name_second | Name for the second network to to which the first should be peered. | `string` | n/a | yes |
+| network | Resource link of the first network to add a peering to. | `string` | n/a | yes |
+| peer\_network | Resource link of the second / peer network. | `string` | n/a | yes |
+| export\_custom\_routes | Whether to export the custom routes to / from the networks in the peering | `bool` | `false` | no |
+| import\_custom\_routes | Whether to import the custom routes to / from the networks in the peering | `bool` | `false` | no |
+| export\_subnet\_routes\_with\_public\_ip | Whether subnet routes with public IP range are exported | `bool` | `false` | no |
+import\_subnet\_routes\_with\_public\_ip | Whether subnet routes with public IP range are imported | `bool` | `false` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| complete | Output to be used as a module dependency. |
-| local\_network\_peering | Network peering resource. |
-| peer\_network\_peering | Peer network peering resource. |
+| peer\_id\_first | An identifier for the first network resource with format {{network}}/{{name}}. |
+| peer\_state\_first | State for the first network peering, either ACTIVE or INACTIVE. The peering is ACTIVE when there's a matching configuration in the peer network. |
+| state\_details\_first | Details about the current state of the first network peering. |
+| peer\_id\_second | An identifier for the second network resource with format {{network}}/{{name}}. |
+| peer\_state\_second | State for the first second peering, either ACTIVE or INACTIVE. The peering is ACTIVE when there's a matching configuration in the peer network. |
+| state\_details\_second | Details about the current state of the second network peering. |
 
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

@@ -37,7 +37,8 @@ dependency "vpc_shared_prd" {
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
 
-  name         = "gc-tp-vpcpeer-0001"
-  local_network  = dependency.vpc_shared_dev.outputs.network_self_link
-  peer_network   = dependency.vpc_shared_prd.outputs.network_self_link
+  name            = "gc-t-testprodpeer-0001"
+  name_second     = "gc-p-prodtestpeer-0001"
+  network         = dependency.vpc_shared_dev.outputs.network_self_link
+  peer_network    = dependency.vpc_shared_prd.outputs.network_self_link
 }
