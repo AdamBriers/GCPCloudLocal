@@ -29,9 +29,10 @@ inputs = {
   ip_name         = "gc-a-ipvpnazure-0001"
   network         = dependency.prd_vpc.outputs.network_name
   region          = "europe-west2"
-  #tunnel_count       = 2
-  #peer_ips           = []
+  tunnel_count       = 1
+  peer_ips           = ["51.140.51.28"]
   route_priority = 1000
-  #local_traffic_selector  = ["172.26.64.0/18", "172.26.0.0/18", "199.36.153.4/30" ]
+  local_traffic_selector  = ["172.26.64.0/18", "172.26.0.0/18", "199.36.153.4/30" ]
+  remote_traffic_selector = ["172.20.0.0/16"]
 
 }

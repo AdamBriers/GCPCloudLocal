@@ -18,26 +18,12 @@ output "vpn_gw_ip_self_link" {
   value       = google_compute_address.static_ip.self_link
 }
 
-#output "tunnels" {
-#  description = "VPN tunnel resources."
-#  value = {
-#    for name in keys(var.tunnels) :
-#    name => google_compute_vpn_tunnel.tunnels[name]
-#  }
-#}
+output "vpn_tunnels_names-static" {
+  description = "The VPN tunnel name is"
+  value       = google_compute_vpn_tunnel.tunnel-static.*.name
+}
 
-#output "tunnel_names" {
-#  description = "VPN tunnel names."
-#  value = {
-#    for name in keys(var.tunnels) :
-#    name => google_compute_vpn_tunnel.tunnels[name].name
-#  }
-#}
-
-#output "tunnel_self_links" {
-#  description = "VPN tunnel self links."
-#  value = {
-#    for name in keys(var.tunnels) :
-#    name => google_compute_vpn_tunnel.tunnels[name].self_link
-#  }
-#}
+output "vpn_tunnels_self_link-static" {
+  description = "The VPN tunnel self-link is"
+  value       = google_compute_vpn_tunnel.tunnel-static.*.self_link
+}
