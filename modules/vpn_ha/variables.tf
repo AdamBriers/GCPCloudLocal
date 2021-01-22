@@ -14,23 +14,23 @@
  * limitations under the License.
  */
 
-#variable "peer_external_gateway" {
-#  description = "Configuration of an external VPN gateway to which this VPN is connected."
-#  type = object({
-#    redundancy_type = string
-#    interfaces = list(object({
-#      id         = number
-#      ip_address = string
-#    }))
-#  })
-#  default = null
-#}
+variable "peer_external_gateway" {
+  description = "Configuration of an external VPN gateway to which this VPN is connected."
+  type = object({
+    redundancy_type = string
+    interfaces = list(object({
+      id         = number
+      ip_address = string
+    }))
+  })
+  default = null
+}
 
-#variable "peer_gcp_gateway" {
-#  description = "Self Link URL of the peer side HA GCP VPN gateway to which this VPN tunnel is connected."
-#  type        = string
-#  default     = null
-#}
+variable "peer_gcp_gateway" {
+  description = "Self Link URL of the peer side HA GCP VPN gateway to which this VPN tunnel is connected."
+  type        = string
+  default     = null
+}
 
 variable "name" {
   description = "VPN gateway name, and prefix used for dependent resources."
@@ -85,24 +85,24 @@ variable "secret_id" {
   type        = string
 }
 
-#variable "tunnels" {
-#  description = "VPN tunnel configurations, bgp_peer_options is usually null."
-#  type = map(object({
-#    bgp_peer = object({
-#      address = string
-#      asn     = number
-#    })
-#    bgp_peer_options = object({
-#      advertise_groups    = list(string)
-#      advertise_ip_ranges = map(string)
-#      advertise_mode      = string
-#      route_priority      = number
-#    })
-#    bgp_session_range               = string
-#    ike_version                     = number
-#    vpn_gateway_interface           = number
-#    peer_external_gateway_interface = number
-#    shared_secret                   = string
-#  }))
-#  default = {}
-#}
+variable "tunnels" {
+  description = "VPN tunnel configurations, bgp_peer_options is usually null."
+  type = map(object({
+    bgp_peer = object({
+      address = string
+      asn     = number
+    })
+    bgp_peer_options = object({
+      advertise_groups    = list(string)
+      advertise_ip_ranges = map(string)
+      advertise_mode      = string
+      route_priority      = number
+    })
+    bgp_session_range               = string
+    ike_version                     = number
+    vpn_gateway_interface           = number
+    peer_external_gateway_interface = number
+    shared_secret                   = string
+  }))
+  default = {}
+}
