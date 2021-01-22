@@ -23,10 +23,10 @@ dependency "vpc_network" {
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
 
-  name         = "gc-t-vpntest-all-ingress"
+  name         = "gc-p-vpntest-all-ingress"
   project_id   = dependency.vpc_host_project.outputs.project_id
   network_name = dependency.vpc_network.outputs.network_self_link
-  description  = "INGRESS firewall for all ports and protocol from production to test and dev."
+  description  = "INGRESS firewall for all ports and protocol from on-prem and azure VPN to production."
   direction    = "INGRESS"
   source_ranges = ["172.20.0.0/16", "10.0.0.0/8"]
   allow_rules = [
