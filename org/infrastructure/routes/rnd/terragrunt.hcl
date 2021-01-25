@@ -12,7 +12,7 @@ include {
   path = find_in_parent_folders("org.hcl")
 }
 
-dependency "vpc_shared_dev" {
+dependency "vpc_shared_rnd" {
   config_path = "../../vpc_shared_rnd"
   
   # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
