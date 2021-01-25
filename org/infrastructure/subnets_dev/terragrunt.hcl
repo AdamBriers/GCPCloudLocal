@@ -37,11 +37,17 @@ dependency "vpc_host_project" {
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
 
-  sub_network_name          = "gc-t-snet-0001"
-  sub_network_description   = "Sub network for the Test and Dev environments"
-  ip_cidr_range             = "172.26.64.0/18"
-  region                    = "europe-west2"
   vpc_network_name          = dependency.vpc_shared_dev.outputs.network_name
-  private_ip_google_access  = true
   project_id                = dependency.vpc_host_project.outputs.project_id
+
+  subnets                   = [
+    {
+      sub_network_name          = "gc-t-snet-0001"
+      sub_network_description   = "Sub network for the Test and Dev environments"
+      ip_cidr_range             = "172.26.64.0/18"
+      region                    = "europe-west2"
+      private_ip_google_access  = true
+    },
+
+  ]
 }
