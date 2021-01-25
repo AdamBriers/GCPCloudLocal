@@ -27,5 +27,6 @@ inputs = {
 project_id         = dependency.vpc_host_project.outputs.project_id
   name             = "gc-t-nat-0001"
   network_selflink = dependency.dev_vpc.outputs.network_name
+  router_asn       = 64513
 
 }

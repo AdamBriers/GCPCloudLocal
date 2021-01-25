@@ -30,11 +30,11 @@ variable "secret_id" {
   type        = string
 }
 
-#variable "tunnel_count" {
-#  type        = number
-#  description = "The number of tunnels from each VPN gw (default is 1)"
-#  default     = 1
-#}
+variable "tunnel_count" {
+  type        = number
+  description = "The number of tunnels from each VPN gw (default is 1)"
+  default     = 1
+}
 
 variable "tunnel_name_prefix" {
   type        = string
@@ -42,32 +42,32 @@ variable "tunnel_name_prefix" {
   default     = ""
 }
 
-#variable "local_traffic_selector" {
-#  description = <<EOD
-#Local traffic selector to use when establishing the VPN tunnel with peer VPN gateway.
-#Value should be list of CIDR formatted strings and ranges should be disjoint.
-#EOD
+variable "local_traffic_selector" {
+  description = <<EOD
+Local traffic selector to use when establishing the VPN tunnel with peer VPN gateway.
+Value should be list of CIDR formatted strings and ranges should be disjoint.
+EOD
 
 
-#  type    = list(string)
-#  default = ["0.0.0.0/0"]
-#}
+  type    = list(string)
+  default = ["0.0.0.0/0"]
+}
 
-#variable "remote_traffic_selector" {
-#  description = <<EOD
-#Remote traffic selector to use when establishing the VPN tunnel with peer VPN gateway.
-#Value should be list of CIDR formatted strings and ranges should be disjoint.
-#EOD
+variable "remote_traffic_selector" {
+  description = <<EOD
+Remote traffic selector to use when establishing the VPN tunnel with peer VPN gateway.
+Value should be list of CIDR formatted strings and ranges should be disjoint.
+EOD
 
 
-#  type    = list(string)
-#  default = ["0.0.0.0/0"]
-#}
+  type    = list(string)
+  default = ["0.0.0.0/0"]
+}
 
-#variable "peer_ips" {
-#  type        = list(string)
-#  description = "IP address of remote-peer/gateway"
-#}
+variable "peer_ips" {
+  type        = list(string)
+  description = "IP address of remote-peer/gateway"
+}
 
 variable "remote_subnet" {
   description = "remote subnet ip range in CIDR format - x.x.x.x/x"
@@ -75,11 +75,11 @@ variable "remote_subnet" {
   default     = []
 }
 
-#variable "shared_secret" {
-#  type        = string
-#  description = "Please enter the shared secret/pre-shared key"
-#  default     = ""
-#}
+variable "shared_secret" {
+  type        = string
+  description = "Please enter the shared secret/pre-shared key"
+  default     = ""
+}
 
 variable "route_priority" {
   description = "Priority for static route being created"
@@ -98,11 +98,11 @@ variable "cr_enabled" {
   default     = false
 }
 
-#variable "ike_version" {
-#  type        = number
-#  description = "Please enter the IKE version used by this tunnel (default is IKEv2)"
-#  default     = 2
-#}
+variable "ike_version" {
+  type        = number
+  description = "Please enter the IKE version used by this tunnel (default is IKEv2)"
+  default     = 2
+}
 
 variable "vpn_gw_ip" {
   type        = string

@@ -4,8 +4,7 @@
 #}
 
 terraform {
-  source = "../../../../modules//cloud_nat/"
-
+  source = "../../../../modules//firewall_rule/"
 }
 
 # Include all settings from the root terragrunt.hcl file
@@ -17,16 +16,23 @@ dependency "vpc_host_project" {
   config_path = "../../vpc_host_project"
 }
 
-dependency "rnd_vpc" {
-  config_path = "../../vpc_shared_rnd"
+dependency "vpc_network" {
+  config_path = "../"
 }
 
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
 
-project_id         = dependency.vpc_host_project.outputs.project_id
-  name             = "gc-r-nat-0001"
-  network_selflink = dependency.rnd_vpc.outputs.network_name
-  router_asn       = 64512
-
+  name         = "gc-p-testprod-all-ingress"
+  project_id   = dependency.vpc_host_project.outputs.project_id
+  network_name = dependency.vpc_network.outputs.network_self_link
+  description  = "INGRESS firewall for all ports and protocol from test and dev to production."
+  direction    = "INGRESS"
+  source_ranges = ["172.26.64.0/18"]
+  allow_rules = [
+    {
+    protocol = "all",
+    ports    = []
+    }
+  ]
 }
