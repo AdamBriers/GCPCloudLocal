@@ -43,7 +43,7 @@ inputs = {
       "199.36.153.4/30" = "google restricted api range"
     }
   }
-  router_asn = 64514
+  router_asn = 64515
   tunnels = {
     remote-0 = {
       bgp_peer = {
