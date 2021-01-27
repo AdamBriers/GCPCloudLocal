@@ -1,35 +1,3 @@
-variable "a_record_addresses" {
-  description = "The list of IP addresses the A record should use."
-  type        = list
-}
-
-variable "a_record_dns_name" {
-  description = "The DNS name the A record will apply to."
-  type        = string
-}
-
-variable "a_record_ttl" {
-  description = "The TTL (Time To Live) value (in seconds) for the A record."
-  type        = number
-  default     = 300
-}
-
-variable "cname_record_canonical_name" {
-  description = "The Canonical Name for the CName record."
-  type        = string
-}
-
-variable "cname_record_dns_name" {
-  description = "The DNS name the CName record will apply to."
-  type        = string
-}
-
-variable "cname_record_ttl" {
-  description = "The TTL (Time To Live) value (in seconds) for the CName record."
-  type        = number
-  default     = 300
-}
-
 variable "description" {
   description = "A description for the deployed DNS zone."
   type        = string
@@ -61,4 +29,15 @@ variable "visibility" {
   description = "The visibility of the DNS zone."
   type        = string
   default     = "private"
+}
+
+variable "recordsets" {
+  type = list(object({
+    name    = string
+    type    = string
+    ttl     = number
+    records = list(string)
+  }))
+  description = "List of DNS record objects to manage, in the standard terraform dns structure."
+  default     = []
 }

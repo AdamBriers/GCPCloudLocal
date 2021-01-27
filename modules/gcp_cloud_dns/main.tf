@@ -23,25 +23,20 @@ resource "google_dns_managed_zone" "this" {
   }
   depends_on = [ google_project_service.this ]
 }
-
-resource "google_dns_record_set" "cname-record" {
-  name = var.cname_record_dns_name
-
+resource "google_dns_record_set" "this" {
   project      = var.project_id
-  managed_zone = google_dns_managed_zone.this.name
-  type         = "CNAME"
-  ttl          = var.cname_record_ttl
+  managed_zone = var.name
 
-  rrdatas = [var.cname_record_canonical_name]
-}
+  for_each = { for record in var.recordsets : join("/", [record.name, record.type]) => record }
+  name = (
+    each.value.name != "" ?
+    "${each.value.name}.${var.dns_name}" :
+    var.dns_name
+  )
+  type = each.value.type
+  ttl  = each.value.ttl
 
-resource "google_dns_record_set" "a-record" {
-  name = var.a_record_dns_name
+  rrdatas = each.value.records
 
-  project      = var.project_id
-  managed_zone = google_dns_managed_zone.this.name
-  type         = "A"
-  ttl          = var.a_record_ttl
-
-  rrdatas = var.a_record_addresses
+  depends_on = [ google_dns_managed_zone.this ]
 }
