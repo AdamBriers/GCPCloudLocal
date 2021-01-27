@@ -29,6 +29,7 @@ inputs = {
   project_id                         = dependency.vpc_host_project.outputs.project_id
   private_visibility_config_networks = ["${dependency.vpc_shared_prd.outputs.network_self_link}", "${dependency.vpc_shared_dev.outputs.network_self_link}"]
   description                        = "DNS Zone to forward requests to placesforpeople nameservers"
+  name                               = "dns-google-fwd"                     
   dns_name                           = "placesforpeople.com."
   target_name_server_addresses       = ["10.9.10.1", "10.9.10.2"]
 }
