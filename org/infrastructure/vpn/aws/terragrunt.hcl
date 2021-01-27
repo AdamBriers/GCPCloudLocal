@@ -50,26 +50,26 @@ inputs = {
   #  remote-0 = {
   #    bgp_peer = {
   #      address = "169.254.3.1"
-  #      asn     = 64600
+  #      asn     = 64514
   #    }
   #    bgp_peer_options                = null
   #    bgp_session_range               = "169.254.3.2/30"
   #    ike_version                     = 2
   #    vpn_gateway_interface           = 0
   #    peer_external_gateway_interface = 0
-  #    shared_secret                   = "VPN@toxxxxxx"
+  #    shared_secret                   = ""
   #  }
   #  remote-1 = {
   #    bgp_peer = {
   #      address = "169.254.4.1"
-  #      asn     = 64600
+  #      asn     = 64514
   #    }
   #    bgp_peer_options                = null
   #    bgp_session_range               = "169.254.4.2/30"
   #    ike_version                     = 2
   #    vpn_gateway_interface           = 1
   #    peer_external_gateway_interface = 0
-  #    shared_secret                   = "VPN@toxxxxxx"
+  #    shared_secret                   = ""
   #  }
   #}
 }
