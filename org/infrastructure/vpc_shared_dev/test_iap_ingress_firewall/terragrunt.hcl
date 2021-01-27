@@ -23,10 +23,10 @@ dependency "vpc_network" {
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
 
-  name         = "gc-t-vpntest-all-ingress"
+  name         = "iap-ingress-compute-testanddevenvironment"
   project_id   = dependency.vpc_host_project.outputs.project_id
   network_name = dependency.vpc_network.outputs.network_self_link
-  description  = "For TEST Purposes ONLY - INGRESS firewall for SSH (TCP port 22) using 'IAP for TCP forwarding' to test and dev."
+  description  = "For TEST Purposes ONLY - INGRESS firewall for SSH (TCP port 22) using 'IAP for TCP forwarding' to test and dev environment."
   direction    = "INGRESS"
   source_ranges = ["35.235.240.0/20"]
   allow_rules = [
