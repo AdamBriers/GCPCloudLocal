@@ -40,14 +40,21 @@ inputs = {
   vpc_network_name          = dependency.vpc_shared_dev.outputs.network_name
   project_id                = dependency.vpc_host_project.outputs.project_id
 
+  # Full range available: "172.26.64.0/18"
   subnets                   = [
     {
       sub_network_name          = "gc-t-snet-0001"
-      sub_network_description   = "Sub network for the Test and Dev environments"
-      ip_cidr_range             = "172.26.64.0/18"
+      sub_network_description   = "Sub network 1 for the Test and Dev environments"
+      ip_cidr_range             = "172.26.64.0/23" # Usable 510 Ip's: 172.26.64.1 - 172.26.65.254
       region                    = "europe-west2"
       private_ip_google_access  = true
     },
-
+    {
+      sub_network_name          = "gc-t-snet-0002"
+      sub_network_description   = "Sub network 2 for the Test and Dev environments"
+      ip_cidr_range             = "172.26.66.0/23" # Usable 510 IP's: 172.26.66.1 - 172.26.67.254
+      region                    = "europe-west2"
+      private_ip_google_access  = true
+    },
   ]
 }

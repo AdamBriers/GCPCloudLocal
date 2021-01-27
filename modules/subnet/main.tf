@@ -2,16 +2,17 @@
 locals {
   subnets = {
     for i, subnet in var.subnets :
-    lookup(subnet, "sub_network_name", format("%s-%s-%d", lower(var.vpc_network_name), "subnet", i)) => subnet
+    lookup(subnet, "sub_network_name", "WARNING-SUBNETWORK-NAME-NOT-FOUND") => subnet
   }
 }
-esource "google_compute_subnetwork" "sub_network" {
-  for_each                  = var.subnets
 
-  network                   = var.vpc_network_name 
+resource "google_compute_subnetwork" "sub_network" {
+  for_each                  = local.subnets
+
   project                   = var.project_id
+  network                   = var.vpc_network_name 
 
-  name                      = lookup(each.value, "sub_network_name", "") 
+  name                      = each.key
   description               = lookup(each.value, "sub_network_description", "")  
   ip_cidr_range             = lookup(each.value, "ip_cidr_range", "")    
   region                    = lookup(each.value, "region", "")
