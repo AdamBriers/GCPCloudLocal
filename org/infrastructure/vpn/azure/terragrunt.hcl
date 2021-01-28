@@ -4,7 +4,7 @@
 #}
 
 terraform {
-  source = "../../../../modules//vpn_classic/"
+  source = "../../../../modules//vpn_ha/"
 }
 
 # Include all settings from the root terragrunt.hcl file
@@ -20,19 +20,49 @@ dependency "project" {
   config_path = "../../vpc_host_project"
 }
 
+dependency "router" {
+  config_path = "../on_prem"
+}
+
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
 
-  project_id      = dependency.project.outputs.project_id
-  gateway_name    = "gc-a-vpnazure-0001"
-  secret_id       = "gc-a-sct-azure-0001"
-  ip_name         = "gc-a-ipvpnazure-0001"
-  network         = dependency.prd_vpc.outputs.network_name
-  region          = "europe-west2"
-  tunnel_count       = 1
-  peer_ips           = ["51.140.51.28"]
-  route_priority = 1000
-  local_traffic_selector  = ["172.26.64.0/18", "172.26.0.0/18", "199.36.153.4/30" ]
-  remote_traffic_selector = ["172.20.0.0/16"]
-
+  project_id             = dependency.project.outputs.project_id
+  name                   = "gc-a-vpnazure-0001"
+  secret_id              = "gc-a-sct-azure-0001"
+  network                = dependency.prd_vpc.outputs.network_name
+  router_name            = dependency.router.outputs.router_name
+  #peer_external_gateway = {
+  #  redundancy_type = "SINGLE_IP_INTERNALLY_REDUNDANT"
+  #  interfaces = [{
+  #    id         = 0
+  #    ip_address = "8.8.8.8" # on-prem router ip address
+  #    }]
+  #}
+  #tunnels = {
+  #  remote-0 = {
+  #    bgp_peer = {
+  #      address = "169.254.5.1"
+  #      asn     = 64514
+  #    }
+  #    bgp_peer_options                = null
+  #    bgp_session_range               = "169.254.5.2/30"
+  #    ike_version                     = 2
+  #    vpn_gateway_interface           = 0
+  #    peer_external_gateway_interface = 0
+  #    shared_secret                   = ""
+  #  }
+  #  remote-1 = {
+  #    bgp_peer = {
+  #      address = "169.254.6.1"
+  #      asn     = 64514
+  #    }
+  #    bgp_peer_options                = null
+  #    bgp_session_range               = "169.254.6.2/30"
+  #    ike_version                     = 2
+  #    vpn_gateway_interface           = 1
+  #    peer_external_gateway_interface = 0
+  #    shared_secret                   = ""
+  #  }
+  #}
 }

@@ -1,5 +1,5 @@
 
-timeout: 2100s
+timeout: 3600s
 steps:
 #terragrunt validate
 - name: eu.gcr.io/$PROJECT_ID/cloud-terraform
