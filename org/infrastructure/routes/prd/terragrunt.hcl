@@ -85,29 +85,5 @@ inputs = {
       next_hop_instance_zone  = null
       next_hop_vpn_tunnel     = null
     },
-    {
-      name                    = "gc-p-rt-0002"
-      description             = "Route through to the PFP on prem network via VPN"
-      destination_range       = "10.0.0.0/8"
-      tags                    = "" # List of Network tags assigned to this route. Empty list means all instances can use it.
-      next_hop_internet       = "false"
-      priority                = 500
-      next_hop_ip             = null
-      next_hop_instance       = null
-      next_hop_instance_zone  = null
-      next_hop_vpn_tunnel     = dependency.vpn_on_prem.outputs.self_link
-    }, 
-    {
-      name                    = "gc-p-rt-0003"
-      description             = "Route through to the PFP Azure network via VPN"
-      destination_range       = "172.20.0.0/16"
-      tags                    = "" # List of Network tags assigned to this route. Empty list means all instances can use it.
-      next_hop_internet       = "false"
-      priority                = 500
-      next_hop_ip             = null
-      next_hop_instance       = null
-      next_hop_instance_zone  = null
-      next_hop_vpn_tunnel     = dependency.vpn_azure.outputs.vpn_gw_self_link
-    }, 
   ]
 }
