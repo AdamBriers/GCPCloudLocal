@@ -38,7 +38,9 @@ inputs = {
     groups    = []
     mode      = "CUSTOM"
     ip_ranges = {
-      "172.26.64.0/18"  = "gc-t-snet-0001"
+      "172.26.64.0/23"  = "gc-t-snet-0001"
+      "172.26.66.0/23"  = "gc-t-snet-0002"
+      "172.26.68.0/23"  = "gc-t-snet-0003"
       "172.26.0.0/18"   = "gc-p-snet-0001"
       "199.36.153.4/30" = "google restricted api range"
     }
