@@ -44,7 +44,7 @@ inputs = {
     {
       sub_network_name          = "gc-r-snet-0001"
       sub_network_description   = "Sub network for the R&D environment"
-      ip_cidr_range             = "172.26.128.0/18"
+      ip_cidr_range             = "172.26.128.0/23" # Usable 510 Ip's: 172.26.128.1 - 172.26.129.254
       region                    = "europe-west2"
       private_ip_google_access  = true
     }

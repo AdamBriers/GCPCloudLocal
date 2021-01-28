@@ -56,5 +56,12 @@ inputs = {
       region                    = "europe-west2"
       private_ip_google_access  = true
     },
+    {
+      sub_network_name          = "gc-t-snet-0003"
+      sub_network_description   = "Sub network 3 for the Test and Dev environments"
+      ip_cidr_range             = "172.26.68.0/23" # Usable 510 IP's: 172.26.68.1 - 172.26.69.254
+      region                    = "europe-west2"
+      private_ip_google_access  = true
+    },
   ]
 }

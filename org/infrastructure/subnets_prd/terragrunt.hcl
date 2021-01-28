@@ -44,7 +44,7 @@ inputs = {
     {
       sub_network_name          = "gc-p-snet-0001"
       sub_network_description   = "Sub network for the Production environment"
-      ip_cidr_range             = "172.26.0.0/18"
+      ip_cidr_range             = "172.26.0.0/23" # Usable 510 Ip's: 172.26.0.1 - 172.26.1.254
       region                    = "europe-west2"
       private_ip_google_access  = true
     },
