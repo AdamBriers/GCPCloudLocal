@@ -30,12 +30,12 @@ dependency "project" {
      {
         project_iam_permissions = ["roles/cloudiot.viewer"]
         member_type             = "user"
-        member_name             = "michael.owen@placesforpeople.co.uk"
+        member_name             = "michael.owen@appsbroker.com"
      },
      {
         project_iam_permissions = ["roles/cloudiot.viewer"]
         member_type             = "user"
-        member_name             = "ferris.hall@placesforpeople.co.uk"
+        member_name             = "ferris.hall@appsbroker.com"
      },
    ]
  }
