@@ -3,17 +3,8 @@ variable "project_id" {
   type        = string
 }
 
-variable "project_iam_permissions" {
-  description = "List of permissions granted to be granted across the GCP organization."
-  type        = list(string)
-}
-
-variable "member_name" {
-  description = "Account name or ID to be given permissions to"
-  type        = string
-}
-
-variable "member_type" {
-  description = "The type of the account to be granted permissions. Accepted values are user, serviceaccount, group, domain"
-  type        = string
+variable "project_members" {
+  type         = list(object({project_iam_permissions=list(string), member_type=string, member_name=string}))
+  description = "List of project members and their permissions being created for this project"
+  default     = []
 }

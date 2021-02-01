@@ -4,7 +4,7 @@
 #}
 
 terraform {
-  source = "../../../../../modules//project_iam/"
+  source = "../../../../modules//project_iam/"
 }
 
 # Include all settings from the root terragrunt.hcl file
@@ -13,7 +13,7 @@ include {
 }
 
 dependency "project" {
-  config_path = "../../"
+  config_path = "../"
 
 # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
   # module hasn't been applied yet.
@@ -25,7 +25,17 @@ dependency "project" {
 
  inputs = {
    project_id             = dependency.project.outputs.project_id
-   project_iam_permissions = ["roles/bigquery.admin"]
-   member_type             = "user"
-   member_name             = "mahendra.navarange@appsbroker.com"
+   
+   project_members = [
+     {
+        project_iam_permissions = ["roles/cloudiot.viewer"]
+        member_type             = "user"
+        member_name             = "michael.owen@appsbroker.com"
+     },
+     {
+        project_iam_permissions = ["roles/cloudiot.viewer"]
+        member_type             = "user"
+        member_name             = "ferris.hall@appsbroker.com"
+     },
+   ]
  }
