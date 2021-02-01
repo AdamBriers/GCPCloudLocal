@@ -4,7 +4,7 @@ output "subnets" {
 }
 
 output "subnet_ids" {
-  value       = valuse(google_compute_subnetwork.sub_network)[*].id
+  value       = values(google_compute_subnetwork.sub_network)[*].id
   description = "The created subnets resources"
 }
 
