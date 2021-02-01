@@ -61,8 +61,8 @@ inputs = {
       extra_attributes = {}
     },
 
-    vpnall-ingress-testanddev-test = {
-      description             = "For TEST Purposes ONLY - INGRESS firewall for SSH (TCP port 22) using 'IAP for TCP forwarding' to test and dev environment."
+    vpnall-ingress-testanddev-azure-aws = {
+      description             = "INGRESS firewall for all ports and protocol from on-prem and azure VPN to test and dev."
       direction               = "INGRESS"
       action                  = "allow"
       ranges                  = ["172.20.0.0/16", "10.0.0.0/8"]
