@@ -43,7 +43,7 @@ inputs = {
     remote-0 = {
       bgp_peer = {
         address = "169.254.5.1"
-        asn     = 64514
+        asn     = 64516
       }
       bgp_peer_options                = null
       bgp_session_range               = "169.254.5.2/30"
@@ -52,17 +52,17 @@ inputs = {
       peer_external_gateway_interface = 0
       shared_secret                   = ""
     }
-    remote-1 = {
-      bgp_peer = {
-        address = "169.254.6.1"
-        asn     = 64514
-      }
-      bgp_peer_options                = null
-      bgp_session_range               = "169.254.6.2/30"
-      ike_version                     = 2
-      vpn_gateway_interface           = 1
-      peer_external_gateway_interface = 0
-      shared_secret                   = ""
-    }
+    #remote-1 = {
+    #  bgp_peer = {
+    #    address = "169.254.6.1"
+    #    asn     = 64516
+    #  }
+    #  bgp_peer_options                = null
+    #  bgp_session_range               = "169.254.6.2/30"
+    #  ike_version                     = 2
+    #  vpn_gateway_interface           = 1
+    #  peer_external_gateway_interface = 0
+    #  shared_secret                   = ""
+    #}
   }
 }
