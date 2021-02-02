@@ -4,7 +4,7 @@
 #}
 
 terraform {
-  source = "../../../modules//folder-policies/"
+  source = "../../../../modules//folder-policies/"
 
 }
 

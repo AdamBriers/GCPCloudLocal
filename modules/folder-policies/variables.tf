@@ -30,8 +30,8 @@ variable "folder_id" {
 
 variable "enforce" {
   description = "Whether to enforce the policy or not - Note the application of some policies will fail if this is set and not required"
-  type        = string
-  default       = null
+  type        = bool
+  default     = null
 }
 
 variable "organization_id" {

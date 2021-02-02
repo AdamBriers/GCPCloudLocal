@@ -4,7 +4,7 @@
 #}
 
 terraform {
-  source = "../../../modules//folder-policies/"
+  source = "../../../../modules//folder-policies/"
 
 }
 
@@ -33,7 +33,7 @@ inputs = {
   policy_for              = "folder"
   policy_type             = "list"
   constraint              = "constraints/compute.restrictSharedVpcSubnetworks"
-  enforce                 = null
+  #enforce                 = null
   exclude_folders         = []
   exclude_projects        = []
   organization_id         = null
