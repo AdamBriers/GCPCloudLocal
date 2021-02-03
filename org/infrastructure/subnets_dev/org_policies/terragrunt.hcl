@@ -27,7 +27,7 @@ dependency "subnets" {
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
 
-  folder_id               = "1046798063212" ## Test and Development folder id
+  policy_folder_id        = "1046798063212" ## Test and Development folder id
   allow_list              = dependency.subnets.outputs.subnet_ids
   deny_list               = []
   policy_for              = "folder"

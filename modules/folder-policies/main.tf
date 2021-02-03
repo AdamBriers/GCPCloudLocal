@@ -7,7 +7,7 @@ module "restrict_shared_vpc_subnetworks_policy_folder" {
   source            = "terraform-google-modules/org-policy/google"
   version           = "~> 3.0.2"
   organization_id   = var.organization_id
-  folder_id         = var.folder_id
+  folder_id         = var.policy_folder_id
   policy_for        = var.policy_for 
   policy_type       = var.policy_type 
   enforce           = var.enforce
