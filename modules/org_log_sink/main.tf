@@ -26,16 +26,17 @@ resource "google_pubsub_topic" "this" {
 
 resource "google_pubsub_topic_iam_member" "this" {
   project = var.project_id
-  topic = google_logging_organization_sink.this.destination
-  role  = "roles/pubsub.publisher"
-  member = google_logging_organization_sink.this.writer_identity
+  topic   = google_logging_organization_sink.this.destination
+  role    = "roles/pubsub.publisher"
+  member  = google_logging_organization_sink.this.writer_identity
 
   depends_on = [ google_project_service.this ]
 }
 
 resource "google_pubsub_subscription" "this" {
-  name  = "${var.sink_name}-subscription"
-  topic = google_pubsub_topic.this.name
+  name                 = "${var.sink_name}-subscription"
+  project              = var.project_id
+  topic                = google_pubsub_topic.this.name
   ack_deadline_seconds = 20
   push_config {
     push_endpoint = var.push_endpoint
