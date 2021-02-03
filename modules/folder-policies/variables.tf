@@ -23,7 +23,7 @@ variable "exclude_projects" {
   default     = []  
 }
 
-variable "folder_id" {
+variable "policy_folder_id" {
   description = "The ID of the folder to which the subnetwroks should be restricted"
   type        = string
 }
