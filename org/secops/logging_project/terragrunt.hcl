@@ -26,7 +26,7 @@ dependency "folder" {
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
 
-  project_name        = "gc-a-prj-secopslogging-0001"
+  project_name        = "gc-a-prj-secopslogs-0001"
   folder_id           = dependency.folder.outputs.folder_created ## SecOps folder id
   is_service_project  = false
   # host_project_id - Taken from the hard coded value in the 'org/org.tfvars' file
