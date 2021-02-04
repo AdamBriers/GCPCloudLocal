@@ -100,7 +100,7 @@ inputs = {
       # VPN tunnels.  The routes module would need to be adjusted to cope with this, but also at the 
       # time of writing the Classic VPN was in the process of being replaced by a HA VPN, in which
       # case this route would not be required at all as routes are dynamic with HA VPN's.
-      next_hop_vpn_tunnel     = dependency.vpn_azure.outputs.vpn_tunnels_names-static[0]
+      next_hop_vpn_tunnel     = dependency.vpn_azure.outputs.vpn_tunnels_id[0]
     },
     {
       name                    = "gc-p-rt-0003"
@@ -117,7 +117,7 @@ inputs = {
       # VPN tunnels.  The routes module would need to be adjusted to cope with this, but also at the 
       # time of writing the Classic VPN was in the process of being replaced by a HA VPN, in which
       # case this route would not be required at all as routes are dynamic with HA VPN's.
-      next_hop_vpn_tunnel     = dependency.vpn_azure.outputs.vpn_tunnels_names-static[0]
+      next_hop_vpn_tunnel     = dependency.vpn_azure.outputs.vpn_tunnels_id[0]
     },
   ]
 }
