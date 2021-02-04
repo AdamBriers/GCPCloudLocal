@@ -30,5 +30,5 @@ output "vpn_tunnels_self_link-static" {
 
 output "vpn_tunnels_id" {
   description = "The VPN tunnel ID"
-  value       = google_compute_vpn_tunnel.tunnel-static.*.tunnel_id
+  value       = google_compute_vpn_tunnel.tunnel-static.*.id
 }
