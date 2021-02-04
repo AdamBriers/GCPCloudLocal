@@ -37,5 +37,5 @@ inputs = {
   peer_ips                = ["51.140.51.28"]
   route_priority          = 1000
   local_traffic_selector  = ["172.26.64.0/23","172.26.66.0/23", "172.26.68.0/23", "172.26.0.0/23", "199.36.153.4/30" ]
-  remote_traffic_selector = ["172.20.0.0/16"]
+  remote_traffic_selector = ["172.20.0.0/16", "172.30.0.0/16"]
 }

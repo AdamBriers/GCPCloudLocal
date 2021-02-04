@@ -85,5 +85,39 @@ inputs = {
       next_hop_instance_zone  = null
       next_hop_vpn_tunnel     = null
     },
+     {
+      name                    = "gc-p-rt-0002"
+      description             = "Route through to the PFP Azure network via VPN"
+      destination_range       = "172.20.0.0/16"
+      tags                    = "" # List of Network tags assigned to this route. Empty list means all instances can use it.
+      next_hop_internet       = "false"
+      priority                = 500
+      next_hop_ip             = null
+      next_hop_instance       = null
+      next_hop_instance_zone  = null
+      # IMPORTANT:  Note that the following 'next_hop_vpn_tunnel' only allows for the first Clasic VPN tunnel created
+      # created - The vpn_classic module at time of writing is in theory capable of creating multiple 
+      # VPN tunnels.  The routes module would need to be adjusted to cope with this, but also at the 
+      # time of writing the Classic VPN was in the process of being replaced by a HA VPN, in which
+      # case this route would not be required at all as routes are dynamic with HA VPN's.
+      next_hop_vpn_tunnel     = dependency.vpn_azure.outputs.vpn_tunnels_self_link-static[0]
+    },
+     {
+      name                    = "gc-p-rt-0003"
+      description             = "Route through to the PFP Azure network via VPN"
+      destination_range       = "172.30.0.0/16"
+      tags                    = "" # List of Network tags assigned to this route. Empty list means all instances can use it.
+      next_hop_internet       = "false"
+      priority                = 500
+      next_hop_ip             = null
+      next_hop_instance       = null
+      next_hop_instance_zone  = null
+      # IMPORTANT:  Note that the following 'next_hop_vpn_tunnel' only allows for the first Clasic VPN tunnel created
+      # created - The vpn_classic module at time of writing is in theory capable of creating multiple 
+      # VPN tunnels.  The routes module would need to be adjusted to cope with this, but also at the 
+      # time of writing the Classic VPN was in the process of being replaced by a HA VPN, in which
+      # case this route would not be required at all as routes are dynamic with HA VPN's.
+      next_hop_vpn_tunnel     = dependency.vpn_azure.outputs.vpn_tunnels_self_link-static[0]
+    },
   ]
 }
