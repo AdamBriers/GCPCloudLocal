@@ -50,3 +50,21 @@ resource "google_compute_shared_vpc_service_project" "service" {
   host_project    = var.host_project_id
   service_project = google_project.project[0].project_id
 }
+
+resource "google_project_iam_audit_config" "this" {
+
+  project = google_project.project[0].project_id
+  service = "allServices"
+
+  audit_log_config {
+    log_type = "DATA_READ"
+  }
+
+  audit_log_config {
+    log_type = "DATA_WRITE"
+  }
+
+  audit_log_config {
+    log_type = "ADMIN_READ"
+  }
+}
