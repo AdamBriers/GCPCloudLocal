@@ -20,13 +20,13 @@ variable "push_endpoint" {
 }
 
 variable "sink_description" {
-  description = "Brief descroption of the log sink."
+  description = "Brief description of the log sink."
   type        = string
   default     = ""
 }
 
 variable "disabled" {
-  description = "loggin exclusion filter set to diasabled true/false."
+  description = "logging exclusion filter set to disabled true/false."
   type        = string
   default     = false
 }
