@@ -26,6 +26,6 @@ include {
 inputs = {
   sink_name      = "gc-a-orglogsink-0001"
   project_id     = dependency.project.outputs.project_id
-  disabled       = true
+  disabled       = false
   include_filter = "logName=(\"organizations/205038295325/logs/cloudaudit.googleapis.com%2Factivity\" OR \"organizations/205038295325/logs/cloudaudit.googleapis.com%2Fdata_access\" OR \"organizations/205038295325/logs/cloudaudit.googleapis.com%2Fsystem_event\")"
   }
