@@ -39,9 +39,10 @@ resource "google_folder" "infrastructure" {
 module "terraform_project" {
   source = "../modules/project"
 
-  project_name    = var.project_name
-  billing_account = var.billing_account
-  folder_id       = google_folder.infrastructure.id
+  project_name        = var.project_name
+  billing_account     = var.billing_account
+  folder_id           = google_folder.infrastructure.id
+  host_project_id     = "gc-a-prj-vpchost-0001-3312"
 
   services = var.activate_apis
   labels   = var.project_labels
@@ -248,7 +249,7 @@ resource "google_cloudbuild_trigger" "rnd_master_push_trigger" {
   description         = "RandD terragrunt apply on push to master"
   filename            = "cloudbuild-tg-plan-apply.yaml"
   included_files      = ["org/rnd/*"]
-  ignored_files       = ["org/prd/*", "org/dev/*", "org/infrastructure/*", "org/secops/*"]
+  ignored_files       = ["org/prd/*", "org/dev/*", "org/infrastructure/*", "org/secops/*", "modules/*"]
   depends_on          = [null_resource.cloudbuild_terraform_builder]
 
   trigger_template {
@@ -274,7 +275,7 @@ resource "google_cloudbuild_trigger" "rnd_non_master_push_trigger" {
   description         = "RandD terragrunt on push request to non master branches."
   filename            = "cloudbuild-tg-plan.yaml"
   included_files      = ["org/rnd/*"]
-  ignored_files       = ["org/prd/*", "org/dev/*", "org/infrastructure/*", "org/secops/*"]
+  ignored_files       = ["org/prd/*", "org/dev/*", "org/infrastructure/*", "org/secops/*", "modules/*"]
   depends_on          = [null_resource.cloudbuild_terraform_builder]
  
   trigger_template {
@@ -301,7 +302,7 @@ resource "google_cloudbuild_trigger" "dev_master_push_trigger" {
   description         = "Dev terragrunt apply on push to master"
   filename            = "cloudbuild-tg-plan-apply.yaml"
   included_files      = ["org/dev/*"]
-  ignored_files       = ["org/prd/*", "org/rnd/*", "org/infrastructure/*", "org/secops/*"]
+  ignored_files       = ["org/prd/*", "org/rnd/*", "org/infrastructure/*", "org/secops/*", "modules/*"]
   depends_on          = [null_resource.cloudbuild_terraform_builder]
 
   trigger_template {
@@ -327,7 +328,7 @@ resource "google_cloudbuild_trigger" "dev_non_master_push_trigger" {
   description         = "Dev terragrunt on push request to non master branches."
   filename            = "cloudbuild-tg-plan.yaml"
   included_files      = ["org/dev/*"]
-  ignored_files       = ["org/prd/*", "org/rnd/*", "org/infrastructure/*", "org/secops/*"]
+  ignored_files       = ["org/prd/*", "org/rnd/*", "org/infrastructure/*", "org/secops/*", "modules/*"]
   depends_on          = [null_resource.cloudbuild_terraform_builder]
  
   trigger_template {
@@ -354,7 +355,7 @@ resource "google_cloudbuild_trigger" "prd-master_push_trigger" {
   description         = "Prod terragrunt apply on push to master"
   filename            = "cloudbuild-tg-plan-apply.yaml"
   included_files      = ["org/prd/*"]
-  ignored_files       = ["org/dev/*", "org/rnd/*", "org/infrastructure/*", "org/secops/*"]
+  ignored_files       = ["org/dev/*", "org/rnd/*", "org/infrastructure/*", "org/secops/*", "modules/*"]
   depends_on          = [null_resource.cloudbuild_terraform_builder]
 
   trigger_template {
@@ -380,7 +381,7 @@ resource "google_cloudbuild_trigger" "prd-non_master_push_trigger" {
   description         = "Prod terragrunt on push request to non master branches."
   filename            = "cloudbuild-tg-plan.yaml"
   included_files      = ["org/prd/*"]
-  ignored_files       = ["org/dev/*", "org/rnd/*", "org/infrastructure/*", "org/secops/*"]
+  ignored_files       = ["org/dev/*", "org/rnd/*", "org/infrastructure/*", "org/secops/*", "modules/*"]
   depends_on          = [null_resource.cloudbuild_terraform_builder]
 
   trigger_template {
@@ -407,7 +408,7 @@ resource "google_cloudbuild_trigger" "infra-master_push_trigger" {
   description         = "Infrastructure terragrunt apply on push to master"
   filename            = "cloudbuild-tg-plan-apply.yaml"
   included_files      = ["org/infrastructure/*"]
-  ignored_files       = ["org/dev/*", "org/rnd/*", "org/prd/*", "org/secops/*"]
+  ignored_files       = ["org/dev/*", "org/rnd/*", "org/prd/*", "org/secops/*", "modules/*"]
   depends_on          = [null_resource.cloudbuild_terraform_builder]
 
   trigger_template {
@@ -433,7 +434,7 @@ resource "google_cloudbuild_trigger" "infra-non_master_push_trigger" {
   description         = "Infratructure terragrunt on push request to non master branches."
   filename            = "cloudbuild-tg-plan.yaml"
   included_files      = ["org/infrastructure/*"]
-  ignored_files       = ["org/dev/*", "org/rnd/*", "org/prd/*", "org/secops/*"]
+  ignored_files       = ["org/dev/*", "org/rnd/*", "org/prd/*", "org/secops/*", "modules/*"]
   depends_on          = [null_resource.cloudbuild_terraform_builder]
 
   trigger_template {
@@ -460,7 +461,7 @@ resource "google_cloudbuild_trigger" "secops-master_push_trigger" {
   description         = "SecOps terragrunt apply on push to master"
   filename            = "cloudbuild-tg-plan-apply.yaml"
   included_files      = ["org/secops/*"]
-  ignored_files       = ["org/dev/*", "org/rnd/*", "org/prd/*", "org/infrastructure/*"]
+  ignored_files       = ["org/dev/*", "org/rnd/*", "org/prd/*", "org/infrastructure/*", "modules/*" ]
   depends_on          = [null_resource.cloudbuild_terraform_builder]
 
   trigger_template {
@@ -486,7 +487,7 @@ resource "google_cloudbuild_trigger" "secops-non_master_push_trigger" {
   description         = "SecOps terragrunt on push request to non master branches."
   filename            = "cloudbuild-tg-plan.yaml"
   included_files      = ["org/secops/*"]
-  ignored_files       = ["org/dev/*", "org/rnd/*", "org/prd/*", "org/infrastructure/*"]
+  ignored_files       = ["org/dev/*", "org/rnd/*", "org/prd/*", "org/infrastructure/*", "modules/*"]
   depends_on          = [null_resource.cloudbuild_terraform_builder]
 
   trigger_template {
