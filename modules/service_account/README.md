@@ -18,6 +18,7 @@ module "service_account" {
 
 ### Extended Example
 
+```terraform
 module "service_account" {
   source = "modules/tf_gcp_service_account"
 
@@ -29,8 +30,8 @@ module "service_account" {
     "serviceAccount:gcp-operations@gcp-operations-dev.iam.gserviceaccount.com"
     ]
 }
-```terraform
 ```
+
 ## Input Variables
 
 ### Mandatory Variables
