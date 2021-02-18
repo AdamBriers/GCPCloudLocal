@@ -10,6 +10,7 @@ variable "description" {
 
 variable "members" {
   description = "List of members that require the Service Account Key Admin role on this Service Account."
+  type        = list
   default     = []
 }
 
