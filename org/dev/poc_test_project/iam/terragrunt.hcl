@@ -97,22 +97,22 @@ dependency "ssrs_service_account" {
         member_name             = "shahed.munir@appsbroker.com"
      },
      {
-        project_iam_permissions = ["roles/bigquery.dataViewer", "roles/storage.objectViewer"]
+        project_iam_permissions = ["roles/bigquery.dataViewer", "roles/bigquery.jobUser", "roles/storage.objectViewer"]
         member_type             = "serviceaccount"
         member_name             = dependency.bo_service_account.outputs.email
      },
      {
-        project_iam_permissions = ["roles/bigquery.dataViewer", "roles/storage.objectViewer"]
+        project_iam_permissions = ["roles/bigquery.dataViewer", "roles/bigquery.jobUser", "roles/storage.objectViewer"]
         member_type             = "serviceaccount"
         member_name             = dependency.powerbi_service_account.outputs.email
      },
      {
-        project_iam_permissions = ["roles/bigquery.dataViewer", "roles/storage.objectViewer"]
+        project_iam_permissions = ["roles/bigquery.dataViewer", "roles/bigquery.jobUser", "roles/storage.objectViewer"]
         member_type             = "serviceaccount"
         member_name             = dependency.ssrs_service_account.outputs.email
      },
      {
-        project_iam_permissions = ["roles/bigquery.dataEditor", "roles/storage.objectAdmin"]
+        project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser", "roles/storage.objectAdmin"]
         member_type             = "serviceaccount"
         member_name             = dependency.ssis_service_account.outputs.email
      },
