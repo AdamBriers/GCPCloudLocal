@@ -15,7 +15,7 @@ include {
 dependency "project" {
   config_path = "../"
 
-# Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
+  # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
   # module hasn't been applied yet.
   mock_outputs_allowed_terraform_commands = ["plan", "validate"]
   mock_outputs = {
@@ -23,19 +23,19 @@ dependency "project" {
   }
 }
 
- inputs = {
-   project_id             = dependency.project.outputs.project_id
-   
-   project_members = [
-     {
-        project_iam_permissions = ["roles/cloudiot.viewer"]
-        member_type             = "user"
-        member_name             = "michael.owen@appsbroker.com"
-     },
-     {
-        project_iam_permissions = ["roles/cloudiot.viewer"]
-        member_type             = "user"
-        member_name             = "ferris.hall@appsbroker.com"
-     },
-   ]
- }
+inputs = {
+  project_id = dependency.project.outputs.project_id
+
+  project_members = [
+    {
+      project_iam_permissions = ["roles/cloudiot.viewer"]
+      member_type             = "user"
+      member_name             = "michael.owen@appsbroker.com"
+    },
+    {
+      project_iam_permissions = ["roles/cloudiot.viewer"]
+      member_type             = "user"
+      member_name             = "ferris.hall@appsbroker.com"
+    },
+  ]
+}

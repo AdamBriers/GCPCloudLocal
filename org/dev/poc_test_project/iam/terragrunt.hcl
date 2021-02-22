@@ -15,7 +15,7 @@ include {
 dependency "project" {
   config_path = "../"
 
-# Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
+  # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
   # module hasn't been applied yet.
   mock_outputs_allowed_terraform_commands = ["plan", "validate"]
   mock_outputs = {
@@ -26,7 +26,7 @@ dependency "project" {
 dependency "bo_service_account" {
   config_path = "../service_accounts/business_objects"
 
-# Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
+  # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
   # module hasn't been applied yet.
   mock_outputs_allowed_terraform_commands = ["plan", "validate"]
   mock_outputs = {
@@ -37,7 +37,7 @@ dependency "bo_service_account" {
 dependency "powerbi_service_account" {
   config_path = "../service_accounts/power_bi"
 
-# Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
+  # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
   # module hasn't been applied yet.
   mock_outputs_allowed_terraform_commands = ["plan", "validate"]
   mock_outputs = {
@@ -48,7 +48,7 @@ dependency "powerbi_service_account" {
 dependency "ssis_service_account" {
   config_path = "../service_accounts/ssis"
 
-# Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
+  # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
   # module hasn't been applied yet.
   mock_outputs_allowed_terraform_commands = ["plan", "validate"]
   mock_outputs = {
@@ -59,7 +59,7 @@ dependency "ssis_service_account" {
 dependency "ssrs_service_account" {
   config_path = "../service_accounts/ssrs"
 
-# Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
+  # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
   # module hasn't been applied yet.
   mock_outputs_allowed_terraform_commands = ["plan", "validate"]
   mock_outputs = {
@@ -67,54 +67,54 @@ dependency "ssrs_service_account" {
   }
 }
 
- inputs = {
-   project_id             = dependency.project.outputs.project_id
-   
-   project_members = [
-     {
-        project_iam_permissions = ["roles/iap.tunnelResourceAccessor"]
-        member_type             = "user"
-        member_name             = "ferris.hall@appsbroker.com"
-     },
-     {
-        project_iam_permissions = ["roles/bigquery.admin"]
-        member_type             = "user"
-        member_name             = "mahendra.navarange@appsbroker.com"
-     },
-     {
-        project_iam_permissions = ["roles/iap.tunnelResourceAccessor"]
-        member_type             = "user"
-        member_name             = "michael.owen@appsbroker.com"
-     },
-     {
-        project_iam_permissions = ["roles/bigquery.admin"]
-        member_type             = "user"
-        member_name             = "satyendra.gupta@appsbroker.com"
-     },
-     {
-        project_iam_permissions = ["roles/bigquery.admin"]
-        member_type             = "user"
-        member_name             = "shahed.munir@appsbroker.com"
-     },
-     {
-        project_iam_permissions = ["roles/bigquery.dataViewer", "roles/storage.objectViewer"]
-        member_type             = "serviceaccount"
-        member_name             = dependency.bo_service_account.outputs.email
-     },
-     {
-        project_iam_permissions = ["roles/bigquery.dataViewer", "roles/storage.objectViewer"]
-        member_type             = "serviceaccount"
-        member_name             = dependency.powerbi_service_account.outputs.email
-     },
-     {
-        project_iam_permissions = ["roles/bigquery.dataViewer", "roles/storage.objectViewer"]
-        member_type             = "serviceaccount"
-        member_name             = dependency.ssrs_service_account.outputs.email
-     },
-     {
-        project_iam_permissions = ["roles/bigquery.dataEditor", "roles/storage.objectAdmin"]
-        member_type             = "serviceaccount"
-        member_name             = dependency.ssis_service_account.outputs.email
-     },
-   ]
- }
+inputs = {
+  project_id = dependency.project.outputs.project_id
+
+  project_members = [
+    {
+      project_iam_permissions = ["roles/iap.tunnelResourceAccessor"]
+      member_type             = "user"
+      member_name             = "ferris.hall@appsbroker.com"
+    },
+    {
+      project_iam_permissions = ["roles/bigquery.admin"]
+      member_type             = "user"
+      member_name             = "mahendra.navarange@appsbroker.com"
+    },
+    {
+      project_iam_permissions = ["roles/iap.tunnelResourceAccessor"]
+      member_type             = "user"
+      member_name             = "michael.owen@appsbroker.com"
+    },
+    {
+      project_iam_permissions = ["roles/bigquery.admin"]
+      member_type             = "user"
+      member_name             = "satyendra.gupta@appsbroker.com"
+    },
+    {
+      project_iam_permissions = ["roles/bigquery.admin"]
+      member_type             = "user"
+      member_name             = "shahed.munir@appsbroker.com"
+    },
+    {
+      project_iam_permissions = ["roles/bigquery.dataViewer", "roles/storage.objectViewer"]
+      member_type             = "serviceaccount"
+      member_name             = dependency.bo_service_account.outputs.email
+    },
+    {
+      project_iam_permissions = ["roles/bigquery.dataViewer", "roles/storage.objectViewer"]
+      member_type             = "serviceaccount"
+      member_name             = dependency.powerbi_service_account.outputs.email
+    },
+    {
+      project_iam_permissions = ["roles/bigquery.dataViewer", "roles/storage.objectViewer"]
+      member_type             = "serviceaccount"
+      member_name             = dependency.ssrs_service_account.outputs.email
+    },
+    {
+      project_iam_permissions = ["roles/bigquery.dataEditor", "roles/storage.objectAdmin"]
+      member_type             = "serviceaccount"
+      member_name             = dependency.ssis_service_account.outputs.email
+    },
+  ]
+}

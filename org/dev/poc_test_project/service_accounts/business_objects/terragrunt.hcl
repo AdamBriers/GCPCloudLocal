@@ -15,7 +15,7 @@ include {
 dependency "project" {
   config_path = "../../"
 
-# Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
+  # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
   # module hasn't been applied yet.
   mock_outputs_allowed_terraform_commands = ["plan", "validate"]
   mock_outputs = {
@@ -23,11 +23,11 @@ dependency "project" {
   }
 }
 
- inputs = {
-   project_id  = dependency.project.outputs.project_id
-   account_id  = "gc-t-businessobjects-sa"
-   description = "Business Objects Test Service Account"
-   members     = [
+inputs = {
+  project_id  = dependency.project.outputs.project_id
+  account_id  = "gc-t-businessobjects-sa"
+  description = "Business Objects Test Service Account"
+  members = [
     "user:ferris.hall@appsbroker.com"
-   ]
- }
+  ]
+}

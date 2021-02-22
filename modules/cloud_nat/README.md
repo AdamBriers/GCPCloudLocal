@@ -4,6 +4,20 @@ Configures Cloud Router, if required on the supplied network, and then enables C
 
 The `name` input creates the Cloud NAT and creates a Cloud Router using the same name. Adding the input `router_name` attaches the Cloud NAT to an existing Cloud Router.
 
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | >= 0.13 |
+| google | ~> 3.51.0 |
+| google-beta | ~> 3.51 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| google | ~> 3.51.0 |
+
 ## Usage
 
 ### Minimal example (Cloud Router not already created)
@@ -65,3 +79,13 @@ module "cloud_nat" {
 | nat_id      | The ID of the created Cloud NAT.        | String |
 | router      | Router resource (only if auto-created). | String |
 | router_name | Router name.                            | String |
+
+## References
+
+### Terraform
+
+[Compute Router Nat Resource](https://www.terraform.io/docs/providers/google/r/compute_router_nat.html)
+
+### Google Cloud Platform
+
+[Google Cloud NAT](https://cloud.google.com/nat/docs/overview)

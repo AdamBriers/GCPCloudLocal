@@ -8,7 +8,7 @@ terraform {
 }
 dependency "project" {
   config_path = "../logging_project"
-  
+
   # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
   # module hasn't been applied yet.
   mock_outputs_allowed_terraform_commands = ["plan", "validate"]
@@ -28,4 +28,4 @@ inputs = {
   project_id     = dependency.project.outputs.project_id
   disabled       = true
   include_filter = "logName=(\"organizations/205038295325/logs/cloudaudit.googleapis.com%2Factivity\" OR \"organizations/205038295325/logs/cloudaudit.googleapis.com%2Fdata_access\" OR \"organizations/205038295325/logs/cloudaudit.googleapis.com%2Fsystem_event\")"
-  }
+}

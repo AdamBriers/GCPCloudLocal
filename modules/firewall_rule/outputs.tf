@@ -23,7 +23,7 @@ output "custom_egress_allow_rules" {
 }
 
 output "custom_egress_deny_rules" {
-  description = "Custom egress rules with allow blocks."
+  description = "Custom egress rules with deny blocks."
   value = [
     for rule in google_compute_firewall.this :
     rule.name if rule.direction == "EGRESS" && length(rule.deny) > 0

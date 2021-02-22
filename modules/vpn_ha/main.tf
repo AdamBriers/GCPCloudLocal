@@ -21,13 +21,13 @@ locals {
     ? google_compute_router.router[0].name
     : var.router_name
   )
-  
+
   peer_external_gateway = (
     var.peer_external_gateway != null
     ? google_compute_external_vpn_gateway.external_gateway[0].self_link
     : null
   )
-#  secret = random_id.secret.b64_url
+  #  secret = random_id.secret.b64_url
 }
 
 resource "google_compute_ha_vpn_gateway" "ha_gateway" {
@@ -74,7 +74,7 @@ resource "google_compute_router" "router" {
         : var.router_advertise_config.groups
       )
     )
-    dynamic advertised_ip_ranges {
+    dynamic "advertised_ip_ranges" {
       for_each = (
         var.router_advertise_config == null ? {} : (
           var.router_advertise_config.mode != "CUSTOM"
@@ -117,7 +117,7 @@ resource "google_compute_router_peer" "bgp_peer" {
       : each.value.bgp_peer_options.advertise_groups
     )
   )
-  dynamic advertised_ip_ranges {
+  dynamic "advertised_ip_ranges" {
     for_each = (
       each.value.bgp_peer_options == null ? {} : (
         each.value.bgp_peer_options.advertise_mode != "CUSTOM"

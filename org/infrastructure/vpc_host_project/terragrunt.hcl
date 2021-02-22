@@ -15,17 +15,17 @@ include {
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
 
-  project_name        = "gc-a-prj-vpchost-0001"
-  is_host_project     = true
-  
-  labels  = {
-    application       = "shared_vpcs"
-    businessunit      = "homes"
-    costcentre        = "90imt"
-    createdby         = "appsbroker"
-    department        = "it"
-    disasterrecovery  = "no"
-    environment       = "org"
-    contact           = "appsbroker"
-    }
+  project_name    = "gc-a-prj-vpchost-0001"
+  is_host_project = true
+
+  labels = {
+    application      = "shared_vpcs"
+    businessunit     = "homes"
+    costcentre       = "90imt"
+    createdby        = "appsbroker"
+    department       = "it"
+    disasterrecovery = "no"
+    environment      = "org"
+    contact          = "appsbroker"
+  }
 }

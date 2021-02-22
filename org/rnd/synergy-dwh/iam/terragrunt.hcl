@@ -15,7 +15,7 @@ include {
 dependency "project" {
   config_path = "../project"
 
-# Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
+  # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
   # module hasn't been applied yet.
   mock_outputs_allowed_terraform_commands = ["plan", "validate"]
   mock_outputs = {
@@ -23,19 +23,19 @@ dependency "project" {
   }
 }
 
- inputs = {
-   project_id             = dependency.project.outputs.project_id
-   
-   project_members = [
-     {
-        project_iam_permissions = ["roles/bigquery.dataEditor"]
-        member_type             = "user"
-        member_name             = "david.fairbrother@placesforpeople.co.uk"
-     },
-     {
-        project_iam_permissions = ["roles/bigquery.dataEditor"]
-        member_type             = "user"
-        member_name             = "david.ogden@placesforpeople.co.uk"
-     },
-   ]
- }
+inputs = {
+  project_id = dependency.project.outputs.project_id
+
+  project_members = [
+    {
+      project_iam_permissions = ["roles/bigquery.dataEditor"]
+      member_type             = "user"
+      member_name             = "david.fairbrother@placesforpeople.co.uk"
+    },
+    {
+      project_iam_permissions = ["roles/bigquery.dataEditor"]
+      member_type             = "user"
+      member_name             = "david.ogden@placesforpeople.co.uk"
+    },
+  ]
+}

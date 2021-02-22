@@ -5,13 +5,27 @@
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12.26 |
-| google | ~> 3.28.0 |
-| google-beta | ~> 3.12 |
+| terraform | >= 0.13 |
+| google | ~> 3.51.0 |
+| google-beta | ~> 3.51 |
 
 ## Providers
 
 No provider.
+
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| billing_admin_perms | ./../org-permissions |  |
+| billing_user_perms | ./../org-permissions |  |
+| cloud_identity_domain_policy_organisation | terraform-google-modules/org-policy/google | ~> 3.0 |
+| org_admin_perms | ./../org-permissions |  |
+| sec_admin_perms | ./../org-permissions |  |
+
+## Resources
+
+No resources.
 
 ## Inputs
 
@@ -32,5 +46,4 @@ No provider.
 ## Outputs
 
 No output.
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

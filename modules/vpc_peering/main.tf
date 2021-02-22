@@ -1,5 +1,5 @@
 resource "google_compute_network_peering" "peering_first" {
- 
+
   name                                = var.name
   network                             = var.network
   peer_network                        = var.peer_network
@@ -10,7 +10,7 @@ resource "google_compute_network_peering" "peering_first" {
 }
 
 resource "google_compute_network_peering" "peering_second" {
- 
+
   name                                = var.name_second
   network                             = var.peer_network
   peer_network                        = var.network

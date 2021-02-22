@@ -21,7 +21,7 @@ resource "google_dns_managed_zone" "this" {
       }
     }
   }
-  depends_on = [ google_project_service.this ]
+  depends_on = [google_project_service.this]
 }
 resource "google_dns_record_set" "this" {
   project      = var.project_id
@@ -38,5 +38,5 @@ resource "google_dns_record_set" "this" {
 
   rrdatas = each.value.records
 
-  depends_on = [ google_dns_managed_zone.this ]
+  depends_on = [google_dns_managed_zone.this]
 }

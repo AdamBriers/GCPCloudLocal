@@ -28,13 +28,13 @@ inputs = {
   enable_logging = false
   firewall_rules = {
     all-ingress-testanddevtoprd = {
-      description             = "INGRESS firewall for all ports and protocol from test and dev to production."
-      direction               = "INGRESS"
-      action                  = "allow"
-      ranges                  = ["172.26.64.0/23", "172.26.66.0/23", "172.26.68.0/23"]
-      sources                 = []
-      targets                 = []
-      use_service_accounts    = false
+      description          = "INGRESS firewall for all ports and protocol from test and dev to production."
+      direction            = "INGRESS"
+      action               = "allow"
+      ranges               = ["172.26.64.0/23", "172.26.66.0/23", "172.26.68.0/23"]
+      sources              = []
+      targets              = []
+      use_service_accounts = false
       rules = [
         {
           protocol = "all"
@@ -45,13 +45,13 @@ inputs = {
     },
 
     iap-ingress-compute-prd-test = {
-      description             = "For TEST Purposes ONLY - INGRESS firewall for SSH (TCP port 22) using 'IAP for TCP forwarding' to production environment."
-      direction               = "INGRESS"
-      action                  = "allow"
-      ranges                  = ["35.235.240.0/20"]
-      sources                 = []
-      targets                 = []
-      use_service_accounts    = false
+      description          = "For TEST Purposes ONLY - INGRESS firewall for SSH (TCP port 22) using 'IAP for TCP forwarding' to production environment."
+      direction            = "INGRESS"
+      action               = "allow"
+      ranges               = ["35.235.240.0/20"]
+      sources              = []
+      targets              = []
+      use_service_accounts = false
       rules = [
         {
           protocol = "tcp"
@@ -62,13 +62,13 @@ inputs = {
     },
 
     vpnall-ingress-prd-azure-aws = {
-      description             = "INGRESS firewall for all ports and protocol from on-prem and azure VPN to production."
-      direction               = "INGRESS"
-      action                  = "allow"
-      ranges                  = ["172.20.0.0/16", "172.30.0.0/16", "10.0.0.0/8"]
-      sources                 = []
-      targets                 = []
-      use_service_accounts    = false
+      description          = "INGRESS firewall for all ports and protocol from on-prem and azure VPN to production."
+      direction            = "INGRESS"
+      action               = "allow"
+      ranges               = ["172.20.0.0/16", "172.30.0.0/16", "10.0.0.0/8"]
+      sources              = []
+      targets              = []
+      use_service_accounts = false
       rules = [
         {
           protocol = "all"

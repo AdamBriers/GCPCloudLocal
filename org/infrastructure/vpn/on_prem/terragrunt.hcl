@@ -23,20 +23,20 @@ dependency "project" {
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
 
-  project_id             = dependency.project.outputs.project_id
-  name                   = "gc-a-vpn-onprem-0001"
-  secret_id              = "gc-a-sct-onprem-0001"
-  network                = dependency.prd_vpc.outputs.network_name
+  project_id = dependency.project.outputs.project_id
+  name       = "gc-a-vpn-onprem-0001"
+  secret_id  = "gc-a-sct-onprem-0001"
+  network    = dependency.prd_vpc.outputs.network_name
   peer_external_gateway = {
     redundancy_type = "SINGLE_IP_INTERNALLY_REDUNDANT"
     interfaces = [{
       id         = 0
       ip_address = "62.7.75.210" # on-prem router ip address
-      }]
+    }]
   }
   router_advertise_config = {
-    groups    = []
-    mode      = "CUSTOM"
+    groups = []
+    mode   = "CUSTOM"
     ip_ranges = {
       "172.26.64.0/23"  = "gc-t-snet-0001"
       "172.26.66.0/23"  = "gc-t-snet-0002"

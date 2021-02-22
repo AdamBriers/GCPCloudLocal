@@ -31,18 +31,18 @@ inputs = {
   description                        = "DNS Zone to ensure access to googleapis.com via the 'Private Network Access' IPs"
   dns_name                           = "googleapis.com."
   description                        = "Private DNS zone for googleapis.com"
-  recordsets= [
+  recordsets = [
     {
-    name = "restricted"
-    type = "A"
-    ttl  = 300
-    records = ["199.36.153.4", "199.36.153.5", "199.36.153.6", "199.36.153.7"]
+      name    = "restricted"
+      type    = "A"
+      ttl     = 300
+      records = ["199.36.153.4", "199.36.153.5", "199.36.153.6", "199.36.153.7"]
     },
     {
-    name = "*"
-    type = "CNAME"
-    ttl  = 300
-    records = ["restricted.googleapis.com."]
+      name    = "*"
+      type    = "CNAME"
+      ttl     = 300
+      records = ["restricted.googleapis.com."]
     }
   ]
 }

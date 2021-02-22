@@ -24,7 +24,7 @@ dependency "dev_vpc" {
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
 
-project_id         = dependency.vpc_host_project.outputs.project_id
+  project_id       = dependency.vpc_host_project.outputs.project_id
   name             = "gc-t-nat-0001"
   network_selflink = dependency.dev_vpc.outputs.network_name
   router_asn       = 64513

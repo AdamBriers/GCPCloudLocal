@@ -29,5 +29,5 @@ resource "google_dns_managed_zone" "this" {
       }
     }
   }
-  depends_on = [ google_project_service.this ]
+  depends_on = [google_project_service.this]
 }

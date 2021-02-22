@@ -15,6 +15,6 @@ include {
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
 
-  folder_name     = "Test and Development"
-  org_id           = "205038295325" ## Places fof People org id
+  folder_name = "Test and Development"
+  org_id      = "205038295325" ## Places fof People org id
 }

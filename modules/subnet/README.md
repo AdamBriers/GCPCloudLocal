@@ -25,25 +25,41 @@ module "vpc" {
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | >= 0.14.2 |
+| google | ~> 3.51 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| google | ~> 3.51 |
+
+## Modules
+
+No Modules.
+
+## Resources
+
+| Name |
+|------|
+| [google_compute_subnetwork](https://registry.terraform.io/providers/hashicorp/google/3.51/docs/resources/compute_subnetwork) |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| ip\_cidr\_range | The CIDR range for this subnetwork | `string` | n/a | yes |
-| private\_ip\_google\_access | Enables VMs in this subnetwork without external IP addresses to access Google APIs and services by using Private Google Access | `bool` | `false` | no |
-| project\_id | The ID of the Shared VPC Host project in which this subnetwork belongs | `string` | n/a | yes |
-| region | The Region in which this subnetwork should be created | `string` | n/a | yes |
-| sub\_network\_description | The description of this subnetwork being created | `string` | n/a | yes |
-| sub\_network\_name | The name of this subnetwork | `string` | n/a | yes |
+| project\_id | The ID of the Shared VPC Host project in which this subnetwork belongs | `any` | n/a | yes |
+| subnets | List of subnets being created in this VPC | `list(map(string))` | `[]` | no |
 | vpc\_network\_name | The name (ID) of the VPC with which this subnetwork should be linked | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| creation\_timestamp | Creation timestamp in RFC3339 text format |
-| gateway\_address | The gateway address for default routes to reach destination addresses outside this subnetwork |
-| sub\_network\_id | The subnetwork resource being created |
-| sub\_network\_self\_link | The URI of the subnetwork being created |
-
+| subnet\_ids | The created subnets resources |
+| subnets | The created subnets resources |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

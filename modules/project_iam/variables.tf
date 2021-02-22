@@ -4,7 +4,7 @@ variable "project_id" {
 }
 
 variable "project_members" {
-  type         = list(object({project_iam_permissions=list(string), member_type=string, member_name=string}))
+  type        = list(object({ project_iam_permissions = list(string), member_type = string, member_name = string }))
   description = "List of project members and their permissions being created for this project"
   default     = []
 }

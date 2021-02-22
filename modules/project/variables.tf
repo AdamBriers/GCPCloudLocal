@@ -79,7 +79,7 @@ variable "is_service_project" {
   type        = bool
 }
 
-variable "host_project_id"  {
+variable "host_project_id" {
   description = "The Host project id to be associated with this Service project"
   type        = string
 }

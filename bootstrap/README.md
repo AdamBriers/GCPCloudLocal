@@ -1,8 +1,11 @@
 # Bootstrap
+This bootstrap creates the GCP resources in the first instance to get started in GCP.
+It creates the following:
 
-## Prerequisites
-
-- Ensure you have the prerequisites covered [here](../CONTRIBUTING.MD) in order to run infra code
+- Remote Terraform state and Build container GCS buckets.
+- The organisation level Terraform service account that Terraform uses to deploy the resoources.
+- The build jobs and triggers for the environments.
+- The infrastructure folder and build GCP project.
 
 ## Bootstrap guide
 
@@ -21,31 +24,3 @@ gcloud auth application-default login
   - Once the resources have been created, copy `backend.tf-example` file to `backend.tf` and set the bucket to the value of `gcs_bucket_tfstate` from the terraform apply output
   - Run again `terraform init` which will ask if you want to copy the local Terraform state into the remote state bucket - confirm by typing `yes`
   - Remove `terraform.tfstate` and `terraform.tfstate.backup` files. Run another terraform apply which should no longer need to create any new resources
-  
-- Create bootstrap with CI/CD pipeline
-  - In case the customer uses GitHub as a version control system, then copy `cloudbuild.tf` file located in ci-cd folder into the bootstrap folder
-  - Ask the customer to create the link between the GCP project created in the initial bootstrap with the GitHub repo he has
-  - Change the github references inside the `cloudbuild.tf` file, by setting the appropiate values for `owner` and `name`
-  - Run `terraform init` and then `terraform plan` to see what changes are pending (should be changes related only to Cloud Build)
-  - Run `terraform apply` if the above plan looks good and confirm with `yes`
-  
-- Create bootstrap with billing budget and alerts for project creation
-  - Copy `provider-impersonate.tf-example` file to `provider.tf` so that it overwrites it
-  - Run `gcloud config set auth/impersonate_service_account <account-id>` where the account-id is the terraform service account from the output of the first bootstrap creation run
-  - Run `gcloud auth application-default set-quota-project <project-id>` where the project-id is the seed project from the output of the first bootstrap creation run
-  - Copy the files located in bootstrap/billing-budget under modules/project folder (with overwrite)
-  - Copy `variables-budget.tf-example` file to `variables.tf` so that it overwrites it
-  - Copy `main-budget.tf-example` file to `main.tf` so that it overwrites it
-  - Copy `terraform-budget.tfvars-example` file to `terraform.tfvars` so that it overwrites it AND adjust the billing budget values accordingly
-  - Run `terraform init` and then `terraform plan` to see what changes are pending (should be changes related to setup of billing budget)
-  - Run `terraform apply` if the above plan looks good and confirm with `yes`
-
-## Note about "private" key in [terraform.tfstate](terraform.tfstate) in this directory (i.e. `bootstrap`)
-
-Usually terraform state is not to be stored in Git. But given this is a simple resource with no sensitive data, it's better to have the state somewhere.
-
-The "private" property is a place where providers can retain any metadata they need for internal lifecycle tracking, separately from the actual data in "attributes".
-
-"private" in this context means "for use by the provider only", not "secret".
-
-More info: https://serverfault.com/a/981750

@@ -14,7 +14,7 @@ include {
 
 dependency "vpc_host_project" {
   config_path = "../vpc_host_project"
-  
+
   # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
   # module hasn't been applied yet.
   mock_outputs_allowed_terraform_commands = ["plan", "validate"]
@@ -26,8 +26,8 @@ dependency "vpc_host_project" {
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
 
-  project_id      = dependency.vpc_host_project.outputs.project_id
-  network_name    = "gc-t-vpc-0001"
-  description     = "Shared VPC Network for the Test and Dev environments"
-  routing_mode    = "GLOBAL" # If REGIONAL Cloud Router will only dynamically advertises subnets and propagates learned routes in the region where the router is configured
+  project_id   = dependency.vpc_host_project.outputs.project_id
+  network_name = "gc-t-vpc-0001"
+  description  = "Shared VPC Network for the Test and Dev environments"
+  routing_mode = "GLOBAL" # If REGIONAL Cloud Router will only dynamically advertises subnets and propagates learned routes in the region where the router is configured
 }

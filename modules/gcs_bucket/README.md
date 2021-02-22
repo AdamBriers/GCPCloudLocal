@@ -2,6 +2,19 @@
 
 Terraform module to manage GCP GCS storage buckets and access to those buckets. Defaults to EU location and MULTI_REGIONAL storage type, versioning enabled, doesn't disable the GCS service on bucket destroy action to avoid conflicts with other buckets created with other calls to this module and doesn't grant any access.
 
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | >= 0.13 |
+| google | ~> 3.51.0 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| google | ~> 3.51.0 |
+
 ## Usage
 
 ### Minimal Example
@@ -21,8 +34,8 @@ module "tf_gcp_gcs_bucket" {
 module "tf_gcp_gcs_bucket" {
     source  = "modules/gcs_bucket"
 
-    name                        = "gcs_unique_bucket_name"
-    project_id                  = "project_name"
+    name                = "gcs_unique_bucket_name"
+    project_id          = "project_name"
     bucket_policy_only  = true
     cors = [{
         origin          = ["*"]

@@ -1,5 +1,5 @@
 locals {
-  tunnel_name_prefix    = var.tunnel_name_prefix != "" ? var.tunnel_name_prefix : "${var.network}-${var.gateway_name}-tunnel"
+  tunnel_name_prefix = var.tunnel_name_prefix != "" ? var.tunnel_name_prefix : "${var.network}-${var.gateway_name}-tunnel"
 }
 
 resource "google_compute_vpn_gateway" "gateway" {
@@ -11,12 +11,12 @@ resource "google_compute_vpn_gateway" "gateway" {
 
 resource "google_compute_address" "static_ip" {
   project = var.project_id
-  name   = var.ip_name
-  region = var.region
+  name    = var.ip_name
+  region  = var.region
 }
 
 resource "google_compute_vpn_tunnel" "tunnel-static" {
-  count         = ! var.cr_enabled ? var.tunnel_count : 0
+  count         = !var.cr_enabled ? var.tunnel_count : 0
   name          = var.tunnel_count == 1 ? format("%s-%s", local.tunnel_name_prefix, "1") : format("%s-%d", local.tunnel_name_prefix, count.index + 1)
   region        = var.region
   project       = var.project_id
@@ -66,7 +66,7 @@ resource "google_compute_forwarding_rule" "udp4500" {
 }
 
 resource "google_compute_route" "route" {
-  count      = ! var.cr_enabled ? var.tunnel_count * length(var.remote_subnet) : 0
+  count      = !var.cr_enabled ? var.tunnel_count * length(var.remote_subnet) : 0
   name       = "${google_compute_vpn_gateway.gateway.name}-tunnel${floor(count.index / length(var.remote_subnet)) + 1}-route${count.index % length(var.remote_subnet) + 1}"
   network    = var.network
   project    = var.project_id
@@ -92,7 +92,7 @@ data "google_secret_manager_secret_version" "this" {
 }
 
 resource "google_secret_manager_secret" "this" {
-  project                   = var.project_id
+  project   = var.project_id
   secret_id = var.secret_id
 
   replication {

@@ -14,7 +14,7 @@ include {
 
 dependency "vpc_shared_dev" {
   config_path = "../vpc_shared_dev"
-  
+
   # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
   # module hasn't been applied yet.
   mock_outputs_allowed_terraform_commands = ["plan", "validate"]
@@ -25,7 +25,7 @@ dependency "vpc_shared_dev" {
 
 dependency "vpc_shared_prd" {
   config_path = "../vpc_shared_prd"
-  
+
   # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
   # module hasn't been applied yet.
   mock_outputs_allowed_terraform_commands = ["plan", "validate"]
@@ -37,16 +37,16 @@ dependency "vpc_shared_prd" {
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
 
-  name                                        = "gc-t-testprodpeer-0001"
-  name_second                                 = "gc-p-prodtestpeer-0001"
-  network                                     = dependency.vpc_shared_dev.outputs.network_self_link
-  peer_network                                = dependency.vpc_shared_prd.outputs.network_self_link
-  export_custom_routes                        = false
-  export_custom_routes_second                 = true
-  import_custom_routes                        = true
-  import_custom_routes_second                 = false
-  export_subnet_routes_with_public_ip         = false
-  export_subnet_routes_with_public_ip_second  = false
-  import_subnet_routes_with_public_ip         = false
-  import_subnet_routes_with_public_ip_second  = false
+  name                                       = "gc-t-testprodpeer-0001"
+  name_second                                = "gc-p-prodtestpeer-0001"
+  network                                    = dependency.vpc_shared_dev.outputs.network_self_link
+  peer_network                               = dependency.vpc_shared_prd.outputs.network_self_link
+  export_custom_routes                       = false
+  export_custom_routes_second                = true
+  import_custom_routes                       = true
+  import_custom_routes_second                = false
+  export_subnet_routes_with_public_ip        = false
+  export_subnet_routes_with_public_ip_second = false
+  import_subnet_routes_with_public_ip        = false
+  import_subnet_routes_with_public_ip_second = false
 }

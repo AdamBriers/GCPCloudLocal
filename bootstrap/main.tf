@@ -39,10 +39,10 @@ resource "google_folder" "infrastructure" {
 module "terraform_project" {
   source = "../modules/project"
 
-  project_name        = var.project_name
-  billing_account     = var.billing_account
-  folder_id           = google_folder.infrastructure.id
-  host_project_id     = "gc-a-prj-vpchost-0001-3312"
+  project_name    = var.project_name
+  billing_account = var.billing_account
+  folder_id       = google_folder.infrastructure.id
+  host_project_id = "gc-a-prj-vpchost-0001-3312"
 
   services = var.activate_apis
   labels   = var.project_labels
@@ -177,32 +177,32 @@ resource "google_organization_iam_member" "tf_sa_org_perms" {
  ***********************************************/
 
 resource "google_storage_bucket_iam_member" "cloudbuild_artifacts_iam" {
-  bucket              = google_storage_bucket.cloudbuild_artifacts.name
-  role                = "roles/storage.admin"
-  member              = "serviceAccount:${module.terraform_project.project.number}@cloudbuild.gserviceaccount.com"
-  depends_on          = [module.terraform_project]
+  bucket     = google_storage_bucket.cloudbuild_artifacts.name
+  role       = "roles/storage.admin"
+  member     = "serviceAccount:${module.terraform_project.project.number}@cloudbuild.gserviceaccount.com"
+  depends_on = [module.terraform_project]
 }
 
 resource "google_service_account_iam_member" "cloudbuild_terraform_sa_impersonate_permissions" {
-  service_account_id  = google_service_account.org_terraform.name
-  role                = "roles/iam.serviceAccountTokenCreator"
-  member              = "serviceAccount:${module.terraform_project.project.number}@cloudbuild.gserviceaccount.com"
-  depends_on          = [module.terraform_project]
+  service_account_id = google_service_account.org_terraform.name
+  role               = "roles/iam.serviceAccountTokenCreator"
+  member             = "serviceAccount:${module.terraform_project.project.number}@cloudbuild.gserviceaccount.com"
+  depends_on         = [module.terraform_project]
 }
 
 resource "google_project_iam_member" "cloudbuild_serviceusage_consumer" {
-  project             = module.terraform_project.project.project_id
-  role                = "roles/serviceusage.serviceUsageConsumer"
-  member              = "serviceAccount:${module.terraform_project.project.number}@cloudbuild.gserviceaccount.com"
-  depends_on          = [module.terraform_project]
+  project    = module.terraform_project.project.project_id
+  role       = "roles/serviceusage.serviceUsageConsumer"
+  member     = "serviceAccount:${module.terraform_project.project.number}@cloudbuild.gserviceaccount.com"
+  depends_on = [module.terraform_project]
 }
 
 # Required to allow cloud build to access state with impersonation.
 resource "google_storage_bucket_iam_member" "cloudbuild_state_iam" {
-  bucket              = google_storage_bucket.terraform_bucket.name
-  role                = "roles/storage.admin"
-  member              = "serviceAccount:${module.terraform_project.project.number}@cloudbuild.gserviceaccount.com"
-  depends_on          = [module.terraform_project]
+  bucket     = google_storage_bucket.terraform_bucket.name
+  role       = "roles/storage.admin"
+  member     = "serviceAccount:${module.terraform_project.project.number}@cloudbuild.gserviceaccount.com"
+  depends_on = [module.terraform_project]
 }
 
 /***********************************************
@@ -244,18 +244,18 @@ resource "null_resource" "cloudbuild_terraform_builder" {
  ***********************************************/
 
 resource "google_cloudbuild_trigger" "rnd_master_push_trigger" {
-  project             = module.terraform_project.project.project_id
-  name                = "rnd-master-branch-build-apply"
-  description         = "RandD terragrunt apply on push to master"
-  filename            = "cloudbuild-tg-plan-apply.yaml"
-  included_files      = ["org/rnd/*"]
-  ignored_files       = ["org/prd/*", "org/dev/*", "org/infrastructure/*", "org/secops/*", "modules/*"]
-  depends_on          = [null_resource.cloudbuild_terraform_builder]
+  project        = module.terraform_project.project.project_id
+  name           = "rnd-master-branch-build-apply"
+  description    = "RandD terragrunt apply on push to master"
+  filename       = "cloudbuild-tg-plan-apply.yaml"
+  included_files = ["org/rnd/*"]
+  ignored_files  = ["org/prd/*", "org/dev/*", "org/infrastructure/*", "org/secops/*", "modules/*"]
+  depends_on     = [null_resource.cloudbuild_terraform_builder]
 
   trigger_template {
-    project_id    = module.terraform_project.project.project_id
-    repo_name     = google_sourcerepo_repository.this.name
-    branch_name   = "^master$" 
+    project_id  = module.terraform_project.project.project_id
+    repo_name   = google_sourcerepo_repository.this.name
+    branch_name = "^master$"
   }
 
   substitutions = {
@@ -270,19 +270,19 @@ resource "google_cloudbuild_trigger" "rnd_master_push_trigger" {
  ****************************************************/
 
 resource "google_cloudbuild_trigger" "rnd_non_master_push_trigger" {
-  project             = module.terraform_project.project.project_id
-  name                = "rnd-non-master-branch-plan"
-  description         = "RandD terragrunt on push request to non master branches."
-  filename            = "cloudbuild-tg-plan.yaml"
-  included_files      = ["org/rnd/*"]
-  ignored_files       = ["org/prd/*", "org/dev/*", "org/infrastructure/*", "org/secops/*", "modules/*"]
-  depends_on          = [null_resource.cloudbuild_terraform_builder]
- 
+  project        = module.terraform_project.project.project_id
+  name           = "rnd-non-master-branch-plan"
+  description    = "RandD terragrunt on push request to non master branches."
+  filename       = "cloudbuild-tg-plan.yaml"
+  included_files = ["org/rnd/*"]
+  ignored_files  = ["org/prd/*", "org/dev/*", "org/infrastructure/*", "org/secops/*", "modules/*"]
+  depends_on     = [null_resource.cloudbuild_terraform_builder]
+
   trigger_template {
-    project_id        = module.terraform_project.project.project_id
-    repo_name         = google_sourcerepo_repository.this.name
-    branch_name       = "^master$" 
-    invert_regex      = true
+    project_id   = module.terraform_project.project.project_id
+    repo_name    = google_sourcerepo_repository.this.name
+    branch_name  = "^master$"
+    invert_regex = true
   }
 
   substitutions = {
@@ -297,18 +297,18 @@ resource "google_cloudbuild_trigger" "rnd_non_master_push_trigger" {
  ***********************************************/
 
 resource "google_cloudbuild_trigger" "dev_master_push_trigger" {
-  project             = module.terraform_project.project.project_id
-  name                = "dev-master-branch-build-apply"
-  description         = "Dev terragrunt apply on push to master"
-  filename            = "cloudbuild-tg-plan-apply.yaml"
-  included_files      = ["org/dev/*"]
-  ignored_files       = ["org/prd/*", "org/rnd/*", "org/infrastructure/*", "org/secops/*", "modules/*"]
-  depends_on          = [null_resource.cloudbuild_terraform_builder]
+  project        = module.terraform_project.project.project_id
+  name           = "dev-master-branch-build-apply"
+  description    = "Dev terragrunt apply on push to master"
+  filename       = "cloudbuild-tg-plan-apply.yaml"
+  included_files = ["org/dev/*"]
+  ignored_files  = ["org/prd/*", "org/rnd/*", "org/infrastructure/*", "org/secops/*", "modules/*"]
+  depends_on     = [null_resource.cloudbuild_terraform_builder]
 
   trigger_template {
-    project_id    = module.terraform_project.project.project_id
-    repo_name     = google_sourcerepo_repository.this.name
-    branch_name   = "^master$" 
+    project_id  = module.terraform_project.project.project_id
+    repo_name   = google_sourcerepo_repository.this.name
+    branch_name = "^master$"
   }
 
   substitutions = {
@@ -323,19 +323,19 @@ resource "google_cloudbuild_trigger" "dev_master_push_trigger" {
  ****************************************************/
 
 resource "google_cloudbuild_trigger" "dev_non_master_push_trigger" {
-  project             = module.terraform_project.project.project_id
-  name                = "dev-non-master-branch-plan"
-  description         = "Dev terragrunt on push request to non master branches."
-  filename            = "cloudbuild-tg-plan.yaml"
-  included_files      = ["org/dev/*"]
-  ignored_files       = ["org/prd/*", "org/rnd/*", "org/infrastructure/*", "org/secops/*", "modules/*"]
-  depends_on          = [null_resource.cloudbuild_terraform_builder]
- 
+  project        = module.terraform_project.project.project_id
+  name           = "dev-non-master-branch-plan"
+  description    = "Dev terragrunt on push request to non master branches."
+  filename       = "cloudbuild-tg-plan.yaml"
+  included_files = ["org/dev/*"]
+  ignored_files  = ["org/prd/*", "org/rnd/*", "org/infrastructure/*", "org/secops/*", "modules/*"]
+  depends_on     = [null_resource.cloudbuild_terraform_builder]
+
   trigger_template {
-    project_id        = module.terraform_project.project.project_id
-    repo_name         = google_sourcerepo_repository.this.name
-    branch_name       = "^master$" 
-    invert_regex      = true
+    project_id   = module.terraform_project.project.project_id
+    repo_name    = google_sourcerepo_repository.this.name
+    branch_name  = "^master$"
+    invert_regex = true
   }
 
   substitutions = {
@@ -350,18 +350,18 @@ resource "google_cloudbuild_trigger" "dev_non_master_push_trigger" {
  ***********************************************/
 
 resource "google_cloudbuild_trigger" "prd-master_push_trigger" {
-  project             = module.terraform_project.project.project_id
-  name                = "prod-master-branch-build-apply"
-  description         = "Prod terragrunt apply on push to master"
-  filename            = "cloudbuild-tg-plan-apply.yaml"
-  included_files      = ["org/prd/*"]
-  ignored_files       = ["org/dev/*", "org/rnd/*", "org/infrastructure/*", "org/secops/*", "modules/*"]
-  depends_on          = [null_resource.cloudbuild_terraform_builder]
+  project        = module.terraform_project.project.project_id
+  name           = "prod-master-branch-build-apply"
+  description    = "Prod terragrunt apply on push to master"
+  filename       = "cloudbuild-tg-plan-apply.yaml"
+  included_files = ["org/prd/*"]
+  ignored_files  = ["org/dev/*", "org/rnd/*", "org/infrastructure/*", "org/secops/*", "modules/*"]
+  depends_on     = [null_resource.cloudbuild_terraform_builder]
 
   trigger_template {
-    project_id    = module.terraform_project.project.project_id
-    repo_name     = google_sourcerepo_repository.this.name
-    branch_name   = "^master$"
+    project_id  = module.terraform_project.project.project_id
+    repo_name   = google_sourcerepo_repository.this.name
+    branch_name = "^master$"
   }
 
   substitutions = {
@@ -376,19 +376,19 @@ resource "google_cloudbuild_trigger" "prd-master_push_trigger" {
  ****************************************************/
 
 resource "google_cloudbuild_trigger" "prd-non_master_push_trigger" {
-  project             = module.terraform_project.project.project_id
-  name                = "prod-non-master-branch-plan"
-  description         = "Prod terragrunt on push request to non master branches."
-  filename            = "cloudbuild-tg-plan.yaml"
-  included_files      = ["org/prd/*"]
-  ignored_files       = ["org/dev/*", "org/rnd/*", "org/infrastructure/*", "org/secops/*", "modules/*"]
-  depends_on          = [null_resource.cloudbuild_terraform_builder]
+  project        = module.terraform_project.project.project_id
+  name           = "prod-non-master-branch-plan"
+  description    = "Prod terragrunt on push request to non master branches."
+  filename       = "cloudbuild-tg-plan.yaml"
+  included_files = ["org/prd/*"]
+  ignored_files  = ["org/dev/*", "org/rnd/*", "org/infrastructure/*", "org/secops/*", "modules/*"]
+  depends_on     = [null_resource.cloudbuild_terraform_builder]
 
   trigger_template {
-    project_id        = module.terraform_project.project.project_id
-    repo_name         = google_sourcerepo_repository.this.name
-    branch_name       = "^master$"
-    invert_regex      = true
+    project_id   = module.terraform_project.project.project_id
+    repo_name    = google_sourcerepo_repository.this.name
+    branch_name  = "^master$"
+    invert_regex = true
   }
 
   substitutions = {
@@ -403,18 +403,18 @@ resource "google_cloudbuild_trigger" "prd-non_master_push_trigger" {
  ***********************************************/
 
 resource "google_cloudbuild_trigger" "infra-master_push_trigger" {
-  project             = module.terraform_project.project.project_id
-  name                = "infrastructure-master-branch-build-apply"
-  description         = "Infrastructure terragrunt apply on push to master"
-  filename            = "cloudbuild-tg-plan-apply.yaml"
-  included_files      = ["org/infrastructure/*"]
-  ignored_files       = ["org/dev/*", "org/rnd/*", "org/prd/*", "org/secops/*", "modules/*"]
-  depends_on          = [null_resource.cloudbuild_terraform_builder]
+  project        = module.terraform_project.project.project_id
+  name           = "infrastructure-master-branch-build-apply"
+  description    = "Infrastructure terragrunt apply on push to master"
+  filename       = "cloudbuild-tg-plan-apply.yaml"
+  included_files = ["org/infrastructure/*"]
+  ignored_files  = ["org/dev/*", "org/rnd/*", "org/prd/*", "org/secops/*", "modules/*"]
+  depends_on     = [null_resource.cloudbuild_terraform_builder]
 
   trigger_template {
-    project_id    = module.terraform_project.project.project_id
-    repo_name     = google_sourcerepo_repository.this.name
-    branch_name   = "^master$"
+    project_id  = module.terraform_project.project.project_id
+    repo_name   = google_sourcerepo_repository.this.name
+    branch_name = "^master$"
   }
 
   substitutions = {
@@ -429,19 +429,19 @@ resource "google_cloudbuild_trigger" "infra-master_push_trigger" {
  ****************************************************/
 
 resource "google_cloudbuild_trigger" "infra-non_master_push_trigger" {
-  project             = module.terraform_project.project.project_id
-  name                = "infrastructure-non-master-branch-plan"
-  description         = "Infratructure terragrunt on push request to non master branches."
-  filename            = "cloudbuild-tg-plan.yaml"
-  included_files      = ["org/infrastructure/*"]
-  ignored_files       = ["org/dev/*", "org/rnd/*", "org/prd/*", "org/secops/*", "modules/*"]
-  depends_on          = [null_resource.cloudbuild_terraform_builder]
+  project        = module.terraform_project.project.project_id
+  name           = "infrastructure-non-master-branch-plan"
+  description    = "Infratructure terragrunt on push request to non master branches."
+  filename       = "cloudbuild-tg-plan.yaml"
+  included_files = ["org/infrastructure/*"]
+  ignored_files  = ["org/dev/*", "org/rnd/*", "org/prd/*", "org/secops/*", "modules/*"]
+  depends_on     = [null_resource.cloudbuild_terraform_builder]
 
   trigger_template {
-    project_id        = module.terraform_project.project.project_id
-    repo_name         = google_sourcerepo_repository.this.name
-    branch_name       = "^master$"
-    invert_regex      = true
+    project_id   = module.terraform_project.project.project_id
+    repo_name    = google_sourcerepo_repository.this.name
+    branch_name  = "^master$"
+    invert_regex = true
   }
 
   substitutions = {
@@ -456,18 +456,18 @@ resource "google_cloudbuild_trigger" "infra-non_master_push_trigger" {
  ***********************************************/
 
 resource "google_cloudbuild_trigger" "secops-master_push_trigger" {
-  project             = module.terraform_project.project.project_id
-  name                = "secops-master-branch-build-apply"
-  description         = "SecOps terragrunt apply on push to master"
-  filename            = "cloudbuild-tg-plan-apply.yaml"
-  included_files      = ["org/secops/*"]
-  ignored_files       = ["org/dev/*", "org/rnd/*", "org/prd/*", "org/infrastructure/*", "modules/*" ]
-  depends_on          = [null_resource.cloudbuild_terraform_builder]
+  project        = module.terraform_project.project.project_id
+  name           = "secops-master-branch-build-apply"
+  description    = "SecOps terragrunt apply on push to master"
+  filename       = "cloudbuild-tg-plan-apply.yaml"
+  included_files = ["org/secops/*"]
+  ignored_files  = ["org/dev/*", "org/rnd/*", "org/prd/*", "org/infrastructure/*", "modules/*"]
+  depends_on     = [null_resource.cloudbuild_terraform_builder]
 
   trigger_template {
-    project_id    = module.terraform_project.project.project_id
-    repo_name     = google_sourcerepo_repository.this.name
-    branch_name   = "^master$"
+    project_id  = module.terraform_project.project.project_id
+    repo_name   = google_sourcerepo_repository.this.name
+    branch_name = "^master$"
   }
 
   substitutions = {
@@ -482,19 +482,19 @@ resource "google_cloudbuild_trigger" "secops-master_push_trigger" {
  ****************************************************/
 
 resource "google_cloudbuild_trigger" "secops-non_master_push_trigger" {
-  project             = module.terraform_project.project.project_id
-  name                = "secops-non-master-branch-plan"
-  description         = "SecOps terragrunt on push request to non master branches."
-  filename            = "cloudbuild-tg-plan.yaml"
-  included_files      = ["org/secops/*"]
-  ignored_files       = ["org/dev/*", "org/rnd/*", "org/prd/*", "org/infrastructure/*", "modules/*"]
-  depends_on          = [null_resource.cloudbuild_terraform_builder]
+  project        = module.terraform_project.project.project_id
+  name           = "secops-non-master-branch-plan"
+  description    = "SecOps terragrunt on push request to non master branches."
+  filename       = "cloudbuild-tg-plan.yaml"
+  included_files = ["org/secops/*"]
+  ignored_files  = ["org/dev/*", "org/rnd/*", "org/prd/*", "org/infrastructure/*", "modules/*"]
+  depends_on     = [null_resource.cloudbuild_terraform_builder]
 
   trigger_template {
-    project_id        = module.terraform_project.project.project_id
-    repo_name         = google_sourcerepo_repository.this.name
-    branch_name       = "^master$"
-    invert_regex      = true
+    project_id   = module.terraform_project.project.project_id
+    repo_name    = google_sourcerepo_repository.this.name
+    branch_name  = "^master$"
+    invert_regex = true
   }
 
   substitutions = {

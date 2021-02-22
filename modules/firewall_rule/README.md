@@ -1,6 +1,20 @@
 # firewall
 
 Terraform module to configure the firewall for a specified network.
+This module uses a `for_each` loop `firewall_rules`. The definition of the rule is set through a map where keys are rule names, and values rule as per the examples below.
+
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | >= 0.13 |
+| google | ~> 3.51.0 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| google | ~> 3.51.0 |
 
 ## Usage
 
@@ -9,95 +23,106 @@ Terraform module to configure the firewall for a specified network.
 ```terraform
 module "gcp_firewall" {
   source       = "../module/firewall_rule"
-  name         = "web-ingress-public-https"
 
-  network_name = "my-network"
-  project_id   = "my-project-id"
-  direction    = "INGRESS"
-
-  allow_rules  = [
-    {
-      protocol = "TCP",
-      ports    = ["443"]
+  project_id     = "test-project-1234"
+  network        = dependency.vpc_network.outputs.network_self_link
+  enable_logging = false
+  firewall_rules = {
+    all-ingress-firewall-name = {
+      description          = "INGRESS firewall for all ports and protocol from production to test and dev."
+      direction            = "INGRESS"
+      action               = "allow"
+      ranges               = ["172.26.0.0/18"]
+      sources              = []
+      targets              = []
+      use_service_accounts = false
+      rules = [
+        {
+          protocol = "all"
+          ports    = []
+        }
+      ]
+      extra_attributes = {}
     }
-  ]
-}
 ```
 
-### Extended Example
+### Extended Example (multiple firewalls)
 
 ```terraform
 module "gcp_firewall" {
   source        = "../module/firewall_rule"
-  name          = "web-ingress-public-https"
+  
+project_id     = "test-project-1234"
+  network        = dependency.vpc_network.outputs.network_self_link
+  enable_logging = false
 
-  network_name   = "my-network"
-  project_id     = "my-project-id"
-  description    = "My extended HTTPS and SSH firewall rule"
-  direction      = "INGRESS"
-  priority       = 500
-  disabled       = false
-  source_ranges  = ["0.0.0.0/0"]
-  source_tags    = ["internal"]
-  target_tags    = ["accessible"]
-  enable_logging = true
-
-  allow_rules   = [
-    {
-      protocol  = "TCP",
-      ports     = ["443"]
+  firewall_rules = {
+    ssh-ingress-firewall-name = {
+      description          = "INGRESS firewall for ssh access."
+      direction            = "INGRESS"
+      action               = "allow"
+      ranges               = ["172.26.0.0/18"]
+      sources              = []
+      targets              = []
+      use_service_accounts = false
+      rules = [
+        {
+          protocol = "tcp"
+          ports    = ["22"]
+        }
+      ]
+      extra_attributes = {}
     },
-    {
-      protocol  = "TCP",
-      ports     = ["22"]
-    }
-  ]
-}
+  all-egress-deny = {
+      description          = "EGREE rule to deny all"
+      direction            = "EGRESS"
+      action               = "deny"
+      ranges               = ["0.0.0.0/0"]
+      sources              = ["bar"]
+      targets              = ["foo"]
+      use_service_accounts = false
+      rules = [
+        {
+          protocol = "all"
+          ports    = []
+        }
+      ]
+      extra_attributes = {
+        priority = 500
+        disabled = true
+      }
+    },
 ```
 
 ## Input Variables
 
 ### Mandatory Variables
 
-| Name           | Description                                                            | Type   |
-| -------------- | ---------------------------------------------------------------------- | ------ |
-| direction      | Whether this firewall rule applies to INGRESS or EGRESS traffic        | String |
-| name           | The name of the firewall                                               | String |
-| network_name   | The name of the network to create the firewall on                      | String |
-| project_id     | The ID of the project containing the network                           | String |
+| Name           | Description                                                             | Type   |
+| -------------- | ----------------------------------------------------------------------- | ------ |
+| direction      | Whether this firewall rule applies to INGRESS or EGRESS traffic.        | String |
+| name           | The name of the firewall.                                               | String |
+| network_name   | The name of the network to create the firewall on.                      | String |
+| project_id     | The ID of the project containing the network.                           | String |
+| firewall_rules | List of custom firewall rule definitions.                               |<pre>map(object({<br>    description          = string<br>    direction            = string<br>    action               = string # (allow\|deny)<br>    ranges               = list(string)<br>    sources              = list(string)<br>    targets              = list(string)<br>    use_service_accounts = bool<br>    rules = list(object({<br>      protocol = string<br>      ports    = list(string)<br>    }))<br>    extra_attributes = map(string)<br>  }))</pre>|
 
-### Optional Variables
-
-| Name                    | Description                                                                    | Type       | Default                          |
-| ----------------------- | ------------------------------------------------------------------------------ | ---------- | -------------------------------- |
-| allow_rules             | A list of maps defining the 'allow' rules. See below for map structure         | List [Map] | Empty List                       |
-| deny_rules              | A list of maps defining the 'deny' rules. See below for map structure          | List [Map] | Empty List                       |
-| description             | A description for this firewall configuration                                  | String     | "AEF Terraform managed firewall" |
-| destination_ranges      | The list of destination IP Ranges (in CIDR format) this EGRESS rule applies to | List       | Null                             |
-| disabled                | Whether this Firewall configuration should be disabled                         | Bool       | False                            |
-| enable_logging          | This field denotes whether to include or exclude metadata for firewall logs    | Bool       | False                            |
-| priority                | The network priority that applies to this firewall configuration               | Number     | 1000                             |
-| source_ranges           | List of source IP Ranges (in CIDR format) this INGRESS rule applies to         | List       | Null                             |
-| source_service_accounts | List of service accounts who can use this INGRESS rule                         | List       | Null                             |
-| source_tags             | The source tags that this INGRESS rule should apply to                         | List       | Null                             |
-| target_service_accounts | List of service accounts who can use this rule                                 | List       | Null                             |
-| target_tags             | A list of instance tags that can use this rule                                 | List       | Null                             |
-
-Note: At least one of 'allow_rules' or 'deny_rules' optional variables should be specified.
 
 Note: If no 'source_ranges', 'source_service_accounts', or 'source_tags' are specified, Google will automatically add a source_range of '0.0.0.0/0'
 
-### 'Rule' Structure
-
-The following structure is used by both 'allow_rules' and 'deny_rules' optional variables.
-
-| Property Name | Description                                                                      | Type          |
-| ------------- | -------------------------------------------------------------------------------- | ------------- |
-| protocol      | The IP protocol this rule applies to                                             | String        |
-| ports         | List of ports this rule applies to - if not specified, rule applies to all ports | List [String] |
-
 ## Output Variables
 
-| Name                   | Description                                                | Type   |
-| ---------------------- | ---------------------------------------------------------- | ------ |
-| firewall_selflink      | self-link to the created firewall                          | String |
+| Name                       | Description                                                | Type   |
+| -------------------------- | ---------------------------------------------------------- | ------ |
+| custom_ingress_allow_rules | Custom ingress rules with allow blocks.
+| custom_ingress_deny_rules  | Custom ingress rules with deny blocks.
+| custom_egress_allow_rules  | Custom egress rules with allow blocks.
+| custom_egress_deny_rules   | Custom egress rules with deny blocks.
+## References
+
+### Terraform
+
+[GCP Compute Firewall](https://www.terraform.io/docs/providers/google/r/compute_firewall.html)
+
+### Google Cloud Platform
+
+[GCP Compute Firewall](https://cloud.google.com/vpc/docs/firewalls)

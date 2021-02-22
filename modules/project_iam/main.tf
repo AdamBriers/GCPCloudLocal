@@ -3,7 +3,7 @@ locals {
   project_member_permissions = flatten([
 
     for m, member in var.project_members : [
-      
+
       for role, permission in member.project_iam_permissions : {
         project = var.project_id
         role    = permission
@@ -20,8 +20,8 @@ resource "google_project_iam_member" "this" {
   for_each = {
     # Generate a unique string identifier for each role
     for mr in local.project_member_permissions : "${mr.member}-${mr.role}" => mr
-  }   
-  
+  }
+
   project = each.value.project
   member  = each.value.member
   role    = each.value.role

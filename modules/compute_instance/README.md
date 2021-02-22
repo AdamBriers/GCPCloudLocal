@@ -1,6 +1,19 @@
 # tf_gcp_gce_instance
 
-Terraform module to build out GCP compute instances. In order to update the OS image or the labels for the instance you will need to force a re-build via the taint command or similar due to the lifecycle rules in this module.                                               |
+Terraform module to build out GCP compute instances. In order to update the OS image or the labels for the instance you will need to force a re-build via the taint command or similar due to the lifecycle rules in this module.
+
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | >= 0.13 |
+| google | ~> 3.51.0 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| google | ~> 3.51.0 |
 
 ## Usage
 

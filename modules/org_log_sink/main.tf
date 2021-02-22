@@ -14,14 +14,14 @@ resource "google_logging_organization_sink" "this" {
   include_children = var.include_children
   filter           = var.include_filter
 
-  depends_on = [ google_project_service.this ]
+  depends_on = [google_project_service.this]
 }
 
 resource "google_pubsub_topic" "this" {
   name    = "${var.sink_name}-topic"
   project = var.project_id
 
-  depends_on = [ google_project_service.this ]
+  depends_on = [google_project_service.this]
 }
 
 resource "google_pubsub_topic_iam_member" "this" {
@@ -30,7 +30,7 @@ resource "google_pubsub_topic_iam_member" "this" {
   role    = "roles/pubsub.publisher"
   member  = google_logging_organization_sink.this.writer_identity
 
-  depends_on = [ google_project_service.this ]
+  depends_on = [google_project_service.this]
 }
 
 resource "google_pubsub_subscription" "this" {
@@ -42,11 +42,11 @@ resource "google_pubsub_subscription" "this" {
     push_endpoint = var.push_endpoint
   }
 
-  depends_on = [ google_project_service.this ]
+  depends_on = [google_project_service.this]
 }
 
 resource "google_organization_iam_audit_config" "this" {
-  org_id = var.org_id
+  org_id  = var.org_id
   service = "allServices"
 
   audit_log_config {

@@ -26,15 +26,15 @@ dependency "subnets" {
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
 
-  policy_folder_id        = "706244237673" ## R & D folder id
-  allow_list              = dependency.subnets.outputs.subnet_ids
-  deny_list               = []
-  policy_for              = "folder"
-  policy_type             = "list"
-  constraint              = "constraints/compute.restrictSharedVpcSubnetworks"
+  policy_folder_id = "706244237673" ## R & D folder id
+  allow_list       = dependency.subnets.outputs.subnet_ids
+  deny_list        = []
+  policy_for       = "folder"
+  policy_type      = "list"
+  constraint       = "constraints/compute.restrictSharedVpcSubnetworks"
   #enforce                 = null
-  exclude_folders         = []
-  exclude_projects        = []
-  organization_id         = null
-  project_id              = null
+  exclude_folders  = []
+  exclude_projects = []
+  organization_id  = null
+  project_id       = null
 }

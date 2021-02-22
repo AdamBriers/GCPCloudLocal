@@ -5,15 +5,29 @@
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12.26 |
-| google | ~> 3.28.0 |
-| google-beta | ~> 3.12 |
+| terraform | >= 0.13 |
+| google | ~> 3.51.0 |
+| google-beta | ~> 3.51 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| google | ~> 3.28.0 |
+| google | ~> 3.51.0 |
+
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| cloudability_project | ./../project |  |
+
+## Resources
+
+| Name |
+|------|
+| [google_bigquery_dataset](https://registry.terraform.io/providers/hashicorp/google/3.51.0/docs/resources/bigquery_dataset) |
+| [google_project_iam_custom_role](https://registry.terraform.io/providers/hashicorp/google/3.51.0/docs/resources/project_iam_custom_role) |
+| [google_project_iam_member](https://registry.terraform.io/providers/hashicorp/google/3.51.0/docs/resources/project_iam_member) |
 
 ## Inputs
 
@@ -30,5 +44,4 @@
 ## Outputs
 
 No output.
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
