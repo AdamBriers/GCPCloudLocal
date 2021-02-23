@@ -5,6 +5,8 @@ This module makes it easy to deploy either GCP-to-GCP or GCP-to-On-prem [Cloud H
 This module has been updated to incorporate the use of the tunnel PSK being retrieved from Google Secret Manager, instead of using a randomly generated PSK.
 The code has been commented out but can be reverted if required.
 
+The `secret_id` is an input in what to call the secret resource. That can be entered in the Secret Manager in the GCP Console.
+
 To make use of the Google Secret Manager, just enter the input for shared secret to `shared_secret = ""` this will make sure that the module uses the Secret Manager lookup for the PSK.
 
 ## Examples
@@ -12,7 +14,7 @@ To make use of the Google Secret Manager, just enter the input for shared secret
 ### GCP to GCP
 ```hcl
 module "vpn_ha-1" {
-  source  = "terraform-google-modules/vpn/google//modules/vpn_ha"
+  source  = "modules/vpn_ha"
   version = "~> 1.3.0"
   project_id  = "<PROJECT_ID>"
   region  = "europe-west4"
@@ -49,7 +51,7 @@ module "vpn_ha-1" {
 }
 
 module "vpn_ha-2" {
-  source  = "terraform-google-modules/vpn/google//modules/vpn_ha"
+  source  = "modules/vpn_ha"
   version = "~> 1.3.0"
   project_id  = "<PROJECT_ID>"
   region  = "europe-west4"
@@ -89,7 +91,7 @@ module "vpn_ha-2" {
 
 ```hcl
 module "vpn_ha" {
-  source = "terraform-google-modules/vpn/google//modules/vpn_ha"
+  source = "modules/vpn_ha"
   project_id  = "<PROJECT_ID>"
   region  = "europe-west4"
   network         = "https://www.googleapis.com/compute/v1/projects/<PROJECT_ID>/global/networks/my-network"

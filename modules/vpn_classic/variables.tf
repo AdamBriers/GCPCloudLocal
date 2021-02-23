@@ -75,12 +75,6 @@ variable "remote_subnet" {
   default     = []
 }
 
-variable "shared_secret" {
-  type        = string
-  description = "Please enter the shared secret/pre-shared key"
-  default     = ""
-}
-
 variable "route_priority" {
   description = "Priority for static route being created"
   default     = 1000
@@ -102,10 +96,4 @@ variable "ike_version" {
   type        = number
   description = "Please enter the IKE version used by this tunnel (default is IKEv2)"
   default     = 2
-}
-
-variable "vpn_gw_ip" {
-  type        = string
-  description = "Please enter the public IP address of the VPN Gateway, if you have already one. Do not set this variable to autocreate one"
-  default     = ""
 }

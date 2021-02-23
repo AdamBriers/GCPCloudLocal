@@ -1,5 +1,5 @@
 output "gateway" {
-  description = "HA VPN gateway resource."
+  description = "VPN gateway resource."
   value       = google_compute_vpn_gateway.gateway
 }
 
@@ -9,12 +9,12 @@ output "vpn_gw_name" {
 }
 
 output "vpn_gw_self_link" {
-  description = "HA VPN gateway self link."
+  description = "VPN gateway self link."
   value       = google_compute_vpn_gateway.gateway.self_link
 }
 
 output "vpn_gw_ip_self_link" {
-  description = "HA VPN gateway self link."
+  description = "VPN IP self link."
   value       = google_compute_address.static_ip.self_link
 }
 

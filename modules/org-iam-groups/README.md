@@ -19,7 +19,6 @@ No provider.
 |------|--------|---------|
 | billing_admin_perms | ./../org-permissions |  |
 | billing_user_perms | ./../org-permissions |  |
-| cloud_identity_domain_policy_organisation | terraform-google-modules/org-policy/google | ~> 3.0 |
 | org_admin_perms | ./../org-permissions |  |
 | sec_admin_perms | ./../org-permissions |  |
 
