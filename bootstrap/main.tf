@@ -248,7 +248,7 @@ resource "google_cloudbuild_trigger" "rnd_master_push_trigger" {
   name           = "rnd-master-branch-build-apply"
   description    = "RandD terragrunt apply on push to master"
   filename       = "cloudbuild-tg-plan-apply.yaml"
-  included_files = ["org/rnd/*"]
+  included_files = ["org/rnd/**"]
   #ignored_files  = ["org/prd/*", "org/dev/*", "org/infrastructure/*", "org/secops/*", "modules/*"]
   depends_on     = [null_resource.cloudbuild_terraform_builder]
 
@@ -274,7 +274,7 @@ resource "google_cloudbuild_trigger" "rnd_non_master_push_trigger" {
   name           = "rnd-non-master-branch-plan"
   description    = "RandD terragrunt on push request to non master branches."
   filename       = "cloudbuild-tg-plan.yaml"
-  included_files = ["org/rnd/*"]
+  included_files = ["org/rnd/**"]
   #ignored_files  = ["org/prd/*", "org/dev/*", "org/infrastructure/*", "org/secops/*", "modules/*"]
   depends_on     = [null_resource.cloudbuild_terraform_builder]
 
@@ -301,7 +301,7 @@ resource "google_cloudbuild_trigger" "dev_master_push_trigger" {
   name           = "dev-master-branch-build-apply"
   description    = "Dev terragrunt apply on push to master"
   filename       = "cloudbuild-tg-plan-apply.yaml"
-  included_files = ["org/dev/*"]
+  included_files = ["org/dev/**"]
   #ignored_files  = ["org/prd/*", "org/rnd/*", "org/infrastructure/*", "org/secops/*", "modules/*"]
   depends_on     = [null_resource.cloudbuild_terraform_builder]
 
@@ -327,7 +327,7 @@ resource "google_cloudbuild_trigger" "dev_non_master_push_trigger" {
   name           = "dev-non-master-branch-plan"
   description    = "Dev terragrunt on push request to non master branches."
   filename       = "cloudbuild-tg-plan.yaml"
-  included_files = ["org/dev/*"]
+  included_files = ["org/dev/**"]
   #ignored_files  = ["org/prd/*", "org/rnd/*", "org/infrastructure/*", "org/secops/*", "modules/*"]
   depends_on     = [null_resource.cloudbuild_terraform_builder]
 
@@ -354,7 +354,7 @@ resource "google_cloudbuild_trigger" "prd-master_push_trigger" {
   name           = "prod-master-branch-build-apply"
   description    = "Prod terragrunt apply on push to master"
   filename       = "cloudbuild-tg-plan-apply.yaml"
-  included_files = ["org/prd/*"]
+  included_files = ["org/prd/**"]
   #ignored_files  = ["org/dev/*", "org/rnd/*", "org/infrastructure/*", "org/secops/*", "modules/*"]
   depends_on     = [null_resource.cloudbuild_terraform_builder]
 
@@ -380,7 +380,7 @@ resource "google_cloudbuild_trigger" "prd-non_master_push_trigger" {
   name           = "prod-non-master-branch-plan"
   description    = "Prod terragrunt on push request to non master branches."
   filename       = "cloudbuild-tg-plan.yaml"
-  included_files = ["org/prd/*"]
+  included_files = ["org/prd/**"]
   #ignored_files  = ["org/dev/*", "org/rnd/*", "org/infrastructure/*", "org/secops/*", "modules/*"]
   depends_on     = [null_resource.cloudbuild_terraform_builder]
 
@@ -407,7 +407,7 @@ resource "google_cloudbuild_trigger" "infra-master_push_trigger" {
   name           = "infrastructure-master-branch-build-apply"
   description    = "Infrastructure terragrunt apply on push to master"
   filename       = "cloudbuild-tg-plan-apply.yaml"
-  included_files = ["org/infrastructure/*"]
+  included_files = ["org/infrastructure/**"]
   #ignored_files  = ["org/dev/*", "org/rnd/*", "org/prd/*", "org/secops/*", "modules/*"]
   depends_on     = [null_resource.cloudbuild_terraform_builder]
 
@@ -433,7 +433,7 @@ resource "google_cloudbuild_trigger" "infra-non_master_push_trigger" {
   name           = "infrastructure-non-master-branch-plan"
   description    = "Infratructure terragrunt on push request to non master branches."
   filename       = "cloudbuild-tg-plan.yaml"
-  included_files = ["org/infrastructure/*"]
+  included_files = ["org/infrastructure/**"]
   #ignored_files  = ["org/dev/*", "org/rnd/*", "org/prd/*", "org/secops/*", "modules/*"]
   depends_on     = [null_resource.cloudbuild_terraform_builder]
 
@@ -460,7 +460,7 @@ resource "google_cloudbuild_trigger" "secops-master_push_trigger" {
   name           = "secops-master-branch-build-apply"
   description    = "SecOps terragrunt apply on push to master"
   filename       = "cloudbuild-tg-plan-apply.yaml"
-  included_files = ["org/secops/*"]
+  included_files = ["org/secops/**"]
   #ignored_files  = ["org/dev/*", "org/rnd/*", "org/prd/*", "org/infrastructure/*", "modules/*"]
   depends_on     = [null_resource.cloudbuild_terraform_builder]
 
@@ -486,7 +486,7 @@ resource "google_cloudbuild_trigger" "secops-non_master_push_trigger" {
   name           = "secops-non-master-branch-plan"
   description    = "SecOps terragrunt on push request to non master branches."
   filename       = "cloudbuild-tg-plan.yaml"
-  included_files = ["org/secops/*"]
+  included_files = ["org/secops/**"]
   #ignored_files  = ["org/dev/*", "org/rnd/*", "org/prd/*", "org/infrastructure/*", "modules/*"]
   depends_on     = [null_resource.cloudbuild_terraform_builder]
 
