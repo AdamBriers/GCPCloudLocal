@@ -20,7 +20,7 @@ dependency "project" {
 
 inputs = {
 
-  project       = dependency.project.outputs.project_id
+  project_id    = dependency.project.outputs.project_id
   location      = "europe-west2"
   name          = "${dependency.project.outputs.project_id}-blob-0001"
   storage_class = "REGIONAL"
