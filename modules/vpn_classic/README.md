@@ -57,15 +57,31 @@ module "vpn_classic" {
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+No requirements.
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| google | n/a |
+| google-beta | n/a |
+
+## Modules
+
+No Modules.
+
+## Resources
 
 | Name |
 |------|
+| [google-beta_google_secret_manager_secret_version](https://registry.terraform.io/providers/hashicorp/google-beta/latest/docs/data-sources/google_secret_manager_secret_version) |
 | [google_compute_address](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_address) |
+| [google_compute_forwarding_rule](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_forwarding_rule) |
 | [google_compute_route](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_route) |
 | [google_compute_vpn_gateway](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_vpn_gateway) |
-| [google_compute_forwarding_rule](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_forwarding_rule)|
-| [google-beta_google_compute_vpn_tunnel](https://registry.terraform.io/providers/hashicorp/google-beta/latest/docs/resources/google_compute_vpn_tunnel) |
-| [google-beta_google_secret_manager_secret_version](https://registry.terraform.io/providers/hashicorp/google-beta/latest/docs/data-sources/google_secret_manager_secret_version) |
+| [google_compute_vpn_tunnel](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_vpn_tunnel) |
 | [google_project_service](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_service) |
 | [google_secret_manager_secret](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/secret_manager_secret) |
 
@@ -73,32 +89,32 @@ module "vpn_classic" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| name | VPN gateway name, and prefix used for dependent resources. | `string` | n/a | yes |
-| network | VPC used for the gateway and routes. | `string` | n/a | yes |
-| gateway_name | The name of VPN gateway. | `string` | `azure_vpn` | yes |
-| ip_name | The name of gateway IP | `string` | `azure-vpn-ip` | | no |
-| project\_id | Project where resources will be created. | `string` | n/a | yes |
-| region | Region used for resources. | `string` | n/a | yes |
+| cr\_enabled | If there is a cloud router for BGP routing | `bool` | `false` | no |
+| cr\_name | The name of cloud router for BGP routing | `string` | `""` | no |
+| gateway\_name | The name of VPN gateway | `string` | `"azure-vpn"` | no |
+| ike\_version | Please enter the IKE version used by this tunnel (default is IKEv2) | `number` | `2` | no |
+| ip\_name | The name of gateway IP | `string` | `"azure-vpn-ip"` | no |
+| local\_traffic\_selector | Local traffic selector to use when establishing the VPN tunnel with peer VPN gateway.<br>Value should be list of CIDR formatted strings and ranges should be disjoint. | `list(string)` | <pre>[<br>  "0.0.0.0/0"<br>]</pre> | no |
+| network | The name of VPC being created | `string` | n/a | yes |
+| peer\_ips | IP address of remote-peer/gateway | `list(string)` | n/a | yes |
+| project\_id | The ID of the project where this VPC will be created | `string` | n/a | yes |
+| region | The region in which you want to create the VPN gateway | `string` | n/a | yes |
+| remote\_subnet | remote subnet ip range in CIDR format - x.x.x.x/x | `list(string)` | `[]` | no |
+| remote\_traffic\_selector | Remote traffic selector to use when establishing the VPN tunnel with peer VPN gateway.<br>Value should be list of CIDR formatted strings and ranges should be disjoint. | `list(string)` | <pre>[<br>  "0.0.0.0/0"<br>]</pre> | no |
+| route\_priority | Priority for static route being created | `number` | `1000` | no |
 | secret\_id | Unique ID for the secret in GCP secret manger. | `string` | n/a | yes |
-| tunnel_count | The number of tunnels from each VPN gw. | `Number` | 1 | no |
-| tunnel_name_prefix | The optional custom name of VPN tunnel being created | `string` | "" | no |
-| local_traffic_selector | Local traffic selector to use when establishing the VPN tunnel with peer VPN gateway. | `list(string)` | 0.0.0.0/0 | no |
-| remote_traffic_selector | Local traffic selector to use when establishing the VPN tunnel with peer VPN gateway. | `list(string)` | 0.0.0.0/0 | no |
-| remote_subnet | remote subnet ip range in CIDR format - x.x.x.x/x | `list(string)` | [] | no |
-| route_priority | Priority for static route being created | `Number` | 1000 | no |
-| ike_version | The IKE version used by this tunnel | `Number` | 2 | no |
-| cr_name | The name of cloud router for BGP routing | `string` | "" | no |
-| cr_enabled | If there is a cloud router for BGP routing | `bool` | false | no |
+| tunnel\_count | The number of tunnels from each VPN gw (default is 1) | `number` | `1` | no |
+| tunnel\_name\_prefix | The optional custom name of VPN tunnel being created | `string` | `""` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
 | gateway | VPN gateway resource. |
-| vpn_gw_name | VPN gateway name. |
-| vpn_gw_self_link | VPN gateway self link. |
-| vpn_gw_ip_self_link | VPN IP self link. |
-| vpn_tunnels_names-static | VPN tunnel names. |
-| vpn_tunnels_self_link-static | VPN tunnel self links. |
-| vpn_tunnels_id | VPN tunnel resources. |
+| vpn\_gw\_ip\_self\_link | VPN IP self link. |
+| vpn\_gw\_name | VPN gateway name. |
+| vpn\_gw\_self\_link | VPN gateway self link. |
+| vpn\_tunnels\_id | The VPN tunnel ID |
+| vpn\_tunnels\_names-static | The VPN tunnel name is |
+| vpn\_tunnels\_self\_link-static | The VPN tunnel self-link is |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
