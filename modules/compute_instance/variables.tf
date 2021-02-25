@@ -45,6 +45,7 @@ variable "instance_name" {
 
 variable "instance_scope" {
   description = "Scope permissions for the instance."
+  type        = list(string)
   default     = []
 }
 

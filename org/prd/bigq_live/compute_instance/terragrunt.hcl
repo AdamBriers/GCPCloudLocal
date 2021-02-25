@@ -1,5 +1,5 @@
 terraform {
-  source = "../../../../modules//project_iam/"
+  source = "../../../../modules//compute_instance/"
 }
 
 # Include all settings from the root terragrunt.hcl file
@@ -38,5 +38,6 @@ inputs = {
   project               =  dependency.project.outputs.project_id
   os_image              = "ubuntu-1604-xenial-v20210224"
   machine_type          = "n1-standard-2"
+  instance_scope        = ["cloud-platform"]
 
 }
