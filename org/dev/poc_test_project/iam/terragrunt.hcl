@@ -92,11 +92,6 @@ inputs = {
       member_name             = "satyendra.gupta@appsbroker.com"
     },
     {
-      project_iam_permissions = ["roles/bigquery.admin"]
-      member_type             = "user"
-      member_name             = "shahed.munir@appsbroker.com"
-    },
-    {
       project_iam_permissions = ["roles/bigquery.dataViewer", "roles/bigquery.jobUser", "roles/storage.objectViewer"]
       member_type             = "serviceaccount"
       member_name             = dependency.bo_service_account.outputs.email
