@@ -85,6 +85,11 @@ variable "secret_id" {
   type        = string
 }
 
+variable "secret_version" {
+  description = "Version number for the secret in GCP secret manger."
+  default     = "1"
+}
+
 variable "tunnels" {
   description = "VPN tunnel configurations, bgp_peer_options is usually null."
   type = map(object({

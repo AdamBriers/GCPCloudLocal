@@ -34,42 +34,43 @@ dependency "router" {
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
 
-  project_id  = dependency.project.outputs.project_id
-  name        = "gc-a-vpn-aws-0001"
-  secret_id   = "gc-a-sct-aws-0001"
-  network     = dependency.prd_vpc.outputs.network_name
-  router_name = dependency.router.outputs.router_name
-  #peer_external_gateway = {
-  #  redundancy_type = "SINGLE_IP_INTERNALLY_REDUNDANT"
-  #  interfaces = [{
-  #    id         = 0
-  #    ip_address = "8.8.8.8" # on-prem router ip address
-  #    }]
-  #}
-  #tunnels = {
-  #  remote-0 = {
-  #    bgp_peer = {
-  #      address = "169.254.3.1"
-  #      asn     = 64514
-  #    }
-  #    bgp_peer_options                = null
-  #    bgp_session_range               = "169.254.3.2/30"
-  #    ike_version                     = 2
-  #    vpn_gateway_interface           = 0
-  #    peer_external_gateway_interface = 0
-  #    shared_secret                   = ""
-  #  }
-  #  remote-1 = {
-  #    bgp_peer = {
-  #      address = "169.254.4.1"
-  #      asn     = 64514
-  #    }
-  #    bgp_peer_options                = null
-  #    bgp_session_range               = "169.254.4.2/30"
-  #    ike_version                     = 2
-  #    vpn_gateway_interface           = 1
-  #    peer_external_gateway_interface = 0
-  #    shared_secret                   = ""
-  #  }
-  #}
+  project_id     = dependency.project.outputs.project_id
+  name           = "gc-a-vpn-aws-0001"
+  secret_id      = "gc-a-sct-aws-0001"
+  secret_version = "2"
+  network        = dependency.prd_vpc.outputs.network_name
+  router_name    = dependency.router.outputs.router_name
+  peer_external_gateway = {
+    redundancy_type = "SINGLE_IP_INTERNALLY_REDUNDANT"
+    interfaces = [{
+      id         = 0
+      ip_address = "3.11.213.242" # AWS gateway ip address
+      }]
+  }
+  tunnels = {
+    remote-0 = {
+      bgp_peer = {
+        address = "169.254.3.1"
+        asn     = 64514
+      }
+      bgp_peer_options                = null
+      bgp_session_range               = "169.254.3.2/30"
+      ike_version                     = 2
+      vpn_gateway_interface           = 0
+      peer_external_gateway_interface = 0
+      shared_secret                   = ""
+    }
+    remote-1 = {
+      bgp_peer = {
+        address = "169.254.4.1"
+        asn     = 64514
+      }
+      bgp_peer_options                = null
+      bgp_session_range               = "169.254.4.2/30"
+      ike_version                     = 2
+      vpn_gateway_interface           = 1
+      peer_external_gateway_interface = 0
+      shared_secret                   = ""
+    }
+  }
 }

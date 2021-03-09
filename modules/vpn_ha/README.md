@@ -179,6 +179,7 @@ No Modules.
 | router\_asn | Router ASN used for auto-created router. | `number` | `64514` | no |
 | router\_name | Name of router, leave blank to create one. | `string` | `""` | no |
 | secret\_id | Unique ID for the secret in GCP secret manger. | `string` | n/a | yes |
+| secret\_version | Version number for the secret in GCP secret manger. | `string` | n/a | yes |
 | tunnels | VPN tunnel configurations, bgp\_peer\_options is usually null. | <pre>map(object({<br>    bgp_peer = object({<br>      address = string<br>      asn     = number<br>    })<br>    bgp_peer_options = object({<br>      advertise_groups    = list(string)<br>      advertise_ip_ranges = map(string)<br>      advertise_mode      = string<br>      route_priority      = number<br>    })<br>    bgp_session_range               = string<br>    ike_version                     = number<br>    vpn_gateway_interface           = number<br>    peer_external_gateway_interface = number<br>    shared_secret                   = string<br>  }))</pre> | `{}` | no |
 
 ## Outputs
