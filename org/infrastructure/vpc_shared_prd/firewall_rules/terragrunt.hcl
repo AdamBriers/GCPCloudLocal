@@ -62,10 +62,10 @@ inputs = {
     },
 
     vpnall-ingress-prd-azure-aws = {
-      description          = "INGRESS firewall for all ports and protocol from on-prem and azure VPN to production."
+      description          = "INGRESS firewall for all ports and protocol from on-prem, AWS and azure VPN to production."
       direction            = "INGRESS"
       action               = "allow"
-      ranges               = ["172.20.0.0/16", "172.30.0.0/16", "10.0.0.0/8"]
+      ranges               = ["172.20.0.0/16", "172.30.0.0/16", "10.0.0.0/8", "172.21.0.0/16"]
       sources              = []
       targets              = []
       use_service_accounts = false
