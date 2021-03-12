@@ -28,6 +28,6 @@ include {
       "roles/source.admin",
       "roles/resourcemanager.organizationAdmin",
     ]
-    member_name = "user:john.foster@placesforpeople.co.uk"
+    member_name = "john.foster@placesforpeople.co.uk"
     member_type = "user"
   }
