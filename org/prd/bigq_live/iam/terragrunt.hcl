@@ -127,5 +127,15 @@ inputs = {
       member_type             = "serviceaccount"
       member_name             = dependency.compute_service_account.outputs.email
     },
+    {
+      project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser"]
+      member_type             = "user"
+      member_name             = "michael.foxall@placesforpeople.co.uk"
+    },
+    {
+      project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser"]
+      member_type             = "user"
+      member_name             = "william.lloyd@placesforpeople.co.uk"
+    },
   ]
 }
