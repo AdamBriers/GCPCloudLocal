@@ -128,12 +128,12 @@ inputs = {
       member_name             = dependency.compute_service_account.outputs.email
     },
     {
-      project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser", "roles/bigquery.jobs.create"]
+      project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser"]
       member_type             = "user"
       member_name             = "michael.foxall@placesforpeople.co.uk"
     },
     {
-      project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser", "roles/bigquery.jobs.create"]
+      project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser"]
       member_type             = "user"
       member_name             = "will.lloyd@placesforpeople.co.uk"
     },
