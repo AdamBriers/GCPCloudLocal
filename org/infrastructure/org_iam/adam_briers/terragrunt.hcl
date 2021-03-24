@@ -27,6 +27,8 @@ include {
       "roles/serviceusage.serviceUsageAdmin",
       "roles/source.admin",
       "roles/resourcemanager.organizationAdmin",
+      "roles/cloudbuild.builds.editor",
+      "roles/storage.objectAdmin"
     ]
     member_name = "adam.briers@placesforpeople.co.uk"
     member_type = "user"
