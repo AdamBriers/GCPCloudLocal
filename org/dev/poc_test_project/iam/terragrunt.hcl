@@ -119,6 +119,11 @@ inputs = {
     {
       project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser"]
       member_type             = "user"
+      member_name             = "InfoManagement@placesforpeople.co.uk"
+    },
+    {
+      project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser"]
+      member_type             = "user"
       member_name             = "will.lloyd@placesforpeople.co.uk"
     },
   ]
