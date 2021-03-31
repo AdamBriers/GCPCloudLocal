@@ -112,12 +112,7 @@ inputs = {
       member_name             = dependency.ssis_service_account.outputs.email
     },
     {
-      project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser"]
-      member_type             = "user"
-      member_name             = "michael.foxall@placesforpeople.co.uk"
-    },
-    {
-      project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser"]
+      project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser", "roles/bigquery.dataOwner"]
       member_type             = "group"
       member_name             = "InfoManagement@placesforpeople.co.uk"
     },
