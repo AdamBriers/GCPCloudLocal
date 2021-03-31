@@ -28,7 +28,8 @@ include {
       "roles/source.admin",
       "roles/resourcemanager.organizationAdmin",
       "roles/cloudbuild.builds.editor",
-      "roles/storage.objectAdmin"
+      "roles/storage.objectAdmin",
+      "roles/resourcemanager.projects.move"
     ]
     member_name = "adam.briers@placesforpeople.co.uk"
     member_type = "user"
