@@ -121,18 +121,10 @@ inputs = {
       member_type             = "group"
       member_name             = "InfoManagement@placesforpeople.co.uk"
     },
-<<<<<<< HEAD
-=======
     {
-      project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser"]
-      member_type             = "user"
-      member_name             = "will.lloyd@placesforpeople.co.uk"
-    },
-     {
       project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser"]
       member_type             = "user"
       member_name             = "adam.briers@placesforpeople.co.uk"
     },
->>>>>>> 44a01ad935ae2b9ecb2a3d876ac5139bfcc55398
   ]
 }
