@@ -113,6 +113,7 @@ inputs = {
     },
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
       project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser", "roles/bigquery.dataOwner"]
       member_type             = "group"
       member_name             = "InfoManagement@placesforpeople.co.uk"
@@ -126,6 +127,9 @@ inputs = {
       project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser", "roles/bigquery.dataOwner", "roles/bigquery.readsession.create"]
 =======
       project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser", "roles/bigquery.dataOwner", "roles/bigquery.readsession,create"]
+>>>>>>> bigquery-iam-dev-jf
+=======
+      project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser", "roles/bigquery.dataOwner"]
 >>>>>>> bigquery-iam-dev-jf
       member_type             = "group"
       member_name             = "InfoManagement@placesforpeople.co.uk"
