@@ -112,9 +112,7 @@ inputs = {
       member_name             = dependency.ssis_service_account.outputs.email
     },
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
-      project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser", "roles/bigquery.dataOwner"]
+      project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser", "roles/bigquery.dataOwner", "roles/bigquery.readsession.create"]
       member_type             = "group"
       member_name             = "InfoManagement@placesforpeople.co.uk"
     },
@@ -122,17 +120,6 @@ inputs = {
       project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser"]
       member_type             = "user"
       member_name             = "adam.briers@placesforpeople.co.uk"
-    },
-    {
-      project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser", "roles/bigquery.dataOwner", "roles/bigquery.readsession.create"]
-=======
-      project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser", "roles/bigquery.dataOwner", "roles/bigquery.readsession,create"]
->>>>>>> bigquery-iam-dev-jf
-=======
-      project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser", "roles/bigquery.dataOwner"]
->>>>>>> bigquery-iam-dev-jf
-      member_type             = "group"
-      member_name             = "InfoManagement@placesforpeople.co.uk"
     },
   ]
 }
