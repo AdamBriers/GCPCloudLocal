@@ -17,6 +17,7 @@ include {
       "roles/billing.admin",
       "roles/compute.networkAdmin",
       "roles/compute.xpnAdmin",
+      "roles/compute.networkViewer",
       "roles/iam.securityAdmin",
       "roles/iam.serviceAccountAdmin",
       "roles/logging.configWriter",
@@ -28,11 +29,8 @@ include {
       "roles/source.admin",
       "roles/resourcemanager.organizationAdmin",
       "roles/cloudbuild.builds.editor",
-      "roles/storage.objectAdmin",
-      "roles/owner",
-      "roles/editor",
-      "roles/viewer"
+      "roles/storage.objectAdmin"
     ]
-    member_name = "adam.briers@placesforpeople.co.uk"
-    member_type = "user"
+  member_name = "phil.burke@appsbroker.com"
+  member_type = "user"
   }
