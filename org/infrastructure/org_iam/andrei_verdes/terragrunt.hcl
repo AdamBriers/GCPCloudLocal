@@ -17,6 +17,7 @@ include {
       "roles/billing.admin",
       "roles/compute.networkAdmin",
       "roles/compute.xpnAdmin",
+      "roles/compute.networkViewer",
       "roles/iam.securityAdmin",
       "roles/iam.serviceAccountAdmin",
       "roles/logging.configWriter",
@@ -30,6 +31,6 @@ include {
       "roles/cloudbuild.builds.editor",
       "roles/storage.objectAdmin"
     ]
-  member_name = "lewis.greaves@placesforpeople.co.uk"
+  member_name = "phil.burke@appsbroker.com"
   member_type = "user"
   }
