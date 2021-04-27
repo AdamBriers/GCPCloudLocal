@@ -30,11 +30,6 @@ inputs = {
     {
       project_iam_permissions = ["roles/cloudiot.viewer"]
       member_type             = "user"
-      member_name             = "michael.owen@appsbroker.com"
-    },
-    {
-      project_iam_permissions = ["roles/cloudiot.viewer"]
-      member_type             = "user"
       member_name             = "ferris.hall@appsbroker.com"
     },
   ]
