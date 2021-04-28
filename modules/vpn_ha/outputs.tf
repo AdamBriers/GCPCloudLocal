@@ -19,14 +19,14 @@ output "gateway" {
   value       = google_compute_ha_vpn_gateway.ha_gateway
 }
 
-#output "external_gateway" {
-#  description = "External VPN gateway resource."
-#  value = (
-#    var.peer_external_gateway != null
-#    ? google_compute_external_vpn_gateway.external_gateway[0]
-#    : null
-#  )
-#}
+output "external_gateway" {
+  description = "External VPN gateway resource."
+  value = (
+    var.peer_external_gateway != null
+    ? google_compute_external_vpn_gateway.external_gateway[0]
+    : null
+  )
+}
 
 output "name" {
   description = "VPN gateway name."
@@ -48,29 +48,29 @@ output "self_link" {
   value       = google_compute_ha_vpn_gateway.ha_gateway.self_link
 }
 
-#output "tunnels" {
-#  description = "VPN tunnel resources."
-#  value = {
-#    for name in keys(var.tunnels) :
-#    name => google_compute_vpn_tunnel.tunnels[name]
-#  }
-#}
-#
-#output "tunnel_names" {
-#  description = "VPN tunnel names."
-#  value = {
-#    for name in keys(var.tunnels) :
-#    name => google_compute_vpn_tunnel.tunnels[name].name
-#  }
-#}
-#
-#output "tunnel_self_links" {
-#  description = "VPN tunnel self links."
-#  value = {
-#    for name in keys(var.tunnels) :
-#    name => google_compute_vpn_tunnel.tunnels[name].self_link
-#  }
-#}
+output "tunnels" {
+  description = "VPN tunnel resources."
+  value = {
+    for name in keys(var.tunnels) :
+    name => google_compute_vpn_tunnel.tunnels[name]
+  }
+}
+
+output "tunnel_names" {
+  description = "VPN tunnel names."
+  value = {
+    for name in keys(var.tunnels) :
+    name => google_compute_vpn_tunnel.tunnels[name].name
+  }
+}
+
+output "tunnel_self_links" {
+  description = "VPN tunnel self links."
+  value = {
+    for name in keys(var.tunnels) :
+    name => google_compute_vpn_tunnel.tunnels[name].self_link
+  }
+}
 
 #output "random_secret" {
 #  description = "Generated secret."

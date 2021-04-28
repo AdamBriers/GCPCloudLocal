@@ -20,6 +20,17 @@ dependency "project" {
   config_path = "../../vpc_host_project"
 }
 
+dependency "router" {
+  config_path = "../on_prem"
+
+  # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
+  # module hasn't been applied yet.
+  mock_outputs_allowed_terraform_commands = ["plan", "validate"]
+  mock_outputs = {
+    router_name = "router-not-created-yet"
+  }
+}
+
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
 
@@ -27,26 +38,14 @@ inputs = {
   name       = "gc-a-vpn-huntingdon-0001"
   secret_id  = "gc-a-sct-huntingdon-0001"
   network    = dependency.prd_vpc.outputs.network_name
-  #peer_external_gateway = {
-  #  redundancy_type = "SINGLE_IP_INTERNALLY_REDUNDANT"
-  #  interfaces = [{
-  #    id         = 0
-  #    ip_address = "62.172.208.162" # on-prem router ip address
-  #  }]
-  #}
-  router_advertise_config = {
-    groups = []
-    mode   = "CUSTOM"
-    ip_ranges = {
-      "172.26.64.0/23"  = "gc-t-snet-0001"
-      "172.26.66.0/23"  = "gc-t-snet-0002"
-      "172.26.68.0/23"  = "gc-t-snet-0003"
-      "172.26.128.0/23" = "gc-r-snet-0001"
-      "172.26.0.0/18"   = "gc-p-snet-0001"
-      "199.36.153.4/30" = "google restricted api range"
-    }
+  router_name = dependency.router.outputs.router_name
+  peer_external_gateway = {
+    redundancy_type = "SINGLE_IP_INTERNALLY_REDUNDANT"
+    interfaces = [{
+      id         = 0
+      ip_address = "62.172.208.162" # on-prem router ip address
+    }]
   }
-  router_asn = 64515
   #tunnels = {
   #  remote-0 = {
   #    bgp_peer = {
