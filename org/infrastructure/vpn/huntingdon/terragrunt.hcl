@@ -27,13 +27,13 @@ inputs = {
   name       = "gc-a-vpn-huntingdon-0001"
   secret_id  = "gc-a-sct-huntingdon-0001"
   network    = dependency.prd_vpc.outputs.network_name
-  peer_external_gateway = {
-    redundancy_type = "SINGLE_IP_INTERNALLY_REDUNDANT"
-    interfaces = [{
-      id         = 0
-      ip_address = "62.172.208.162" # on-prem router ip address
-    }]
-  }
+  #peer_external_gateway = {
+  #  redundancy_type = "SINGLE_IP_INTERNALLY_REDUNDANT"
+  #  interfaces = [{
+  #    id         = 0
+  #    ip_address = "62.172.208.162" # on-prem router ip address
+  #  }]
+  #}
   router_advertise_config = {
     groups = []
     mode   = "CUSTOM"
@@ -47,30 +47,30 @@ inputs = {
     }
   }
   router_asn = 64515
-  tunnels = {
-    remote-0 = {
-      bgp_peer = {
-        address = "169.254.5.1"
-        asn     = 64518
-      }
-      bgp_peer_options                = null
-      bgp_session_range               = "169.254.5.2/30"
-      ike_version                     = 2
-      vpn_gateway_interface           = 0
-      peer_external_gateway_interface = 0
-      shared_secret                   = ""
-    }
-    remote-1 = {
-      bgp_peer = {
-        address = "169.254.6.1"
-        asn     = 64519
-      }
-      bgp_peer_options                = null
-      bgp_session_range               = "169.254.6.2/30"
-      ike_version                     = 2
-      vpn_gateway_interface           = 1
-      peer_external_gateway_interface = 0
-      shared_secret                   = ""
-    }
-  }
+  #tunnels = {
+  #  remote-0 = {
+  #    bgp_peer = {
+  #      address = "169.254.5.1"
+  #      asn     = 64518
+  #    }
+  #    bgp_peer_options                = null
+  #    bgp_session_range               = "169.254.5.2/30"
+  #    ike_version                     = 2
+  #    vpn_gateway_interface           = 0
+  #    peer_external_gateway_interface = 0
+  #    shared_secret                   = ""
+  #  }
+  #  remote-1 = {
+  #    bgp_peer = {
+  #      address = "169.254.6.1"
+  #      asn     = 64519
+  #    }
+  #    bgp_peer_options                = null
+  #    bgp_session_range               = "169.254.6.2/30"
+  #    ike_version                     = 2
+  #    vpn_gateway_interface           = 1
+  #    peer_external_gateway_interface = 0
+  #    shared_secret                   = ""
+  #  }
+  #}
 }
