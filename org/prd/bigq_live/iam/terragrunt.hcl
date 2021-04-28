@@ -95,11 +95,6 @@ inputs = {
     {
       project_iam_permissions = ["roles/bigquery.admin", "roles/iap.tunnelResourceAccessor"]
       member_type             = "user"
-      member_name             = "michael.owen@appsbroker.com"
-    },
-    {
-      project_iam_permissions = ["roles/bigquery.admin", "roles/iap.tunnelResourceAccessor"]
-      member_type             = "user"
       member_name             = "satyendra.gupta@appsbroker.com"
     },
     {
