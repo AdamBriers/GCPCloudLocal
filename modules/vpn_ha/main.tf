@@ -175,7 +175,7 @@ resource "google_project_service" "project" {
 data "google_secret_manager_secret_version" "this" {
   provider = google-beta
   secret   = google_secret_manager_secret.this.id
-  #version  = var.secret_version
+  version  = var.secret_version
 }
 
 
