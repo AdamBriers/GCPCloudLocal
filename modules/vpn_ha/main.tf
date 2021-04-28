@@ -22,11 +22,11 @@ locals {
     : var.router_name
   )
 
-  #peer_external_gateway = (
-  #  var.peer_external_gateway != null
-  #  ? google_compute_external_vpn_gateway.external_gateway[0].self_link
-  #  : null
-  #)
+  peer_external_gateway = (
+    var.peer_external_gateway != null
+    ? google_compute_external_vpn_gateway.external_gateway[0].self_link
+    : null
+  )
   #  secret = random_id.secret.b64_url
 }
 
