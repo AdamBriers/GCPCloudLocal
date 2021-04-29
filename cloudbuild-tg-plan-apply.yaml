@@ -22,7 +22,6 @@ steps:
     tfenv install
     tgenv install
     cd 'org/${_ENVIRONMENT}'
-    find . -not -path '*/.terragrunt-cache/*' -type f -name terragrunt.hcl -printf '%h\n' | sort | xargs -l -i sh -c 'cd {}; terragrunt init --terragrunt-non-interactive -input=false'
     terragrunt plan-all || exit 1
 
 # terragrunt apply
@@ -35,7 +34,6 @@ steps:
     tfenv install
     tgenv install
     cd 'org/${_ENVIRONMENT}'
-    find . -not -path '*/.terragrunt-cache/*' -type f -name terragrunt.hcl -printf '%h\n' | sort | xargs -l -i sh -c 'cd {}; terragrunt init --terragrunt-non-interactive -input=false'
     terragrunt apply-all --terragrunt-non-interactive || exit 1
 
 artifacts:
