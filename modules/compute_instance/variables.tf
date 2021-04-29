@@ -1,7 +1,7 @@
 variable "allow_stopping_for_update" {
   description = "Allow TF to stop the instance to make changes."
   type        = string
-  default     = false
+  default     = true
 }
 
 variable "automatic_restart" {
