@@ -10,7 +10,7 @@ steps:
     tfenv install
     tgenv install
     cd 'org/${_ENVIRONMENT}'
-    terragrunt validate-all || exit 1
+    terragrunt run-all validate || exit 1
 # terragrunt plan
 - name: eu.gcr.io/$PROJECT_ID/cloud-terraform
   entrypoint: /bin/bash
@@ -21,8 +21,7 @@ steps:
     tfenv install
     tgenv install
     cd 'org/${_ENVIRONMENT}'
-    find . -not -path '*/.terragrunt-cache/*' -type f -name terragrunt.hcl -printf '%h\n' | sort | xargs -l -i sh -c 'cd {}; terragrunt init --terragrunt-non-interactive -input=false'
-    terragrunt plan-all || exit 1
+    terragrunt run-all plan || exit 1
 artifacts:
   objects:
     location: 'gs://${_ARTIFACT_BUCKET_NAME}/terraform/cloudbuild/plan/$BUILD_ID'
