@@ -46,30 +46,30 @@ inputs = {
       ip_address = "108.234.205.83" # on-prem router ip address
     }]
   }
-  #tunnels = {
-  #  remote-0 = {
-  #    bgp_peer = {
-  #      address = "169.254.7.1"
-  #      asn     = 64520
-  #    }
-  #    bgp_peer_options                = null
-  #    bgp_session_range               = "169.254.7.2/30"
-  #    ike_version                     = 2
-  #    vpn_gateway_interface           = 0
-  #    peer_external_gateway_interface = 0
-  #    shared_secret                   = ""
-  #  }
-  #  remote-1 = {
-  #    bgp_peer = {
-  #      address = "169.254.8.1"
-  #      asn     = 64521
-  #    }
-  #    bgp_peer_options                = null
-  #    bgp_session_range               = "169.254.8.2/30"
-  #    ike_version                     = 2
-  #    vpn_gateway_interface           = 1
-  #    peer_external_gateway_interface = 0
-  #    shared_secret                   = ""
-  #  }
-  #}
+  tunnels = {
+    remote-0 = {
+      bgp_peer = {
+        address = "169.254.7.1"
+        asn     = 64520
+      }
+      bgp_peer_options                = null
+      bgp_session_range               = "169.254.7.2/30"
+      ike_version                     = 2
+      vpn_gateway_interface           = 0
+      peer_external_gateway_interface = 0
+      shared_secret                   = ""
+    }
+    remote-1 = {
+      bgp_peer = {
+        address = "169.254.8.1"
+        asn     = 64521
+      }
+      bgp_peer_options                = null
+      bgp_session_range               = "169.254.8.2/30"
+      ike_version                     = 2
+      vpn_gateway_interface           = 1
+      peer_external_gateway_interface = 0
+      shared_secret                   = ""
+    }
+  }
 }
