@@ -43,7 +43,7 @@ inputs = {
     redundancy_type = "SINGLE_IP_INTERNALLY_REDUNDANT"
     interfaces = [{
       id         = 0
-      ip_address = "108.234.205.83" # on-prem router ip address
+      ip_address = "109.234.205.83" # on-prem router ip address
     }]
   }
   tunnels = {
