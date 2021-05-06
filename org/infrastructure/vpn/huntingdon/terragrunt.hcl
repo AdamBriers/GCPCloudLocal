@@ -14,6 +14,13 @@ include {
 
 dependency "edge_vpc" {
   config_path = "../../vpc_shared_edge"
+  
+  # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
+  # module hasn't been applied yet.
+  mock_outputs_allowed_terraform_commands = ["plan", "validate"]
+  mock_outputs = {
+    project_id = "network-not-created-yet"
+  }
 }
 
 dependency "project" {
