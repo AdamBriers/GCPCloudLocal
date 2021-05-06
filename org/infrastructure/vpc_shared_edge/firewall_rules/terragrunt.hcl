@@ -18,6 +18,13 @@ dependency "vpc_host_project" {
 
 dependency "vpc_network" {
   config_path = "../"
+
+  # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
+  # module hasn't been applied yet.
+  mock_outputs_allowed_terraform_commands = ["plan", "validate"]
+  mock_outputs = {
+    project_id = "network-not-created-yet"
+  }
 }
 
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
