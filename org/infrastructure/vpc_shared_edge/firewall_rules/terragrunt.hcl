@@ -23,7 +23,7 @@ dependency "vpc_network" {
   # module hasn't been applied yet.
   mock_outputs_allowed_terraform_commands = ["plan", "validate"]
   mock_outputs = {
-    project_id = "network-not-created-yet"
+    network_self_link = "network-not-created-yet"
   }
 }
 

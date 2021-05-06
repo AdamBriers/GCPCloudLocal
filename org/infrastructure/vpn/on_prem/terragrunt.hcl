@@ -19,7 +19,7 @@ dependency "edge_vpc" {
   # module hasn't been applied yet.
   mock_outputs_allowed_terraform_commands = ["plan", "validate"]
   mock_outputs = {
-    project_id = "network-not-created-yet"
+    network_name = "network-not-created-yet"
   }
 }
 
