@@ -19,7 +19,7 @@ dependency "vpc_shared_dev" {
   # module hasn't been applied yet.
   mock_outputs_allowed_terraform_commands = ["plan", "validate"]
   mock_outputs = {
-    network_self_link = "network-not-created-yet"
+    network_self_link = "projects/gc-a-prj-vpchost-0001/global/networks/network-not-created"
   }
 }
 
@@ -30,7 +30,7 @@ dependency "vpc_shared_prd" {
   # module hasn't been applied yet.
   mock_outputs_allowed_terraform_commands = ["plan", "validate"]
   mock_outputs = {
-    network_self_link = "network-not-created-yet"
+    network_self_link = "projects/gc-a-prj-vpchost-0001/global/networks/network-not-created"
   }
 }
 
