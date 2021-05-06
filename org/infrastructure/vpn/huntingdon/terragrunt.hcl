@@ -12,8 +12,8 @@ include {
   path = find_in_parent_folders("org.hcl")
 }
 
-dependency "prd_vpc" {
-  config_path = "../../vpc_shared_prd"
+dependency "edge_vpc" {
+  config_path = "../../vpc_shared_edge"
 }
 
 dependency "project" {
@@ -37,7 +37,7 @@ inputs = {
   project_id = dependency.project.outputs.project_id
   name       = "gc-a-vpn-huntingdon-0001"
   secret_id  = "gc-a-sct-huntingdon-0001"
-  network    = dependency.prd_vpc.outputs.network_name
+  network    = dependency.edge_vpc.outputs.network_name
   router_name = dependency.router.outputs.router_name
   peer_external_gateway = {
     redundancy_type = "SINGLE_IP_INTERNALLY_REDUNDANT"
@@ -62,7 +62,7 @@ inputs = {
     remote-1 = {
       bgp_peer = {
         address = "169.254.6.1"
-        asn     = 64519
+        asn     = 64518
       }
       bgp_peer_options                = null
       bgp_session_range               = "169.254.6.2/30"

@@ -27,25 +27,8 @@ inputs = {
   network        = dependency.vpc_network.outputs.network_self_link
   enable_logging = false
   firewall_rules = {
-    iap-ingress-compute-rnd-test = {
-      description          = "For TEST Purposes ONLY - INGRESS firewall for SSH (TCP port 22) using 'IAP for TCP forwarding' to test and dev environment."
-      direction            = "INGRESS"
-      action               = "allow"
-      ranges               = ["35.235.240.0/20"]
-      sources              = []
-      targets              = []
-      use_service_accounts = false
-      rules = [
-        {
-          protocol = "tcp"
-          ports    = ["22"]
-        }
-      ]
-      extra_attributes = {}
-    },
-
-    vpnall-ingress-prd-azure-aws = {
-      description          = "INGRESS firewall for all ports and protocol from on-prem, AWS and azure VPN to rnd."
+    vpnall-ingress-edge-azure-aws = {
+      description          = "INGRESS firewall for all ports and protocol from on-prem, AWS and azure VPN to edge."
       direction            = "INGRESS"
       action               = "allow"
       ranges               = ["172.20.0.0/16", "172.30.0.0/16", "10.0.0.0/8", "172.21.0.0/16"]

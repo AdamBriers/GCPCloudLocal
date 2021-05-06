@@ -12,8 +12,8 @@ include {
   path = find_in_parent_folders("org.hcl")
 }
 
-dependency "prd_vpc" {
-  config_path = "../../vpc_shared_prd"
+dependency "edge_vpc" {
+  config_path = "../../vpc_shared_edge"
 }
 
 dependency "project" {
@@ -31,7 +31,7 @@ inputs = {
   gateway_name            = "gc-a-vpnazure-0001"
   secret_id               = "gc-a-sct-azure-0001"
   ip_name                 = "gc-a-ipvpnazure-0001"
-  network                 = dependency.prd_vpc.outputs.network_name
+  network                 = dependency.edge_vpc.outputs.network_name
   region                  = "europe-west2"
   tunnel_count            = 1
   peer_ips                = ["51.140.51.28"]

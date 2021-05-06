@@ -12,8 +12,8 @@ include {
   path = find_in_parent_folders("org.hcl")
 }
 
-dependency "prd_vpc" {
-  config_path = "../../vpc_shared_prd"
+dependency "edge_vpc" {
+  config_path = "../../vpc_shared_edge"
 }
 
 dependency "project" {
@@ -38,7 +38,7 @@ inputs = {
   name           = "gc-a-vpn-aws-0001"
   secret_id      = "gc-a-sct-aws-0001"
   secret_version = "2"
-  network        = dependency.prd_vpc.outputs.network_name
+  network        = dependency.edge_vpc.outputs.network_name
   router_name    = dependency.router.outputs.router_name
   peer_external_gateway = {
     redundancy_type = "SINGLE_IP_INTERNALLY_REDUNDANT"

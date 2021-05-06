@@ -43,23 +43,30 @@ inputs = {
   # Full range available: "172.26.64.0/18"
   subnets = [
     {
-      sub_network_name         = "gc-t-snet-0001"
-      sub_network_description  = "Sub network 1 for the Test and Dev environments"
-      ip_cidr_range            = "172.26.64.0/23" # Usable 510 Ip's: 172.26.64.1 - 172.26.65.254
+      sub_network_name         = "gc-t-snet-infra-0001"
+      sub_network_description  = "Sub network 1 for the Test and Dev Infrastructure environments"
+      ip_cidr_range            = "172.26.64.0/24" # Usable 254 IP's: 172.26.64.1 - 172.26.64.254
       region                   = "europe-west2"
       private_ip_google_access = true
     },
     {
-      sub_network_name         = "gc-t-snet-0002"
-      sub_network_description  = "Sub network 2 for the Test and Dev environments"
-      ip_cidr_range            = "172.26.66.0/23" # Usable 510 IP's: 172.26.66.1 - 172.26.67.254
+      sub_network_name         = "gc-t-snet-dmz-001"
+      sub_network_description  = "Sub network 1 for the Test and Dev DMZ environments"
+      ip_cidr_range            = "172.26.68.0/24" # Usable 254 IP's: 172.26.68.1 - 172.26.68.254
       region                   = "europe-west2"
       private_ip_google_access = true
     },
     {
-      sub_network_name         = "gc-t-snet-0003"
-      sub_network_description  = "Sub network 3 for the Test and Dev environments"
-      ip_cidr_range            = "172.26.68.0/23" # Usable 510 IP's: 172.26.68.1 - 172.26.69.254
+      sub_network_name         = "gc-t-snet-backend-001"
+      sub_network_description  = "Sub network 1 for the Test and Dev Backend environments"
+      ip_cidr_range            = "172.26.112.0/23" # Usable 510 IP's: 172.26.112.1 - 172.26.113.254
+      region                   = "europe-west2"
+      private_ip_google_access = true
+    },
+    {
+      sub_network_name         = "gc-t-snet-middleware-001"
+      sub_network_description  = "Sub network 1 for the Test and Dev Middleware environments"
+      ip_cidr_range            = "172.26.80.0/22" # Usable 1022 IP's: 172.26.80.1 - 172.26.83.254
       region                   = "europe-west2"
       private_ip_google_access = true
     },
