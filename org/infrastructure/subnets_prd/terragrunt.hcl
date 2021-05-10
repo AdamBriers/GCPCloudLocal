@@ -42,7 +42,7 @@ inputs = {
 
   subnets = [
     {
-      sub_network_name         = "gc-p-snet-infra-0001"
+      sub_network_name         = "gc-a-snet-infra-0001"
       sub_network_description  = "Sub network 1 for the Production Infrastructure environment"
       ip_cidr_range            = "172.26.0.0/24" # Usable 254 Ip's: 172.26.0.1 - 172.26.0.254
       region                   = "europe-west2"
