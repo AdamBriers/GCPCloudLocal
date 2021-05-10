@@ -31,11 +31,6 @@ variable "target_name_server_addresses" {
   type        = list(string)
 }
 
-variable "target_network" {
-  description = "Peering network."
-  default     = ""
-}
-
 variable "dnssec_config" {
   description = "Object containing : kind, non_existence, state. Please see https://www.terraform.io/docs/providers/google/r/dns_managed_zone.html#dnssec_config for futhers details"
   type        = any
@@ -45,4 +40,15 @@ variable "dnssec_config" {
 variable "type" {
   type        = string
   description = "description"
+}
+
+variable peering_zones {
+  default     = {}
+  description = "An object used to deploy Cloud DNS peering zones"
+  type        = map(object({
+    domain = string
+    description = string
+    private_visibility_config_networks = string # selflink of the source vpc
+    target_network = string # selflink of the target vpc
+  }))
 }
