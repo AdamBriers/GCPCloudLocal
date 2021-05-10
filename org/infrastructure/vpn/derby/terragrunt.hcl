@@ -69,7 +69,7 @@ inputs = {
     remote-1 = {
       bgp_peer = {
         address = "169.254.8.1"
-        asn     = 64521
+        asn     = 64520
       }
       bgp_peer_options                = null
       bgp_session_range               = "169.254.8.2/30"
