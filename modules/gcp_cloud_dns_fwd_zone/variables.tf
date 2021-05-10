@@ -4,7 +4,7 @@ variable "description" {
   default     = ""
 }
 
-variable "dns_name" {
+variable "domain" {
   description = "The DNS name for the deployed Cloud DNS zone."
   type        = string
 }
@@ -25,14 +25,19 @@ variable "project_id" {
   type        = string
 }
 
-variable "visibility" {
-  description = "The visibility of the DNS zone."
-  type        = string
-  default     = "private"
-}
-
 variable "target_name_server_addresses" {
   description = "List of target name servers for forwarding zone."
   default     = []
   type        = list(string)
+}
+
+variable "target_network" {
+  description = "Peering network."
+  default     = ""
+}
+
+variable "dnssec_config" {
+  description = "Object containing : kind, non_existence, state. Please see https://www.terraform.io/docs/providers/google/r/dns_managed_zone.html#dnssec_config for futhers details"
+  type        = any
+  default     = {}
 }

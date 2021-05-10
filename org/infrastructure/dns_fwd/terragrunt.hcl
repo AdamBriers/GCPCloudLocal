@@ -30,6 +30,7 @@ inputs = {
   private_visibility_config_networks = ["${dependency.vpc_shared_prd.outputs.network_self_link}", "${dependency.vpc_shared_dev.outputs.network_self_link}"]
   description                        = "DNS Zone to forward requests to placesforpeople nameservers"
   name                               = "dns-google-fwd"
-  dns_name                           = "group.net."
+  domain                             = "group.net."
   target_name_server_addresses       = ["10.9.10.1", "10.9.10.2"]
+  type                               = "forwarding"
 }

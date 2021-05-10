@@ -5,29 +5,22 @@ resource "google_project_service" "this" {
   disable_dependent_services = true
 }
 
-resource "google_dns_managed_zone" "this" {
-  name = var.name
+module "dns-private-zone" {
+  source  = "terraform-google-modules/cloud-dns/google"
+  version = "3.1.0"
 
-  project     = var.project_id
-  dns_name    = var.dns_name
-  description = var.description
-  visibility  = var.visibility
+  name          = var.name
+  project_id    = var.project_id
+  type          = var.type
+  domain        = var.domain
+  description   = var.description
+  dnssec_config = var.dnssec_config
 
-  private_visibility_config {
-    dynamic "networks" {
-      for_each = var.private_visibility_config_networks
-      content {
-        network_url = networks.value
-      }
-    }
-  }
-  forwarding_config {
-    dynamic "target_name_servers" {
-      for_each = var.target_name_server_addresses
-      content {
-        ipv4_address = target_name_servers.value
-      }
-    }
-  }
+  target_network                     = var.target_network
+  target_name_server_addresses       = var.target_name_server_addresses
+  private_visibility_config_networks = var.private_visibility_config_networks
+
+  recordsets = []
+
   depends_on = [google_project_service.this]
 }
