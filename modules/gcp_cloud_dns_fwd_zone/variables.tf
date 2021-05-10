@@ -41,3 +41,8 @@ variable "dnssec_config" {
   type        = any
   default     = {}
 }
+
+variable "type" {
+  type        = string
+  description = "description"
+}
