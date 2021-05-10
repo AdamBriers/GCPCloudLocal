@@ -38,7 +38,7 @@ inputs = {
     dns-dev-prod-peer = {
       domain = "dev-peer-group.net."
       description = "DNS Zone used to peer the dev VPC to the records in the production VPC"
-      private_visibility_config_networks = dependency.vpc_shared_dev.outputs.network_self_link
+      private_visibility_config_networks = [dependency.vpc_shared_dev.outputs.network_self_link,]
       target_network = dependency.vpc_shared_prd.outputs.network_self_link
     },
   }

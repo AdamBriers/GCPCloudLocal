@@ -48,7 +48,7 @@ variable peering_zones {
   type        = map(object({
     domain = string
     description = string
-    private_visibility_config_networks = string # selflink of the source vpc
+    private_visibility_config_networks = list(string) # selflink of the source vpc
     target_network = string # selflink of the target vpc
   }))
 }
