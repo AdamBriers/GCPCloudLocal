@@ -1,4 +1,4 @@
-output "zone_id" {
+output "zone_name" {
   description = "The ID of the deployed DNS Zone."
-  value       = google_dns_managed_zone.this.id
+  value       = module.dns_zone.name
 }

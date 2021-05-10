@@ -5,7 +5,7 @@ resource "google_project_service" "this" {
   disable_dependent_services = true
 }
 
-module "dns-private-zone" {
+module "dns_zone" {
   source  = "terraform-google-modules/cloud-dns/google"
   version = "3.1.0"
 
