@@ -44,7 +44,7 @@ inputs = {
       extra_attributes = {}
     },
 
-    vpnall-ingress-prd-azure-aws = {
+    vpnall-ingress-rnd-azure-aws = {
       description          = "INGRESS firewall for all ports and protocol from on-prem, AWS and azure VPN to rnd."
       direction            = "INGRESS"
       action               = "allow"
