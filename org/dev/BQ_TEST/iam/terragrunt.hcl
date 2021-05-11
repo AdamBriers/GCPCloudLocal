@@ -32,6 +32,12 @@ inputs = {
       member_type             = "group"
       member_name             = "InfoManagement@placesforpeople.co.uk"
     },
+     {
+      project_iam_permissions = ["roles/bigquery.admin"]
+      member_type             = "group"
+      member_name             = "@GBL_SEC_GCP_Arch@placesforpeople.co.uk"
+    },
+
     {
       project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser"]
       member_type             = "user"
