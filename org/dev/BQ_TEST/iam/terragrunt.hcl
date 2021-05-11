@@ -35,7 +35,7 @@ inputs = {
      {
       project_iam_permissions = ["roles/bigquery.admin"]
       member_type             = "group"
-      member_name             = "@GBL_SEC_GCP_Arch@placesforpeople.co.uk"
+      member_name             = "GBL_SEC_GCP_Arch@placesforpeople.co.uk"
     },
 
     {
