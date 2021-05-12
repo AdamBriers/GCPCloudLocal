@@ -1,9 +1,9 @@
-output "peering_zone_name" {
+output "peering_zone" {
   description = "The ID of the deployed DNS Zone."
-  value       = module.dns_zone_peering.name
+  value       = module.dns_zone_peering
 }
 
-output "forwarding_zone_name" {
+output "forwarding_zone" {
   description = "The ID of the deployed DNS Zone."
-  value       = module.dns_forwarding_zone.name
+  value       = module.dns_forwarding_zone
 }
