@@ -11,7 +11,6 @@ terraform {
 include {
   path = find_in_parent_folders("org.hcl")
 }
-
   inputs = {
     org_iam_permissions   = [
       "roles/billing.admin",
