@@ -12,8 +12,8 @@ include {
   path = find_in_parent_folders("org.hcl")
 }
 
-dependency "vpc_shared_prd" {
-  config_path = "../../vpc_shared_prd"
+dependency "vpc_shared_edge" {
+  config_path = "../../vpc_shared_edge"
 
   # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
   # module hasn't been applied yet.
@@ -71,19 +71,41 @@ dependency "vpn_azure" {
 inputs = {
 
   project_id   = dependency.vpc_host_project.outputs.project_id
-  network_name = dependency.vpc_shared_prd.outputs.network_name
+  network_name = dependency.vpc_shared_edge.outputs.network_name
   routes = [
     {
-      name                   = "gc-p-rt-0001"
-      description            = "Route through to the internet"
-      destination_range      = "0.0.0.0/0"
+      name                   = "gc-a-rt-0001"
+      description            = "Route through to the PFP Azure network via VPN"
+      destination_range      = "172.20.0.0/16"
       tags                   = "" # List of Network tags assigned to this route. Empty list means all instances can use it.
-      next_hop_internet      = "true"
-      priority               = 1000
+      next_hop_internet      = "false"
+      priority               = 500
       next_hop_ip            = null
       next_hop_instance      = null
       next_hop_instance_zone = null
-      next_hop_vpn_tunnel    = null
+      # IMPORTANT:  Note that the following 'next_hop_vpn_tunnel' only allows for the first Clasic VPN tunnel created
+      # created - The vpn_classic module at time of writing is in theory capable of creating multiple 
+      # VPN tunnels.  The routes module would need to be adjusted to cope with this, but also at the 
+      # time of writing the Classic VPN was in the process of being replaced by a HA VPN, in which
+      # case this route would not be required at all as routes are dynamic with HA VPN's.
+      next_hop_vpn_tunnel = dependency.vpn_azure.outputs.vpn_tunnels_id[0]
+    },
+    {
+      name                   = "gc-a-rt-0002"
+      description            = "Route through to the PFP Azure network via VPN"
+      destination_range      = "172.30.0.0/16"
+      tags                   = "" # List of Network tags assigned to this route. Empty list means all instances can use it.
+      next_hop_internet      = "false"
+      priority               = 500
+      next_hop_ip            = null
+      next_hop_instance      = null
+      next_hop_instance_zone = null
+      # IMPORTANT:  Note that the following 'next_hop_vpn_tunnel' only allows for the first Clasic VPN tunnel created
+      # created - The vpn_classic module at time of writing is in theory capable of creating multiple 
+      # VPN tunnels.  The routes module would need to be adjusted to cope with this, but also at the 
+      # time of writing the Classic VPN was in the process of being replaced by a HA VPN, in which
+      # case this route would not be required at all as routes are dynamic with HA VPN's.
+      next_hop_vpn_tunnel = dependency.vpn_azure.outputs.vpn_tunnels_id[0]
     },
   ]
 }

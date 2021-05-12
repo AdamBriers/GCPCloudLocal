@@ -12,8 +12,15 @@ include {
   path = find_in_parent_folders("org.hcl")
 }
 
-dependency "prd_vpc" {
-  config_path = "../../vpc_shared_prd"
+dependency "edge_vpc" {
+  config_path = "../../vpc_shared_edge"
+  
+  # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
+  # module hasn't been applied yet.
+  mock_outputs_allowed_terraform_commands = ["plan", "validate"]
+  mock_outputs = {
+    network_name = "network-not-created-yet"
+  }
 }
 
 dependency "project" {
@@ -26,7 +33,7 @@ inputs = {
   project_id = dependency.project.outputs.project_id
   name       = "gc-a-vpn-onprem-0001"
   secret_id  = "gc-a-sct-onprem-0001"
-  network    = dependency.prd_vpc.outputs.network_name
+  network    = dependency.edge_vpc.outputs.network_name
   peer_external_gateway = {
     redundancy_type = "SINGLE_IP_INTERNALLY_REDUNDANT"
     interfaces = [{
@@ -38,10 +45,22 @@ inputs = {
     groups = []
     mode   = "CUSTOM"
     ip_ranges = {
-      "172.26.64.0/23"  = "gc-t-snet-0001"
-      "172.26.66.0/23"  = "gc-t-snet-0002"
-      "172.26.68.0/23"  = "gc-t-snet-0003"
-      "172.26.0.0/18"   = "gc-p-snet-0001"
+      # Prod
+      "172.26.0.0/24"   = "gc-p-snet-infra-0001"
+      "172.26.4.0/24"   = "gc-p-snet-dmz-001"
+      "172.26.16.0/22"  = "gc-p-snet-middleware-001"
+      "172.26.48.0/23"  = "gc-p-snet-backend-001"
+      # Test and Dev
+      "172.26.64.0/24"  = "gc-t-snet-infra-0001"
+      "172.26.68.0/24"  = "gc-t-snet-dmz-001"
+      "172.26.80.0/22"  = "gc-t-snet-middleware-001"
+      "172.26.112.0/23" = "gc-t-snet-backend-001"
+      # RnD
+      "172.26.128.0/24" = "gc-r-snet-infra-0001"
+      "172.26.132.0/24" = "gc-r-snet-dmz-001"
+      "172.26.144.0/22" = "gc-r-snet-middleware-001"
+      "172.26.176.0/23" = "gc-r-snet-backend-001"
+      # Google restricted
       "199.36.153.4/30" = "google restricted api range"
     }
   }

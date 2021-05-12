@@ -29,7 +29,8 @@ include {
       "roles/source.admin",
       "roles/resourcemanager.organizationAdmin",
       "roles/cloudbuild.builds.editor",
-      "roles/storage.objectAdmin"
+      "roles/storage.objectAdmin",
+      "roles/compute.admin"
     ]
   member_name = "theodor.valeanu@appsbroker.com"
   member_type = "user"

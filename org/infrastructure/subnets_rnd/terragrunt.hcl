@@ -42,11 +42,32 @@ inputs = {
 
   subnets = [
     {
-      sub_network_name         = "gc-r-snet-0001"
-      sub_network_description  = "Sub network for the R&D environment"
-      ip_cidr_range            = "172.26.128.0/23" # Usable 510 Ip's: 172.26.128.1 - 172.26.129.254
+      sub_network_name         = "gc-r-snet-infra-0001"
+      sub_network_description  = "Sub network 1 for the R&D Infrastructure environment"
+      ip_cidr_range            = "172.26.128.0/24" # Usable 254 Ip's: 172.26.128.1 - 172.26.128.254
       region                   = "europe-west2"
       private_ip_google_access = true
-    }
+    },
+    {
+      sub_network_name         = "gc-r-snet-dmz-001"
+      sub_network_description  = "Sub network for the R&D DMZ environment"
+      ip_cidr_range            = "172.26.132.0/24" # Usable 254 Ip's: 172.26.132.1 - 172.26.132.254
+      region                   = "europe-west2"
+      private_ip_google_access = true
+    },
+    {
+      sub_network_name         = "gc-r-snet-backend-001"
+      sub_network_description  = "Sub network for the R&D Backend environment"
+      ip_cidr_range            = "172.26.176.0/23" # Usable 510 Ip's: 172.26.176.1 - 172.26.176.254
+      region                   = "europe-west2"
+      private_ip_google_access = true
+    },
+    {
+      sub_network_name         = "gc-r-snet-middleware-001"
+      sub_network_description  = "Sub network for the R&D Middleware environment"
+      ip_cidr_range            = "172.26.144.0/22" # Usable 1022 Ip's: 172.26.144.1 - 172.26.147.254
+      region                   = "europe-west2"
+      private_ip_google_access = true
+    },
   ]
 }

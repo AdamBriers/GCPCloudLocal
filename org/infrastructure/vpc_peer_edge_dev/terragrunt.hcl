@@ -23,8 +23,8 @@ dependency "vpc_shared_dev" {
   }
 }
 
-dependency "vpc_shared_prd" {
-  config_path = "../vpc_shared_prd"
+dependency "vpc_shared_edge" {
+  config_path = "../vpc_shared_edge"
 
   # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
   # module hasn't been applied yet.
@@ -37,10 +37,10 @@ dependency "vpc_shared_prd" {
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
 
-  name                                       = "gc-t-testprodpeer-0001"
-  name_second                                = "gc-p-prodtestpeer-0001"
+  name                                       = "gc-t-testedgepeer-0001"
+  name_second                                = "gc-a-edgetestpeer-0001"
   network                                    = dependency.vpc_shared_dev.outputs.network_self_link
-  peer_network                               = dependency.vpc_shared_prd.outputs.network_self_link
+  peer_network                               = dependency.vpc_shared_edge.outputs.network_self_link
   export_custom_routes                       = false
   export_custom_routes_second                = true
   import_custom_routes                       = true

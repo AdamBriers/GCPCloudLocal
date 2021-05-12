@@ -12,8 +12,15 @@ include {
   path = find_in_parent_folders("org.hcl")
 }
 
-dependency "prd_vpc" {
-  config_path = "../../vpc_shared_prd"
+dependency "edge_vpc" {
+  config_path = "../../vpc_shared_edge"
+  
+  # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
+  # module hasn't been applied yet.
+  mock_outputs_allowed_terraform_commands = ["plan", "validate"]
+  mock_outputs = {
+    network_name = "network-not-created-yet"
+  }
 }
 
 dependency "project" {
@@ -37,7 +44,7 @@ inputs = {
   project_id = dependency.project.outputs.project_id
   name       = "gc-a-vpn-derby-0001"
   secret_id  = "gc-a-sct-derby-0001"
-  network    = dependency.prd_vpc.outputs.network_name
+  network    = dependency.edge_vpc.outputs.network_name
   router_name = dependency.router.outputs.router_name
   peer_external_gateway = {
     redundancy_type = "SINGLE_IP_INTERNALLY_REDUNDANT"
@@ -62,7 +69,7 @@ inputs = {
     remote-1 = {
       bgp_peer = {
         address = "169.254.8.1"
-        asn     = 64521
+        asn     = 64520
       }
       bgp_peer_options                = null
       bgp_session_range               = "169.254.8.2/30"
