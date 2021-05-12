@@ -26,13 +26,7 @@ dependency "vpc_shared_dev" {
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
 
-  project_id                         = dependency.vpc_host_project.outputs.project_id
-  #private_visibility_config_networks = ["${dependency.vpc_shared_prd.outputs.network_self_link}", "${dependency.vpc_shared_dev.outputs.network_self_link}"]
-  #description                        = "DNS Zone to forward requests to placesforpeople nameservers"
-  #name                               = "dns-google-fwd"
-  #domain                             = "group.net."
-  #target_name_server_addresses       = ["10.9.10.1", "10.9.10.2"]
-  #type                               = "forwarding"
+  project_id = dependency.vpc_host_project.outputs.project_id
 
   peering_zones = {
     dns-dev-prod-peer = {
@@ -44,11 +38,23 @@ inputs = {
   }
 
   forwarding_zones = {
-    dns-google-fwd = {
+    dns-google-fwd-group = {
       domain = "group.net."
       description = "DNS Zone to forward requests to placesforpeople nameservers"
       private_visibility_config_networks = ["${dependency.vpc_shared_prd.outputs.network_self_link}", "${dependency.vpc_shared_dev.outputs.network_self_link}"]
       target_name_server_addresses = ["10.9.10.1", "10.9.10.2"]
+    },
+    dns-google-fwd-luminus = {
+      domain = "luminus.local."
+      description = "DNS Zone to forward requests to placesforpeople nameservers"
+      private_visibility_config_networks = ["${dependency.vpc_shared_prd.outputs.network_self_link}", "${dependency.vpc_shared_dev.outputs.network_self_link}"]
+      target_name_server_addresses = ["10.9.10.3", "10.9.10.4"]
+    },
+    dns-google-fwd-centro = {
+      domain = "centro.local."
+      description = "DNS Zone to forward requests to placesforpeople nameservers"
+      private_visibility_config_networks = ["${dependency.vpc_shared_prd.outputs.network_self_link}", "${dependency.vpc_shared_dev.outputs.network_self_link}"]
+      target_name_server_addresses = ["10.9.10.5", "10.9.10.6"]
     },
   }
 }
