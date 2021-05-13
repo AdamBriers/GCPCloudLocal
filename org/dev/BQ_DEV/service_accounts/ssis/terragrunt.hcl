@@ -28,6 +28,6 @@ inputs = {
   account_id  = "gc-t-ssis-dev-sa"
   description = "SSIS Test Service Account"
   members = [
-    "john.foster@placesforpeople.co.uk"
+    "user:john.foster@placesforpeople.co.uk"
   ]
 }

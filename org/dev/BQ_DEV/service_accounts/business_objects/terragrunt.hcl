@@ -28,6 +28,6 @@ inputs = {
   account_id  = "gc-t-businessobjects-dev-sa"
   description = "Business Objects Test Service Account"
   members = [
-    "adam.briers@placesforpeople.co.uk"
+    "user:john.foster@placesforpeople.co.uk"
   ]
 }

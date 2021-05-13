@@ -28,6 +28,6 @@ inputs = {
   account_id  = "gc-t-powerbi-dev-sa"
   description = "Power BI Test Service Account"
   members = [
-    "john.foster@placesforpeople.co.uk"
+    "user:john.foster@placesforpeople.co.uk"
   ]
 }
