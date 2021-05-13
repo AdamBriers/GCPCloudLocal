@@ -25,8 +25,8 @@ dependency "project" {
 
 inputs = {
   project_id  = dependency.project.outputs.project_id
-  account_id  = "gc-t-ssis-prod-sa"
-  description = "SSIS Test Service Account"
+  account_id  = "gc-p-ssis-prod-sa"
+  description = "SSIS Prod Service Account"
   members = [
     "user:john.foster@placesforpeople.co.uk"
   ]

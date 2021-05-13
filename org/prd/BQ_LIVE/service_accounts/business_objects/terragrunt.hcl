@@ -25,8 +25,8 @@ dependency "project" {
 }
 inputs = {
   project_id  = dependency.project.outputs.project_id
-  account_id  = "gc-t-businessobjects-prod-sa"
-  description = "Business Objects Test Service Account"
+  account_id  = "gc-p-businessobjects-prod-sa"
+  description = "Business Objects Prod Service Account"
   members = [
     "user:john.foster@placesforpeople.co.uk"
   ]

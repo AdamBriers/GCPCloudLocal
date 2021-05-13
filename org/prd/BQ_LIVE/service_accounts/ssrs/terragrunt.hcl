@@ -25,8 +25,8 @@ dependency "project" {
 
 inputs = {
   project_id  = dependency.project.outputs.project_id
-  account_id  = "gc-t-ssrs-prod-sa"
-  description = "SSRS Test Service Account"
+  account_id  = "gc-p-ssrs-prod-sa"
+  description = "SSRS Prod Service Account"
   members = [
     "user:john.foster@placesforpeople.co.uk"
   ]

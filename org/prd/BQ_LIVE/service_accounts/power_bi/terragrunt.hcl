@@ -25,8 +25,8 @@ dependency "project" {
 
 inputs = {
   project_id  = dependency.project.outputs.project_id
-  account_id  = "gc-t-powerbi-prod-sa"
-  description = "Power BI Test Service Account"
+  account_id  = "gc-p-powerbi-prod-sa"
+  description = "Power BI Prod Service Account"
   members = [
     "user:john.foster@placesforpeople.co.uk"
   ]
