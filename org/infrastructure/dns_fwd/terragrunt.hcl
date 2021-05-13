@@ -23,6 +23,10 @@ dependency "vpc_shared_dev" {
   config_path = "../vpc_shared_dev"
 }
 
+dependency "ad_instances" {
+  config_path = "../ad_compute/"
+}
+
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
 
@@ -36,13 +40,13 @@ inputs = {
       target_network = dependency.vpc_shared_prd.outputs.network_self_link
     },
     dns-peer-luminus-local = {
-      domain = "dns-peer-luminus.net."
+      domain = "dns-peer-luminus.local."
       description = "DNS Zone used to peer the dev VPC to the records in the production VPC"
       private_visibility_config_networks = [dependency.vpc_shared_dev.outputs.network_self_link,]
       target_network = dependency.vpc_shared_prd.outputs.network_self_link
     },
     dns-peer-centro-local = {
-      domain = "dns-peer-centro.net."
+      domain = "dns-peer-centro.local."
       description = "DNS Zone used to peer the dev VPC to the records in the production VPC"
       private_visibility_config_networks = [dependency.vpc_shared_dev.outputs.network_self_link,]
       target_network = dependency.vpc_shared_prd.outputs.network_self_link
@@ -54,7 +58,7 @@ inputs = {
       domain = "group.net."
       description = "DNS Zone to forward requests to placesforpeople nameservers"
       private_visibility_config_networks = ["${dependency.vpc_shared_prd.outputs.network_self_link}", "${dependency.vpc_shared_dev.outputs.network_self_link}"]
-      target_name_server_addresses = ["10.9.10.1", "10.9.10.2"]
+      target_name_server_addresses = dependency.ad_instances.outputs.instances_IP_set
     },
     dns-forward-luminus-local = {
       domain = "luminus.local."
