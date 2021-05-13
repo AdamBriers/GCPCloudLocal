@@ -107,5 +107,17 @@ inputs = {
       # case this route would not be required at all as routes are dynamic with HA VPN's.
       next_hop_vpn_tunnel = dependency.vpn_azure.outputs.vpn_tunnels_id[0]
     },
+    {
+      name                   = "gc-a-rt-0003"
+      description            = "Route through to the internet for google restricted api range"
+      destination_range      = "199.36.153.4/30"
+      tags                   = "" # List of Network tags assigned to this route. Empty list means all instances can use it.
+      next_hop_internet      = "true"
+      priority               = 1000
+      next_hop_ip            = null
+      next_hop_instance      = null
+      next_hop_instance_zone = null
+      next_hop_vpn_tunnel    = null
+    },
   ]
 }

@@ -22,12 +22,23 @@ dependency "vpc_shared_prd" {
 dependency "vpc_shared_dev" {
   config_path = "../vpc_shared_dev"
 }
+dependency "vpc_shared_edge" {
+  config_path = "../vpc_shared_edge"
+}
+dependency "vpc_shared_rnd" {
+  config_path = "../vpc_shared_rnd"
+}
 
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
   name                               = "private-google-apis-dns"
   project_id                         = dependency.vpc_host_project.outputs.project_id
-  private_visibility_config_networks = ["${dependency.vpc_shared_prd.outputs.network_self_link}", "${dependency.vpc_shared_dev.outputs.network_self_link}"]
+  private_visibility_config_networks = [
+    "${dependency.vpc_shared_prd.outputs.network_self_link}", 
+    "${dependency.vpc_shared_dev.outputs.network_self_link}", 
+    "${dependency.vpc_shared_edge.outputs.network_self_link}", 
+    "${dependency.vpc_shared_rnd.outputs.network_self_link}"
+    ]
   description                        = "DNS Zone to ensure access to googleapis.com via the 'Private Network Access' IPs"
   dns_name                           = "googleapis.com."
   description                        = "Private DNS zone for googleapis.com"
