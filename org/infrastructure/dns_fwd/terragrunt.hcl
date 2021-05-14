@@ -23,8 +23,16 @@ dependency "vpc_shared_dev" {
   config_path = "../vpc_shared_dev"
 }
 
-dependency "ad_instances" {
-  config_path = "../ad_compute/"
+dependency "ad_instances_centro" {
+  config_path = "../ad/compute/centro_local"
+}
+
+dependency "ad_instances_group" {
+  config_path = "../ad/compute/group_net"
+}
+
+dependency "ad_instances_luminus" {
+  config_path = "../ad/compute/luminus_local"
 }
 
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
@@ -58,19 +66,19 @@ inputs = {
       domain = "group.net."
       description = "DNS Zone to forward requests to placesforpeople nameservers"
       private_visibility_config_networks = ["${dependency.vpc_shared_prd.outputs.network_self_link}", "${dependency.vpc_shared_dev.outputs.network_self_link}"]
-      target_name_server_addresses = dependency.ad_instances.outputs.instances_IP_set
+      target_name_server_addresses = dependency.ad_instances_group.outputs.instances_IP_set
     },
     dns-forward-luminus-local = {
       domain = "luminus.local."
       description = "DNS Zone to forward requests to placesforpeople nameservers"
       private_visibility_config_networks = ["${dependency.vpc_shared_prd.outputs.network_self_link}", "${dependency.vpc_shared_dev.outputs.network_self_link}"]
-      target_name_server_addresses = ["10.9.10.3", "10.9.10.4"]
+      target_name_server_addresses = dependency.ad_instances_luminus.outputs.instances_IP_set
     },
     dns-forward-centro-local = {
       domain = "centro.local."
       description = "DNS Zone to forward requests to placesforpeople nameservers"
       private_visibility_config_networks = ["${dependency.vpc_shared_prd.outputs.network_self_link}", "${dependency.vpc_shared_dev.outputs.network_self_link}"]
-      target_name_server_addresses = ["10.9.10.5", "10.9.10.6"]
+      target_name_server_addresses = dependency.ad_instances_centro.outputs.instances_IP_set
     },
   }
 }
