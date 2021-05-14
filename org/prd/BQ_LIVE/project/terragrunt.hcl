@@ -35,10 +35,10 @@ inputs = {
     application      = "bigqlive"
     businessunit     = "homes"
     costcentre       = "90imt"
-    createdby        = "john Foster"
+    createdby        = "john-Foster"
     department       = "it"
     disasterrecovery = "no"
     environment      = "prd"
-    contact          = "Cloud Team"
+    contact          = "Cloud-Team"
   }
 }
