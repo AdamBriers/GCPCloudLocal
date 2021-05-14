@@ -25,26 +25,68 @@ dependency "vpc_shared_dev" {
 
 dependency "ad_centro_vm_a" {
   config_path = "../ad/compute/centro_local_a"
+
+  # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
+  # module hasn't been applied yet.
+  mock_outputs_allowed_terraform_commands = ["plan", "validate"]
+  mock_outputs = {
+    ip_address = "10.1.1.1"
+  }
 }
 
 dependency "ad_centro_vm_b" {
   config_path = "../ad/compute/centro_local_b"
+
+  # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
+  # module hasn't been applied yet.
+  mock_outputs_allowed_terraform_commands = ["plan", "validate"]
+  mock_outputs = {
+    ip_address = "10.1.1.2"
+  }
 }
 
 dependency "ad_group_vm_a" {
   config_path = "../ad/compute/group_net_a"
+
+  # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
+  # module hasn't been applied yet.
+  mock_outputs_allowed_terraform_commands = ["plan", "validate"]
+  mock_outputs = {
+    ip_address = "10.1.1.3"
+  }
 }
 
 dependency "ad_group_vm_b" {
   config_path = "../ad/compute/group_net_b"
+
+  # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
+  # module hasn't been applied yet.
+  mock_outputs_allowed_terraform_commands = ["plan", "validate"]
+  mock_outputs = {
+    ip_address = "10.1.1.4"
+  }
 }
 
 dependency "ad_luminus_vm_a" {
   config_path = "../ad/compute/luminus_local_a"
+
+  # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
+  # module hasn't been applied yet.
+  mock_outputs_allowed_terraform_commands = ["plan", "validate"]
+  mock_outputs = {
+    ip_address = "10.1.1.5"
+  }
 }
 
 dependency "ad_luminus_vm_b" {
   config_path = "../ad/compute/luminus_local_b"
+
+  # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
+  # module hasn't been applied yet.
+  mock_outputs_allowed_terraform_commands = ["plan", "validate"]
+  mock_outputs = {
+    ip_address = "10.1.1.6"
+  }
 }
 
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
