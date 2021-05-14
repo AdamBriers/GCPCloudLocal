@@ -1,24 +1,23 @@
 resource "google_compute_instance" "this" {
-  for_each = var.instance
-  name = each.key
+  name = var.instance_name
 
   allow_stopping_for_update = var.allow_stopping_for_update
-  project                   = each.value.project
-  machine_type              = each.value.machine_type
-  tags                      = each.value.instance_tags
-  zone                      = each.value.zone
+  project                   = var.project
+  machine_type              = var.machine_type
+  tags                      = var.instance_tags
+  zone                      = var.zone
 
   boot_disk {
     initialize_params {
-      image = each.value.os_image
-      size  = each.value.boot_disk_size
-      type  = each.value.boot_disk_type
+      image = var.os_image
+      size  = var.boot_disk_size
+      type  = var.boot_disk_type
     }
 
     auto_delete = var.boot_disk_auto_delete
   }
 
-  metadata_startup_script = each.value.metadata_startup_script
+  metadata_startup_script = var.metadata_startup_script
 
   lifecycle {
     ignore_changes = [
@@ -28,8 +27,8 @@ resource "google_compute_instance" "this" {
   }
 
   network_interface {
-    network            = each.value.network
-    subnetwork         = each.value.subnetwork
+    network            = var.network
+    subnetwork         = var.subnetwork
     subnetwork_project = var.subnetwork_project
     access_config {
       nat_ip = google_compute_address.static.address
@@ -37,8 +36,8 @@ resource "google_compute_instance" "this" {
   }
 
   service_account {
-    scopes = concat(each.value.instance_scope, ["logging-write", "monitoring-write", "storage-ro"])
-    email  = each.value.gcp_instance_sa_email
+    scopes = concat(var.instance_scope, ["logging-write", "monitoring-write", "storage-ro"])
+    email  = var.gcp_instance_sa_email
   }
 
   scheduling {
@@ -56,14 +55,13 @@ resource "google_compute_instance" "this" {
     }
   }
 
-  labels = each.value.labels
+  labels = var.labels
 }
 
 resource "google_compute_address" "static" {
-  for_each = var.instance
-
-  name         = "${each.key}-internal-address"
-  subnetwork   = each.value.subnetwork
-  address_type = "INTERNAL"
-  address      = each.value.ip_address
+  name         = "${var.instance_name}-address"
+  subnetwork   = var.subnetwork
+  address_type = var.ip_address_type
+  region       = var.ip_address_region
+  project      = var.project
 }
