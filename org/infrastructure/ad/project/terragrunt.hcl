@@ -19,8 +19,20 @@ inputs = {
   folder_id          = "261634282566" ## Infrastructure folder id
   is_service_project = true
 
+  services = [
+    "iam.googleapis.com",
+    "cloudbilling.googleapis.com",
+    "billingbudgets.googleapis.com",
+    "cloudresourcemanager.googleapis.com",
+    "serviceusage.googleapis.com",
+    "compute.googleapis.com",
+    "storage-api.googleapis.com",
+    "logging.googleapis.com",
+    "monitoring.googleapis.com"
+  ]
+
   labels = {
-    application      = "shared_vpcs"
+    application      = "active_directory"
     businessunit     = "bunit"
     costcentre       = "90cen"
     createdby        = "appsbroker"
