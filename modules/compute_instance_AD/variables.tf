@@ -45,6 +45,11 @@ variable "subnetwork_project" {
   default     = "gc-a-prj-vpchost-0001-3312"
 }
 
+variable "labels" {
+  description = "Labels to add."
+  default     = {}
+}
+
 variable instance {
   description = "An object used to deploy one or more Cloud Engine Instances"
   type        = map(object({
@@ -59,7 +64,6 @@ variable instance {
     gcp_instance_sa_email = string
     instance_tags = list(string)
     instance_scope = list(string)
-    labels = map
     metadata_startup_script = string
   }))
 }

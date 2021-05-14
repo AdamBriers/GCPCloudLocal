@@ -42,7 +42,6 @@ inputs = {
       gcp_instance_sa_email   = dependency.service_account.outputs.email
       instance_tags           = []
       instance_scope          = ["cloud-platform"]
-      labels                  = {}
       metadata_startup_script = null
     },
     gc-a-vm-dom-group-0002b = {
@@ -56,7 +55,6 @@ inputs = {
       gcp_instance_sa_email   = dependency.service_account.outputs.email
       instance_tags           = []
       instance_scope          = ["cloud-platform"]
-      labels                  = {}
       metadata_startup_script = null
     },
   }
