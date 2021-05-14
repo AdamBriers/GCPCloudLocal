@@ -46,8 +46,6 @@ variable "subnetwork_project" {
 }
 
 variable instance {
-  type        = string
-  default     = {}
   description = "An object used to deploy one or more Cloud Engine Instances"
   type        = map(object({
     project = string
