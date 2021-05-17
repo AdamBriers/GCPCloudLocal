@@ -25,6 +25,6 @@ dependency "project" {
 
 inputs = {
   project_id  = dependency.project.outputs.project_id
-  account_id  = "gc-p-migration-manager-extension-sa"
+  account_id  = "gc-p-migration-extension-sa"
   description = "Migration Manager Extension Service Account"
 }
