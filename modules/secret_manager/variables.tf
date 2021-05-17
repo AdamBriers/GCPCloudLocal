@@ -5,10 +5,7 @@ variable project_id {
 }
 
 variable secret {
-  type = list(object{
-      secret_id = string,
-      secret_location = list(string)
-  })
+  type = list(object({ secret_id = string, secret_location = list(string) }))
   default = []
   description = "The list of secrets to be created"
 }
