@@ -25,14 +25,14 @@ dependency "project" {
 
 inputs = {
   project_id  = dependency.project.outputs.project_id
-  secret = [
-    {
-      secret_id = "gc-p-migration-manager-api-password",
-      secret_location = ["europe-west2", ]
+  secret = {
+    gc-p-migration-manager-api-password = {
+      secret_location = ["europe-west2", ],
+      secret_labels = {}
     },
-    {
-      secret_id = "gc-p-migration-manager-secret-enc-key",
+    gc-p-migration-manager-secret-enc-key = {
       secret_location = ["europe-west2", ]
+      secret_labels = {}
     },
-  ]
+  }
 }

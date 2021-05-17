@@ -8,15 +8,7 @@ resource "google_project_service" "project" {
 resource "google_secret_manager_secret" "this" {
   for_each = var.secret
   project   = var.project_id
-  secret_id = each.value.secret_id
-
-  #replication {
-  #  user_managed {
-  #    replicas {
-  #      location = each.value.secret_location
-  #    }
-  #  }
-  #}
+  secret_id = each.key
 
   replication {
     user_managed {
@@ -28,5 +20,8 @@ resource "google_secret_manager_secret" "this" {
       }
     }
   }
+
+  labels = each.value.secret_labels
+
   depends_on = [google_project_service.project]
 }
