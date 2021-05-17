@@ -34,4 +34,5 @@ inputs = {
       secret_id = "gc-p-migration-manager-secret-enc-key",
       secret_location = ["europe-west2", ]
     },
+  ]
 }
