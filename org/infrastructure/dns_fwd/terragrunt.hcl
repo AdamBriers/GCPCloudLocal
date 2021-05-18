@@ -97,19 +97,19 @@ inputs = {
   peering_zones = {
     dns-peer-group-net = {
       domain = "dns-peer-group.net."
-      description = "DNS Zone used to peer the dev VPC to the records in the production VPC"
+      description = "DNS Zone used to peer the test VPC to the records in the production VPC"
       private_visibility_config_networks = [dependency.vpc_shared_dev.outputs.network_self_link,]
       target_network = dependency.vpc_shared_prd.outputs.network_self_link
     },
     dns-peer-luminus-local = {
       domain = "dns-peer-luminus.local."
-      description = "DNS Zone used to peer the dev VPC to the records in the production VPC"
+      description = "DNS Zone used to peer the test VPC to the records in the production VPC"
       private_visibility_config_networks = [dependency.vpc_shared_dev.outputs.network_self_link,]
       target_network = dependency.vpc_shared_prd.outputs.network_self_link
     },
     dns-peer-centro-local = {
       domain = "dns-peer-centro.local."
-      description = "DNS Zone used to peer the dev VPC to the records in the production VPC"
+      description = "DNS Zone used to peer the test VPC to the records in the production VPC"
       private_visibility_config_networks = [dependency.vpc_shared_dev.outputs.network_self_link,]
       target_network = dependency.vpc_shared_prd.outputs.network_self_link
     },
