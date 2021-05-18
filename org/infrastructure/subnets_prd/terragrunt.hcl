@@ -56,7 +56,7 @@ inputs = {
       private_ip_google_access = true
     },
     {
-      sub_network_name         = "gc-p-snet-backend-001"
+      sub_network_name         = "gc-p-snet-backend-0001"
       sub_network_description  = "Sub network 1 for the Production Backend environment"
       ip_cidr_range            = "172.26.48.0/23" # Usable 510 Ip's: 172.26.48.1 - 172.26.49.254
       region                   = "europe-west2"
