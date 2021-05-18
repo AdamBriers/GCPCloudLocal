@@ -49,21 +49,21 @@ inputs = {
       private_ip_google_access = true
     },
     {
-      sub_network_name         = "gc-p-snet-dmz-001"
+      sub_network_name         = "gc-p-snet-dmz-0001"
       sub_network_description  = "Sub network 1 for the Production DMZ environment"
       ip_cidr_range            = "172.26.4.0/24" # Usable 254 Ip's: 172.26.4.1 - 172.26.4.254
       region                   = "europe-west2"
       private_ip_google_access = true
     },
     {
-      sub_network_name         = "gc-p-snet-backend-001"
+      sub_network_name         = "gc-p-snet-backend-0001"
       sub_network_description  = "Sub network 1 for the Production Backend environment"
       ip_cidr_range            = "172.26.48.0/23" # Usable 510 Ip's: 172.26.48.1 - 172.26.49.254
       region                   = "europe-west2"
       private_ip_google_access = true
     },
     {
-      sub_network_name         = "gc-p-snet-middleware-001"
+      sub_network_name         = "gc-p-snet-middleware-0001"
       sub_network_description  = "Sub network 1 for the Production Middleware environment"
       ip_cidr_range            = "172.26.16.0/22" # Usable 1022 Ip's: 172.26.16.1 - 172.26.19.254
       region                   = "europe-west2"
