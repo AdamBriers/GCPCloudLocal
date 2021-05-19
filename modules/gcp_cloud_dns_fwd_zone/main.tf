@@ -5,29 +5,40 @@ resource "google_project_service" "this" {
   disable_dependent_services = true
 }
 
-resource "google_dns_managed_zone" "this" {
-  name = var.name
+module "dns_zone_peering" {
+  for_each = var.peering_zones
+  source  = "terraform-google-modules/cloud-dns/google"
+  version = "3.1.0"
 
-  project     = var.project_id
-  dns_name    = var.dns_name
-  description = var.description
-  visibility  = var.visibility
+  name          = each.key
+  project_id    = var.project_id
+  type          = "peering"
+  domain        = each.value.domain
+  description   = each.value.description
 
-  private_visibility_config {
-    dynamic "networks" {
-      for_each = var.private_visibility_config_networks
-      content {
-        network_url = networks.value
-      }
-    }
-  }
-  forwarding_config {
-    dynamic "target_name_servers" {
-      for_each = var.target_name_server_addresses
-      content {
-        ipv4_address = target_name_servers.value
-      }
-    }
-  }
+  target_network                     = each.value.target_network
+  private_visibility_config_networks = each.value.private_visibility_config_networks
+
+  recordsets = []
+
+  depends_on = [google_project_service.this]
+}
+
+module "dns_forwarding_zone" {
+  for_each = var.forwarding_zones
+  source  = "terraform-google-modules/cloud-dns/google"
+  version = "3.1.0"
+
+  name          = each.key
+  project_id    = var.project_id
+  type          = "forwarding"
+  domain        = each.value.domain
+  description   = each.value.description
+
+  target_name_server_addresses       = each.value.target_name_server_addresses
+  private_visibility_config_networks = each.value.private_visibility_config_networks
+
+  recordsets = []
+
   depends_on = [google_project_service.this]
 }
