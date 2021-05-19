@@ -26,7 +26,14 @@ inputs = {
   # `roles/vmmigration.viewer` -> View information, perform migrations
   project_members = [
     {
-      project_iam_permissions = ["roles/vmmigration.admin"]
+      project_iam_permissions = [
+        # Roles required for initial setup
+        # Google does implies against the viability of a service account for this
+        # https://cloud.google.com/migrate/compute-engine/docs/5.0/how-to/migrate-connector#step-3
+        "roles/vmmigration.admin",
+        "roles/iam.serviceAccountKeyAdmin",
+        "roles/iam.serviceAccountCreator"
+      ]
       member_type             = "user"
       member_name             = "skye.maddock@appsbroker.com"
     }
