@@ -19,7 +19,7 @@ dependency "project" {
 }
 
 dependency "service_account" {
-  config_path = "../../service_accounts/centro_local"
+  config_path = "../../service_accounts/derby"
 
   # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
   # module hasn't been applied yet.

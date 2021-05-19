@@ -25,6 +25,6 @@ dependency "project" {
 
 inputs = {
   project_id  = dependency.project.outputs.project_id
-  account_id  = "gc-a-dom-luminus-local-sa"
+  account_id  = "gc-a-dom-huntingdon-sa"
   description = "Active Directoy compute Service Account for luminus.local"
 }

@@ -33,12 +33,12 @@ inputs = {
 
   labels = {
     application      = "active_directory"
-    businessunit     = "bunit"
-    costcentre       = "90cen"
+    businessunit     = "homes"
+    costcentre       = "90imt"
     createdby        = "appsbroker"
     department       = "it"
     disasterrecovery = "no"
-    environment      = "org"
-    contact          = "appsbroker"
+    environment      = "prd"
+    contact          = "technical_services_team"
   }
 }

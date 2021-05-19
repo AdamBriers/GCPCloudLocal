@@ -19,7 +19,7 @@ dependency "project" {
 }
 
 dependency "service_account" {
-  config_path = "../../service_accounts/centro_local"
+  config_path = "../../service_accounts/huntingdon"
 
   # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
   # module hasn't been applied yet.
@@ -32,10 +32,10 @@ dependency "service_account" {
 inputs = {
 
   gcp_instance_sa_email = dependency.service_account.outputs.email
-  instance_name         = "gc-a-vm-dom-derby-0001a"
+  instance_name         = "gc-a-vm-dom-huntingdon-0002b"
   network               = "projects/gc-a-prj-vpchost-0001-3312/global/networks/gc-p-vpc-0001"
   subnetwork            = "projects/gc-a-prj-vpchost-0001-3312/regions/europe-west2/subnetworks/gc-a-snet-infra-0001"
-  zone                  = "europe-west2-a"
+  zone                  = "europe-west2-b"
   project               = dependency.project.outputs.project_id
   os_image              = "windows-server-2012-r2-dc-v20210413"
   machine_type          = "n1-standard-1"
