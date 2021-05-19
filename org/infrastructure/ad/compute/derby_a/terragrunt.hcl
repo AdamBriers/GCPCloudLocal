@@ -39,7 +39,7 @@ inputs = {
   project               = dependency.project.outputs.project_id
   os_image              = "windows-server-2012-r2-dc-v20210413"
   machine_type          = "n1-standard-1"
-  boot_disk_size        = 20
+  boot_disk_size        = 50
   instance_scope        = ["cloud-platform"]
 
   ip_address_region     = "europe-west2"
