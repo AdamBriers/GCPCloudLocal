@@ -30,9 +30,7 @@ resource "google_compute_instance" "this" {
     network            = var.network
     subnetwork         = var.subnetwork
     subnetwork_project = var.subnetwork_project
-    access_config {
-      nat_ip = google_compute_address.static.address
-    }
+    network_ip         = google_compute_address.static.address
   }
 
   service_account {
