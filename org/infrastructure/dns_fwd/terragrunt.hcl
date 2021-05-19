@@ -23,8 +23,8 @@ dependency "vpc_shared_dev" {
   config_path = "../vpc_shared_dev"
 }
 
-dependency "ad_centro_vm_a" {
-  config_path = "../ad/compute/centro_local_a"
+dependency "ad_derby_vm_a" {
+  config_path = "../ad/compute/derby_a"
 
   # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
   # module hasn't been applied yet.
@@ -34,8 +34,8 @@ dependency "ad_centro_vm_a" {
   }
 }
 
-dependency "ad_centro_vm_b" {
-  config_path = "../ad/compute/centro_local_b"
+dependency "ad_derby_vm_b" {
+  config_path = "../ad/compute/derby_b"
 
   # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
   # module hasn't been applied yet.
@@ -67,8 +67,8 @@ dependency "ad_group_vm_b" {
   }
 }
 
-dependency "ad_luminus_vm_a" {
-  config_path = "../ad/compute/luminus_local_a"
+dependency "ad_huntingdon_vm_a" {
+  config_path = "../ad/compute/huntingdon_a"
 
   # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
   # module hasn't been applied yet.
@@ -78,8 +78,8 @@ dependency "ad_luminus_vm_a" {
   }
 }
 
-dependency "ad_luminus_vm_b" {
-  config_path = "../ad/compute/luminus_local_b"
+dependency "ad_huntingdon_vm_b" {
+  config_path = "../ad/compute/huntingdon_b"
 
   # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
   # module hasn't been applied yet.
@@ -126,13 +126,13 @@ inputs = {
       domain = "luminus.local."
       description = "DNS Zone to forward requests to placesforpeople nameservers"
       private_visibility_config_networks = ["${dependency.vpc_shared_prd.outputs.network_self_link}", "${dependency.vpc_shared_dev.outputs.network_self_link}"]
-      target_name_server_addresses = [dependency.ad_luminus_vm_a.outputs.ip_address, dependency.ad_luminus_vm_b.outputs.ip_address]
+      target_name_server_addresses = [dependency.ad_huntingdon_vm_a.outputs.ip_address, dependency.ad_huntingdon_vm_b.outputs.ip_address]
     },
     dns-forward-centro-local = {
       domain = "centro.local."
       description = "DNS Zone to forward requests to placesforpeople nameservers"
       private_visibility_config_networks = ["${dependency.vpc_shared_prd.outputs.network_self_link}", "${dependency.vpc_shared_dev.outputs.network_self_link}"]
-      target_name_server_addresses = [dependency.ad_centro_vm_a.outputs.ip_address, dependency.ad_centro_vm_b.outputs.ip_address]
+      target_name_server_addresses = [dependency.ad_derby_vm_a.outputs.ip_address, dependency.ad_derby_vm_b.outputs.ip_address]
     },
   }
 }
