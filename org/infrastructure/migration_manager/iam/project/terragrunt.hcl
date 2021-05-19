@@ -7,7 +7,7 @@ include {
 }
 
 dependency "project" {
-  config_path = "../project"
+  config_path = "../../project"
 
   # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
   # module hasn't been applied yet.
