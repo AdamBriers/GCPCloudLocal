@@ -6,21 +6,9 @@ include {
   path = find_in_parent_folders("org.hcl")
 }
 
-dependency "folder" {
-  config_path = "../../"
-
-  # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
-  # module hasn't been applied yet.
-  mock_outputs_allowed_terraform_commands = ["plan", "validate"]
-  mock_outputs = {
-    folder_id = "folder-not-created-yet"
-  }
-}
-
 inputs = {
-
   project_name       = "gc-p-prj-migrate-0001"
-  folder_id          = dependency.folder.outputs.folder_created ## Test and Development folder id
+  folder_id          = "folders/261634282566" # Infrastructure folder id
   is_service_project = true
   # host_project_id - Taken from the hard coded value in the 'org/org.tfvars' file
   services = [
