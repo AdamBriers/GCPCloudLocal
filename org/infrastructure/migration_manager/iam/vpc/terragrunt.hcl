@@ -1,6 +1,6 @@
 # service-${project-id}@gcp-sa-vmmigration.iam.gserviceaccount.com
 terraform {
-  source = "../../../../modules//project_iam/"
+  source = "../../../../../modules//project_iam/"
 }
 
 include {
