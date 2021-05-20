@@ -35,6 +35,14 @@ inputs = {
         "roles/iam.serviceAccountCreator"
       ]
       member_type             = "user"
+      member_name             = "John.Gadsby@placesforpeople.co.uk"
+    },
+    {
+      project_iam_permissions = [
+        # To coordinate initial setup
+        "roles/vmmigration.admin", "roles/iam.serviceAccountKeyAdmin", "roles/iam.serviceAccountCreator"
+      ]
+      member_type             = "user"
       member_name             = "skye.maddock@appsbroker.com"
     }
   ]
