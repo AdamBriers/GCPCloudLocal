@@ -67,17 +67,6 @@ dependency "ssrs_service_account" {
   }
 }
 
-dependency "compute_service_account" {
-  config_path = "../service_accounts/compute"
-
-  # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
-  # module hasn't been applied yet.
-  mock_outputs_allowed_terraform_commands = ["plan", "validate"]
-  mock_outputs = {
-    email = "compute-service-account-not-created-yet"
-  }
-}
-
 inputs = {
   project_id = dependency.project.outputs.project_id
 
@@ -118,19 +107,9 @@ inputs = {
       member_name             = dependency.ssis_service_account.outputs.email
     },
     {
-      project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser", "roles/storage.objectAdmin"]
-      member_type             = "serviceaccount"
-      member_name             = dependency.compute_service_account.outputs.email
-    },
-    {
       project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser"]
       member_type             = "user"
       member_name             = "michael.foxall@placesforpeople.co.uk"
-    },
-    {
-      project_iam_permissions = ["roles/bigquery.admin"]
-      member_type             = "group"
-      member_name             = "GCP-Arch@placesforpeople.co.uk"
     },
     {
       project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser"]

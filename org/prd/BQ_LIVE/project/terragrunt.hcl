@@ -39,6 +39,6 @@ inputs = {
     department       = "it"
     disasterrecovery = "no"
     environment      = "prd"
-    contact          = "cloud-team"
+    contact          = "Technical-Services-Team"
   }
 }
