@@ -44,6 +44,23 @@ inputs = {
       extra_attributes = {}
     },
 
+    all-ingress-prdtoprd = {
+      description          = "INGRESS firewall for all ports and protocol for traffic inside production."
+      direction            = "INGRESS"
+      action               = "allow"
+      ranges               = ["172.26.0.0/24", "172.26.4.0/24", "172.26.16.0/22", "172.26.48.0/23"]
+      sources              = []
+      targets              = []
+      use_service_accounts = false
+      rules = [
+        {
+          protocol = "all"
+          ports    = []
+        }
+      ]
+      extra_attributes = {}
+    },
+
     iap-ingress-compute-prd-test = {
       description          = "For TEST Purposes ONLY - INGRESS firewall for SSH (TCP port 22) using 'IAP for TCP forwarding' to production environment."
       direction            = "INGRESS"

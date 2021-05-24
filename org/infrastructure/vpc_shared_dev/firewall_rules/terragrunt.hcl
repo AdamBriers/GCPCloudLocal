@@ -44,6 +44,23 @@ inputs = {
       extra_attributes = {}
     },
 
+    all-ingress-testanddevtotestanddev = {
+      description          = "INGRESS firewall for all ports and protocol for traffic inside test and dev."
+      direction            = "INGRESS"
+      action               = "allow"
+      ranges               = ["172.26.64.0/24", "172.26.68.0/24", "172.26.80.0/22", "172.26.112.0/23"]
+      sources              = []
+      targets              = []
+      use_service_accounts = false
+      rules = [
+        {
+          protocol = "all"
+          ports    = []
+        }
+      ]
+      extra_attributes = {}
+    },
+
     iap-ingress-compute-testanddev-test = {
       description          = "For TEST Purposes ONLY - INGRESS firewall for SSH (TCP port 22) using 'IAP for TCP forwarding' to test and dev environment."
       direction            = "INGRESS"
