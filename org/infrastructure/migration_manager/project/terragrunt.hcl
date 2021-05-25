@@ -40,6 +40,6 @@ inputs = {
     department       = "it"
     disasterrecovery = "no"
     environment      = "prd"
-    contact          = "appsbroker"
+    contact          = "technical services team"
   }
 }
