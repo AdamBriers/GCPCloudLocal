@@ -44,11 +44,28 @@ inputs = {
       extra_attributes = {}
     },
 
+    all-ingress-rndtornd = {
+      description          = "INGRESS firewall for all ports and protocol for traffic inside rnd."
+      direction            = "INGRESS"
+      action               = "allow"
+      ranges               = ["172.26.128.0/24", "172.26.132.0/24", "172.26.144.0/22", "172.26.176.0/23"]
+      sources              = []
+      targets              = []
+      use_service_accounts = false
+      rules = [
+        {
+          protocol = "all"
+          ports    = []
+        }
+      ]
+      extra_attributes = {}
+    },
+
     vpnall-ingress-rnd-azure-aws = {
       description          = "INGRESS firewall for all ports and protocol from on-prem, AWS and azure VPN to rnd."
       direction            = "INGRESS"
       action               = "allow"
-      ranges               = ["172.20.0.0/16", "172.30.0.0/16", "10.0.0.0/8", "172.21.0.0/16", "172.16.101.0/24"]
+      ranges               = ["172.20.0.0/16", "172.30.0.0/16", "10.0.0.0/8", "172.21.0.0/16", "172.16.1.0/24"]
       sources              = []
       targets              = []
       use_service_accounts = false
