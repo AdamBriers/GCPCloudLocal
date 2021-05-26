@@ -4,7 +4,7 @@
 #}
 
 terraform {
-  source = "../../../modules//project/"
+  source = "../../../../modules//project/"
 }
 
 # Include all settings from the root terragrunt.hcl file
@@ -13,7 +13,7 @@ include {
 }
 
 dependency "folder" {
-  config_path = "../"
+  config_path = "../../"
 
   # Configure mock outputs for the terraform commands that are returned when there are no outputs available (e.g the
   # module hasn't been applied yet.
@@ -27,7 +27,7 @@ dependency "folder" {
 inputs = {
 
   project_name       = "gc-t-prj-poc-0001"
-  folder_id          = dependency.folder.outputs.folder_id ## Test and Development folder id
+  folder_id          = dependency.folder.outputs.folder_created ## Test and Development folder id
   is_service_project = true
   # host_project_id - Taken from the hard coded value in the 'org/org.tfvars' file
 
