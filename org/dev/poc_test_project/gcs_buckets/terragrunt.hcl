@@ -22,7 +22,7 @@ inputs = {
 
   project_id    = dependency.project.outputs.project_id
   location      = "europe-west2"
-  name          = "${dependency.project.outputs.project_id}-backup_of_bq_zipfiles"
+  name          = "backup_of_bq_zipfiles"
   storage_class = "REGIONAL"
 }
 
