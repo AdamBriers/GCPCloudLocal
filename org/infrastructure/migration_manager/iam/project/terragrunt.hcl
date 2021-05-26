@@ -44,6 +44,14 @@ inputs = {
       ]
       member_type             = "user"
       member_name             = "skye.maddock@appsbroker.com"
+    },
+    {
+      project_iam_permissions = [
+        # To coordinate initial setup
+        "roles/vmmigration.admin"
+      ]
+      member_type             = "user"
+      member_name             = "theodor.valeanu@appsbroker.com"
     }
   ]
 }
