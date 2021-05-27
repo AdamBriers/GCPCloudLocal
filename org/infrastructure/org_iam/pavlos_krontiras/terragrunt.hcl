@@ -28,6 +28,7 @@ include {
       "roles/source.admin",
       "roles/resourcemanager.organizationAdmin",
       "roles/storage.objectAdmin",
+      "roles/vmmigration.viewer",
       "roles/cloudbuild.builds.editor",
       "roles/compute.admin"
     ]
