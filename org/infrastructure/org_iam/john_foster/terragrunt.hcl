@@ -28,7 +28,7 @@ include {
       "roles/source.admin",
       "roles/resourcemanager.organizationAdmin",
       "roles/storagetransfer.admin",
-      "roles/storage.Admin",
+      "roles/storage.admin",
       "roles/cloudbuild.builds.editor",
       "roles/storage.objectAdmin"
     ]
