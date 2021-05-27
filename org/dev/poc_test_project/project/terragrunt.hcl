@@ -32,7 +32,7 @@ inputs = {
   # host_project_id - Taken from the hard coded value in the 'org/org.tfvars' file
 
   labels = {
-    application      = "poc_test"
+    application      = "poc_test1"
     businessunit     = "homes"
     costcentre       = "90imt"
     createdby        = "appsbroker"
