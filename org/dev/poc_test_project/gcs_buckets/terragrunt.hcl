@@ -14,7 +14,7 @@ dependency "project" {
   # module hasn't been applied yet.
   mock_outputs_allowed_terraform_commands = ["plan", "validate"]
   mock_outputs = {
-    project_id = "project-not-created-yet"
+    project_id = "gc-t-prj-poc-0001-5473"
   }
 }
 
