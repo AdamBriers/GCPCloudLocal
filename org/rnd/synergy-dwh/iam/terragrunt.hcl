@@ -28,9 +28,9 @@ inputs = {
 
   project_members = [
     {
-      project_iam_permissions = ["roles/bigquery.dataEditor"]
+      project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser", "roles/bigquery.dataOwner", "roles/bigquery.readSessionUser", "roles/storage.admin", "roles/compute.viewer"] 
       member_type             = "user"
-      member_name             = "david.fairbrother@placesforpeople.co.uk"
+      member_name             = "Vamsi.Gottipatti@placesforpeople.co.uk"
     },
     {
       project_iam_permissions = ["roles/bigquery.dataEditor"]
