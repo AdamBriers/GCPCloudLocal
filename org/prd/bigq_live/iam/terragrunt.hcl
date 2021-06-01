@@ -123,7 +123,7 @@ inputs = {
       member_name             = dependency.compute_service_account.outputs.email
     },
     {
-      project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser", "roles/bigquery.dataOwner", "roles/bigquery.readSessionUser", "roles/storage.objectViewer"]
+      project_iam_permissions = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser", "roles/bigquery.dataOwner", "roles/bigquery.readSessionUser", "roles/storage.admin"]
       member_type             = "group"
       member_name             = "InfoManagement@placesforpeople.co.uk"
     },
