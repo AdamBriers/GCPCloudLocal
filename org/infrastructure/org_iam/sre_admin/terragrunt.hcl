@@ -16,6 +16,6 @@ include {
     org_iam_permissions   = [
       "roles/compute.admin"
     ]
-    member_name = "GBL_SEC_GCP_SRE_Admin@placesforpeople.co.uk"
+    member_name = "GBL_SEC_GCP_SRE@placesforpeople.co.uk"
     member_type = "group"
   }
