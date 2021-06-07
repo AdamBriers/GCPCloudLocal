@@ -113,7 +113,7 @@ inputs = {
     },
     {
       project_iam_permissions = ["roles/bigquery.admin", "roles/datafusion.admin", "roles/storage.admin", "roles/dataflow.admin", "roles/dataproc.admin", "roles/serviceusage.serviceUsageAdmin", 
-                                 "roles/datastream.admin", "roles/dataproc.serviceAgent"]
+                                 "roles/datastream.admin", "roles/dataproc.admin"]
       member_type             = "group"
       member_name             = "GCP-Arch@placesforpeople.co.uk"
     },
