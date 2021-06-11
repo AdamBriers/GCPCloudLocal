@@ -14,8 +14,8 @@ include {
 
   inputs = {
     org_iam_permissions   = [
-      "roles/vmmigration.admin"
+      "roles/compute.admin"
     ]
-    member_name = "john.gadsby@placesforpeople.co.uk"
-    member_type = "user"
+    member_name = "GBL_SEC_GCP_SRE_Admin@placesforpeople.co.uk"
+    member_type = "group"
   }
